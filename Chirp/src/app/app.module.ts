@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CoreModule } from './core/core.module';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CoreModule,
     ButtonModule
   ],
   providers: [],

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { ButtonModule } from 'primeng/button';
+import { MenubarModule } from 'primeng/menubar';
 
 
 @NgModule({
@@ -9,7 +10,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ButtonModule,
+    MenubarModule
+  ],
+  exports: [
+    NavbarComponent
   ]
 })
 export class CoreModule { }
