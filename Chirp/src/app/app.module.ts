@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { LoginModule } from './login/login.module';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './features/user/pages/login-window/login/login.component';
+import { LoginModule } from './features/user/pages/login-window/login/login.module';
+import { RegisterComponent } from './features/user/pages/login-window/register/register.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    BrowserAnimationsModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
