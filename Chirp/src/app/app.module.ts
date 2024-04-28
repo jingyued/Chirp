@@ -10,13 +10,15 @@ import { RegisterWindowComponent } from './features/user/pages/register-window/r
 import { DialogService } from 'primeng/dynamicdialog';
 import { ChirrupModule } from './features/chirrup/chirrup.module';
 import { SharedModule } from './shared/shared.module';
+import { ChirrupCommentComponent } from './features/chirrup/components/chirrup-comment/chirrup-comment.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterWindowComponent,
-    LoginWindowComponent
+    LoginWindowComponent,
+    ChirrupCommentComponent
   ],
   imports: [
     BrowserModule,
