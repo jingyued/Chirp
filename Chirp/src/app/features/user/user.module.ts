@@ -7,6 +7,7 @@ import { ProfileEditWindowComponent } from './pages/profile-edit-window/profile-
 import { ChangePasswordWindowComponent } from './pages/change-password-window/change-password-window.component';
 import { LoginWindowComponent } from './pages/login-window/login-window.component';
 import { RegisterWindowComponent } from './pages/register-window/register-window.component';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 
 
@@ -21,7 +22,11 @@ import { RegisterWindowComponent } from './pages/register-window/register-window
     RegisterWindowComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DynamicDialogModule
+  ],
+  providers: [
+    DialogService
   ]
 })
 export class UserModule { }

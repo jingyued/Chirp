@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { DialogCommunicationService } from './dialog-communication.service';
 
 @Component({
@@ -6,15 +6,11 @@ import { DialogCommunicationService } from './dialog-communication.service';
   templateUrl: './register-window.component.html',
   styleUrls: ['./register-window.component.sass']
 })
-export class RegisterWindowComponent implements OnInit {
+export class RegisterWindowComponent {
 
   constructor(private dialogCommunicationService: DialogCommunicationService) { }
 
-  ngOnInit(): void {
-  }
-
   onClosePopupDialog() {
-    // Simulate registration success
     this.dialogCommunicationService.emitRegistrationSuccess();
   }
 }
