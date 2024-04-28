@@ -12,7 +12,6 @@ import { ChirrupModule } from './features/chirrup/chirrup.module';
 import { SharedModule } from './shared/shared.module';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
