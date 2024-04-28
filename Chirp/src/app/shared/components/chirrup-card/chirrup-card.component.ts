@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChirrupCardComponent implements OnInit {
 
+  islike: boolean = false;
+
+  toggleHeartIcon() {
+    this.islike = !this.islike;
+  }
   constructor() { }
 
   ngOnInit(): void {
   }
 
 }
+
