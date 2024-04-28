@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@angular/cli": "^14.2.13"
+    "@angular/cli": "^14.2.13",
+    "primeicons": "^6.0.0"
   }
 }

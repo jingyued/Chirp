@@ -1,0 +1,69 @@
+@import '../../../../styles.sass'
+
+.chirrup-card
+  font-family: $font-family
+  font-size:$font-size
+  width: 75%
+  border-bottom: 1px solid #e1e1e1
+  margin: 0 0 20 0px
+  margin: 0 auto
+
+
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 10px
+
+.user-info
+  display: flex
+  align-items: center
+
+  .avatar
+
+    margin: 0em 1em
+    img
+      width: 50px
+      height: 50px
+      border-radius: 50%
+      object-fit: cover
+
+.user-name
+  font-weight: bold
+
+.post-time, .splitter, .location
+  color: #aaa
+
+.chirrup-content
+  margin: 0 0 0 6em
+
+.square-image 
+  object-fit: cover
+  width: 200px
+  height: 200px
+  border-radius: 10% 
+  padding: 10 0 10 10px
+
+
+.footer 
+  margin: 1em 0 1em 6em
+  
+.chirrup-card ::ng-deep .p-button 
+  width: auto
+  margin-right:1.5em
+  background-color: transparent
+  border: none
+  color: #685DF6
+  padding: 0
+  box-shadow: none
+  outline: none
+  .pi
+    font-size: 20px
+
+.chirrup-card :host ::ng-deep .p-button:hover
+  background-color: transparent
+  border: none
+  color: #007bff
+  padding: 0
+  box-shadow: none
+  outline: none

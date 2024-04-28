@@ -1,1 +1,33 @@
-<p>chirrup-card works!</p>
+<div class="chirrup-card">
+
+    <div class="header">
+        <div class="user-info">
+            <div class="avatar">
+                <img src="../../../../../assets/images/avatar.png" alt="User Avatar">
+            </div>
+            <div class="user-name">Joyce</div>
+            <div class="splitter">&nbsp;·&nbsp;</div>
+            <div class="post-time"> 1m</div>
+        </div>
+        <div class="location">Irvine, CA</div>
+    </div>
+
+
+    <div class="chirrup-content">
+        Love Trader Joe's Strawberry Tomato!! 🍅
+    </div>
+    <div class="chirrup-content">
+        <img alt="chirrup-image" class="square-image"
+            src="https://assets.tops.co.th/MYCHOICE-MyChoiceStrawberryTomatoes200g-8853474039982-1-2?$JPEG$" />
+        <img alt="chirrup-image" class="square-image"
+            src="https://thenorthernshopper.com/cdn/shop/files/1718475_CostcoStrawberrytomatoes_1280x.jpg?v=1713462162" />
+    </div>
+
+    <div class="footer">
+        <p-button (click)="toggleHeartIcon()" [icon]="islike ? 'pi pi-heart-fill' : 'pi pi-heart'" class="text-button"
+            label="likes"></p-button>
+        <p-button icon="pi pi-comment" class="text-button" label="comments"></p-button>
+    </div>
+
+
+</div>
