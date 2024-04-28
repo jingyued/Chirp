@@ -10,19 +10,22 @@ import { LoginWindowComponent } from './features/user/pages/login-window/login-w
 import { RegisterWindowComponent } from './features/user/pages/register-window/register-window.component';
 import { DialogCommunicationService } from './features/user/pages/register-window/dialog-communication.service';
 import { DialogService } from 'primeng/dynamicdialog';
-
+import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterWindowComponent,
-    LoginWindowComponent
+    LoginWindowComponent,
+    SettingsPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ButtonModule
+    ButtonModule,
+    InputSwitchModule
   ],
   providers: [
     DialogService

@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings-page.component.sass']
 })
 export class SettingsPageComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
