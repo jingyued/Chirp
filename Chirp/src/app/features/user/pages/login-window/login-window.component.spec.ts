@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginWindowComponent } from './login-window.component';
+import { RegisterWindowComponent } from '../register-window/register-window.component';
 
 describe('LoginWindowComponent', () => {
   let component: LoginWindowComponent;
