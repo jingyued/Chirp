@@ -29,9 +29,13 @@ export class LoginWindowComponent implements OnDestroy {
 
     try {
       this.ref = this.dialogService.open(RegisterWindowComponent, {
-        header: 'Register',
-        width: '70%',
-      contentStyle: { "max-height": "500px", "overflow": "auto" }
+        width: '50%',
+        showHeader: false,
+        contentStyle: {
+          "max-height": "500px",
+          "overflow": "auto",
+          "border-radius": "25px" // Optional: Add border-radius for rounded corners
+        }
       });
 
       this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
