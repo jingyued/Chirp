@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { SharedModule } from '../../shared/shared.module';
 
 
+
 @NgModule({
   declarations: [
     NewChirrupComponent,
@@ -23,6 +24,8 @@ import { SharedModule } from '../../shared/shared.module';
     UserRoutingModule,
     ButtonModule,
     SharedModule,
+
+
   ],
   exports: [
     NewChirrupComponent,
