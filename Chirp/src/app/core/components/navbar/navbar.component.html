@@ -1,10 +1,25 @@
-<i class="pi pi-check"></i>
-<i class="pi pi-times"></i>
-<span class="pi pi-search"></span>
-<span class="pi pi-user"></span>
 
-<p-button label="Submit"></p-button>
+<div class="menubar">
+    <div class="left">
+        <img src="assets/logo.png" height="40" style="margin-right: 20px" />
+    </div>
+    <div class="buttons">
+        <button pButton icon="pi pi-home" class="navButton" 
+                [ngClass]="{'selected': selectedButton === 'home'}"
+                (click)="onButtonClick('home')"></button>
+        <button pButton icon="pi pi-heart" class="navButton"
+                [ngClass]="{'selected': selectedButton === 'heart'}"
+                (click)="onButtonClick('heart')"></button>
+        <button pButton icon="pi pi-search" class="navButton"
+                [ngClass]="{'selected': selectedButton === 'search'}"
+                (click)="onButtonClick('search')"></button>
+        <button pButton icon="pi pi-user" class="navButton"
+                [ngClass]="{'selected': selectedButton === 'user'}"
+                (click)="onButtonClick('user')"></button>
+        <button pButton icon="pi pi-bars" class="navButton"
+                [ngClass]="{'selected': selectedButton === 'bars'}"
+                (click)="onButtonClick('bars')"></button>
+    </div>
+    <div class="right"></div>
+</div>
 
-<p-menubar [model]="items"></p-menubar>
-
-<i class="pi pi-user" style="color: #C84821"></i>

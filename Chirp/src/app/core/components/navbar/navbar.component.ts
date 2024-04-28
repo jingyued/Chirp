@@ -12,12 +12,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  items = [    
-    { icon: 'pi pi-home' },
-    { icon: 'pi pi-heart' },
-    { icon: 'pi pi-search' },
-    { icon: 'pi pi-user' },
-    { icon: 'pi pi-bars' },
-  ];
+  selectedButton: string = ''; // Variable to keep track of the selected button
+
+  // Method to handle button click events
+  onButtonClick(button: string) {
+    this.selectedButton = button;
+    //alert(this.selectedButton);
+  }
 
 }
