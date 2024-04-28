@@ -12,6 +12,12 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectedButton = 'Posts';
+  buttonColors = {
+    black: 'black',
+    grey: '#D3D3D3'
+  };
+
   user = {
     name: 'Felix',
     gender: 'Male',
@@ -30,6 +36,10 @@ export class UserInfoComponent implements OnInit {
       age--;
     }
     return age;
+  }
+
+  selectButton(button: string): void {
+    this.selectedButton = button;
   }
 
 }

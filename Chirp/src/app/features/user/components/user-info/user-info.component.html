@@ -17,8 +17,8 @@
         </div>
     </div>
     <div class="nav">
-        <p>Posts</p>
-        <p>Likes</p>
+        <button class="text-button"(click)="selectButton('Posts')" [ngStyle]="{ 'color': selectedButton === 'Posts' ? buttonColors.black : buttonColors.grey }">Posts</button>
+        <button class="text-button"(click)="selectButton('Likes')" [ngStyle]="{ 'color': selectedButton === 'Likes' ? buttonColors.black : buttonColors.grey }">Likes</button>
     </div>
 
 </div>
