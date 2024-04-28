@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.module';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-admin-user-list',
@@ -7,63 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUserListComponent implements OnInit {
 
-  usersList: any = [
-    // Taking some dummy template data for now
-    {
-      "_id": "6205e49f",
-      "name": "CallbackCats",
-      "userName": "CallbackCats",
-      "userEmail": "group.callbackcats@gmail.com",
-      "password": "$2a$10$d8QWXUh.xZKdluBDAriCpeW2VrXm1JCuJZqgdTkTm/l0aBwmFiz2q",
-      "userRole": "admin",
-      "age": 33,
-      "gender": "Male",
-      "phone": 1234567890,
-      "__v": 0
-    },
-    {
-      "_id": "6209c0d8",
-      "name": "Honey",
-      "userName": "Honey",
-      "userEmail": "honey@test.com",
-      "password": "$2a$10$CH47MjY.lB4cOBn4Wua0auc2mj0bht/9lW8rl79.zmqHsYPP2AL.m",
-      "userRole": "user",
-      "age": 11,
-      "gender": "Female",
-      "phone": 1234567890,
-      "__v": 0
-    },
-    {
-      "_id": "6209e666",
-      "name": "CallbackCats",
-      "userName": "CallbackCats",
-      "userEmail": "callbackcats@gmail.com",
-      "password": "$2a$10$ZY759JIXWsAlLL8fmrbBUO35quvChpie/8G5LbJlm04EA5KSwjC0u",
-      "userRole": "admin",
-      "age": 33,
-      "gender": "male",
-      "phone": 1234567890,
-      "__v": 0
-    },
-    {
-      "_id": "620fa50b",
-      "name": "cancelme001",
-      "userName": "delete001",
-      "userEmail": "skajndaksjd",
-      "password": "$2a$10$Qwx3KdVT9ukisxTdcT/58ee4TbRL.B/rUckTMPISLQFTMupdk3TsC",
-      "userRole": "user",
-      "age": 22,
-      "gender": "M",
-      "phone": 9292819128,
-      "__v": 0
-    },
-  ]
+  selectedIndex: number | null = null;
+  usersList: User[] = [];
+  selectedUser: User | undefined = {
+    "_id": "6205e49f223876263058315a",
+    "name": "CallbackCats",
+    "userName": "CallbackCats",
+    "userEmail": "group.callbackcats@gmail.com",
+    "password": "$2a$10$d8QWXUh",
+    "userRole": "admin",
+    "age": 33,
+    "gender": "Male",
+    "phone": 1234567890,
+  };
 
-  selectedId: string = "";
-
-  constructor() { }
+  constructor(private users: UserService) { }
 
   ngOnInit(): void {
+    this.users.getAllData().subscribe((res) => {
+      this.usersList = [...res]; 
+    });
   }
 
   onAddNew(){
@@ -71,11 +36,14 @@ export class AdminUserListComponent implements OnInit {
   }
 
   // TODO: try not display user when click delete
-  onSelectUser(event: Event){
-    console.log(event.target);
+  onSelectUser(index: number){
+    console.log(this.usersList[index]);
+    this.selectedIndex = index;
+    this.selectedUser = this.usersList[index];
   }
 
-  onDeleteUser(){
-    console.log("gonna delete");
+  onDeleteUser(index: number){
+    event?.stopPropagation();
+    console.log("gonna delete #"+this.usersList[index]._id);
   }
 }
