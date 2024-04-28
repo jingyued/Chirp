@@ -1,32 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { LoginWindowComponent } from './features/user/pages/login-window/login-window.component';
-import { RegisterWindowComponent } from './features/user/pages/register-window/register-window.component';
-import { DialogService } from 'primeng/dynamicdialog';
-import { ChirrupModule } from './features/chirrup/chirrup.module';
-import { SharedModule } from './shared/shared.module';
 
+import { CoreModule } from './core/core.module';
+import { UserModule } from './features/user/user.module';
+import { ChirrupModule } from './features/chirrup/chirrup.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterWindowComponent,
-    LoginWindowComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     CoreModule,
-    ChirrupModule,
-    SharedModule
+    ButtonModule,
+    UserModule,
+    ChirrupModule
   ],
-  providers: [
-    DialogService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
