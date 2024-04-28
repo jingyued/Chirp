@@ -5,6 +5,8 @@ import { ButtonModule } from 'primeng/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
+import { AdminModule } from './features/admin/admin.module';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ButtonModule
+    ButtonModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
