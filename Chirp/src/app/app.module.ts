@@ -5,22 +5,30 @@ import { ButtonModule } from 'primeng/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
-import { AdminModule } from './features/admin/admin.module';
+import { LoginWindowComponent } from './features/user/pages/login-window/login-window.component';
+import { RegisterWindowComponent } from './features/user/pages/register-window/register-window.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ChirrupModule } from './features/chirrup/chirrup.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegisterWindowComponent,
+    LoginWindowComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ButtonModule,
-    AdminModule
+    ChirrupModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [
+    DialogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
