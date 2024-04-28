@@ -35,11 +35,9 @@ export class LoginWindowComponent implements OnDestroy {
       contentStyle: { "max-height": "500px", "overflow": "auto" }
       });
 
-      this.dialogCommunicationService.registrationSuccess$
-        .pipe(takeUntil(this.unsubscribe$))
-        .subscribe(() => {
-          this.closeDialog();
-        });
+      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
+        this.closeDialog();
+      })
     } catch (error) {
       console.error('Error opening dialog:', error);
     }
