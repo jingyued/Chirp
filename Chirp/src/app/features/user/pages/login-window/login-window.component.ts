@@ -3,7 +3,6 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RegisterWindowComponent } from '../register-window/register-window.component';
 import { DialogCommunicationService } from '../register-window/dialog-communication.service';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-window',
