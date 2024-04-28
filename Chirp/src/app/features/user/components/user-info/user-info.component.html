@@ -1,1 +1,24 @@
-<p>user-info works!</p>
+<div class="w-screen flex justify-content-around bg-cyan-900">
+    <div class="m-3 p-3 bg-white">
+        <div class="m-3">
+            <p-avatar image="../../../../../assets/avatar-felix.jpg" size="xlarge" shape="circle"></p-avatar>
+        </div>
+        <div class="m-3 w-6">
+            <p>
+                {{user.name}} 
+                <span *ngIf="user.gender === 'Male'">
+                    <i class="pi pi-mars"></i>
+                </span>
+                <span *ngIf="user.gender === 'Female'">
+                    <i class="pi pi-venus"></i>
+                </span>
+                , {{getAge(user.birth)}} yrs
+            </p>
+    
+            <p>zixinzhang0519@gmail.com</p>
+        </div>
+    </div>
+    <div class="button-edit m-3  flex align-items-center bg-blue-100" >
+        <button pButton label="Edit Profile" class=""></button>
+    </div>
+</div>
