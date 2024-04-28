@@ -8,10 +8,6 @@ import { LoginWindowComponent } from './features/user/pages/login-window/login-w
 import { RegisterWindowComponent } from './features/user/pages/register-window/register-window.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginWindowComponent },
-  // { path: 'register', component: RegisterWindowComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent},
   { path: 'liked', component: LikedPageComponent},
   { path: 'profile', component:  ProfilePageComponent},
