@@ -11,6 +11,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 
 
+
 @NgModule({
   declarations: [
     UserInfoComponent,
@@ -24,6 +25,9 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
   imports: [
     CommonModule,
     DynamicDialogModule
+  ],
+  exports: [
+    SettingsPageComponent
   ],
   providers: [
     DialogService
