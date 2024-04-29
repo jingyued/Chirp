@@ -15,15 +15,17 @@ import { CoreModule } from './core/core.module';
 import { UserModule } from './features/user/user.module';
 import { ChirrupModule } from './features/chirrup/chirrup.module';
 import { SharedModule } from './shared/shared.module';
+import { ChirrupCommentComponent } from './features/chirrup/components/chirrup-comment/chirrup-comment.component';
 import { HttpClientModule } from '@angular/common/http'
 import { AdminModule } from './features/admin/admin.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     RegisterWindowComponent,
     LoginWindowComponent,
+    ChirrupCommentComponent,
     SettingsPageComponent
-
   ],
   imports: [
     BrowserModule,
