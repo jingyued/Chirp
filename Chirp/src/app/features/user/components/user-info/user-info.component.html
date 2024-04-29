@@ -1,1 +1,24 @@
-<p>user-info works!</p>
+<div class="container">
+    <div class="avatar">
+        <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+    </div>
+    <div class="profile">
+        <div class="">
+            <p class="user-name">
+                {{user.name}}
+            </p>
+            <p>
+                {{user.gender}}, {{getAge(user.birth)}} yrs
+            </p>
+            <p>zixinzhang0519@gmail.com</p>
+        </div>
+        <div class="edit-button">
+            <button pButton label="Edit Profile" class=""></button>
+        </div>
+    </div>
+    <div class="nav">
+        <button class="text-button"(click)="selectButton('Posts')" [ngStyle]="{ 'color': selectedButton === 'Posts' ? buttonColors.black : buttonColors.grey }">Posts</button>
+        <button class="text-button"(click)="selectButton('Likes')" [ngStyle]="{ 'color': selectedButton === 'Likes' ? buttonColors.black : buttonColors.grey }">Likes</button>
+    </div>
+
+</div>
