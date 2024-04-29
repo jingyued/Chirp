@@ -34,10 +34,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     ButtonModule,
     InputSwitchModule
   ],
-  exports: [
-    UserInfoComponent,
-    ProfilePageComponent,
-    
+  providers: [
+    DialogService
   ]
 })
 export class UserModule { }
