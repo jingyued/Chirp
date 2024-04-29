@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.module';
 
 @Component({
   selector: 'app-admin-user-info',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUserInfoComponent implements OnInit {
 
+  @Input() currUser: User | any;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

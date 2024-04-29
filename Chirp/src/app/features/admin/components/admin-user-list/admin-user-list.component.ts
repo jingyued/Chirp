@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.module';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-admin-user-list',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUserListComponent implements OnInit {
 
-  constructor() { }
+  selectedIndex: number | null = null;
+  usersList: User[] = [];
+  selectedUser: User | undefined = {
+    "_id": "6205e49f223876263058315a",
+    "name": "CallbackCats",
+    "userName": "CallbackCats",
+    "userEmail": "group.callbackcats@gmail.com",
+    "password": "$2a$10$d8QWXUh",
+    "userRole": "admin",
+    "age": 33,
+    "gender": "Male",
+    "phone": 1234567890,
+  };
+
+  constructor(private users: UserService) { }
 
   ngOnInit(): void {
+    this.users.getAllData().subscribe((res) => {
+      this.usersList = [...res]; 
+    });
   }
 
+  onAddNew(){
+    console.log("gonna add new");
+  }
+
+  // TODO: try not display user when click delete
+  onSelectUser(index: number){
+    this.selectedIndex = index;
+    this.selectedUser = this.usersList[index];
+  }
+
+  onDeleteUser(index: number){
+    event?.stopPropagation();
+    console.log("gonna delete #"+this.usersList[index]._id);
+  }
 }

@@ -7,8 +7,12 @@ import { ProfileEditWindowComponent } from './pages/profile-edit-window/profile-
 import { ChangePasswordWindowComponent } from './pages/change-password-window/change-password-window.component';
 import { LoginWindowComponent } from './pages/login-window/login-window.component';
 import { RegisterWindowComponent } from './pages/register-window/register-window.component';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { StyleClassModule } from 'primeng/styleclass';
+import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 
 
@@ -24,10 +28,11 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
   ],
   imports: [
     CommonModule,
-    DynamicDialogModule
-  ],
-  exports: [
-    SettingsPageComponent
+    AvatarModule,
+    AvatarGroupModule,
+    StyleClassModule,
+    ButtonModule,
+    InputSwitchModule
   ],
   providers: [
     DialogService
