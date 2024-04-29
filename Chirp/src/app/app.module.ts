@@ -35,7 +35,7 @@ import { AdminModule } from './features/admin/admin.module';
     ButtonModule,
     InputSwitchModule,
     ChirrupModule,
-    SharedModule
+    SharedModule,
     UserModule,
     HttpClientModule,
     AdminModule
@@ -43,7 +43,6 @@ import { AdminModule } from './features/admin/admin.module';
   providers: [
     DialogService
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
