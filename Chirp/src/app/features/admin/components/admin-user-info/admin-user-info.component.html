@@ -1,1 +1,42 @@
-<p>admin-user-info works!</p>
+<div class="container_adminUserDetail">
+    <div class="header">Detailed User Info</div>
+    <ul *ngIf="currUser._id !== undefined" class="detailed_list">
+        <li>
+            <span>User #: </span>
+            {{currUser._id}}
+        </li>
+        <li>
+            <span>UserName: </span>
+            {{currUser.userName}}
+        </li>
+        <li>
+            <span>Password: </span>
+            {{currUser.password}}
+        </li>
+        <li>
+            <span>Email: </span>
+            {{currUser.userEmail}}
+        </li>
+        <li>
+            <span>Role: </span>
+            {{currUser.userRole}}
+        </li>
+        <br><br>
+        <li>
+            <span>Name: </span>
+            {{currUser.name}}
+        </li>
+        <li>
+            <span>Age: </span>
+            {{currUser.age}}
+        </li>
+        <li>
+            <span>Gender: </span>
+            {{currUser.gender}}
+        </li>
+        <li>
+            <span>Phone #: </span>
+            {{currUser.phone}}
+        </li>
+    </ul>
+</div>
