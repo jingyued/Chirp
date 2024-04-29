@@ -17,7 +17,8 @@ export class ChirrupListComponent implements OnInit {
       next: (data: Chirrup[]) => { // Ensure this is typed as an array of Chirrup
         this.news = data.map((item: Chirrup) => ({ // Use parentheses for the syntax
           ...item,
-          islike: false
+          islike: false,
+          showComments: false,
         }));
       },
       error: (error) => {
@@ -28,5 +29,9 @@ export class ChirrupListComponent implements OnInit {
 
   toggleHeartIcon(chirrup: Chirrup) { // It's better to type the parameter as Chirrup if that's what it's expected to be
     chirrup.islike = !chirrup.islike; // This will toggle the like state of the chirrup
+  };
+
+  toggleCommentIcon(chirrup: Chirrup) { // It's better to type the parameter as Chirrup if that's what it's expected to be
+    chirrup.showComments = !chirrup.showComments; // This will toggle the like state of the chirrup
   }
 }
