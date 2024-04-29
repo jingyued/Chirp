@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.module';
 
 @Component({
   selector: 'app-admin-user-info',
@@ -7,18 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUserInfoComponent implements OnInit {
 
-  currUser: any = {
-    "_id": "6205e49f223876263058315a",
-    "name": "CallbackCats",
-    "userName": "CallbackCats",
-    "userEmail": "group.callbackcats@gmail.com",
-    "password": "$2a$10$d8QWXUh",
-    "userRole": "admin",
-    "age": 33,
-    "gender": "Male",
-    "phone": 1234567890,
-    "__v": 0
-  };
+  @Input() currUser: User | any;
 
   constructor() { }
 

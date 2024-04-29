@@ -9,6 +9,8 @@ import { RegisterWindowComponent } from './features/user/pages/register-window/r
 import { DialogService } from 'primeng/dynamicdialog';
 import { ChirrupModule } from './features/chirrup/chirrup.module';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http'
+import { AdminModule } from './features/admin/admin.module';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     CoreModule,
     ChirrupModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    AdminModule
   ],
   providers: [
     DialogService
