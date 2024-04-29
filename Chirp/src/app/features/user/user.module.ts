@@ -13,7 +13,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { SharedModule } from '../../shared/shared.module';
+
 
 
 @NgModule({
@@ -32,8 +32,7 @@ import { SharedModule } from '../../shared/shared.module';
     AvatarGroupModule,
     StyleClassModule,
     ButtonModule,
-    InputSwitchModule,
-    SharedModule
+    InputSwitchModule
   ],
   providers: [
     DialogService
