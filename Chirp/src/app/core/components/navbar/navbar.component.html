@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+
+<div class="menubar">
+    <div class="left">
+        <img src="assets/logo.png" height="40" style="margin-right: 20px" />
+    </div>
+    <div class="buttons">
+        <button pButton icon="pi pi-home" class="navButton" 
+                [ngClass]="{'selected': selectedButton === 'home'} "
+                (click)="onButtonClick('home')"></button>
+        <button pButton icon="pi pi-heart" class="navButton"
+                [ngClass]="{'selected': selectedButton === 'liked'}"
+                (click)="onButtonClick('liked')"></button>
+        <button pButton icon="pi pi-user" class="navButton"
+                [ngClass]="{'selected': selectedButton === 'profile'}"
+                (click)="onButtonClick('profile')"></button>
+        <button pButton icon="pi pi-bars" class="navButton"
+                [ngClass]="{'selected': selectedButton === 'settings'}"
+                (click)="onButtonClick('settings')"></button>
+    </div>
+    <div class="right"></div>
+</div>
