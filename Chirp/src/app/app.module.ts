@@ -9,7 +9,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './features/user/user.module';
 import { ChirrupModule } from './features/chirrup/chirrup.module';
-
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http'
+import { AdminModule } from './features/admin/admin.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,12 @@ import { ChirrupModule } from './features/chirrup/chirrup.module';
     CoreModule,
     ButtonModule,
     UserModule,
-    ChirrupModule
+    SharedModule,
+    HttpClientModule,
+    AdminModule
+  ],
+  providers: [
+    DialogService
   ],
   providers: [],
   bootstrap: [AppComponent]
