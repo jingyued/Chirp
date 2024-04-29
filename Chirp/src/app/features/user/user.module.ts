@@ -12,6 +12,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 
 
@@ -30,7 +31,8 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
     AvatarModule,
     AvatarGroupModule,
     StyleClassModule,
-    ButtonModule
+    ButtonModule,
+    InputSwitchModule
   ],
   exports: [
     UserInfoComponent,
