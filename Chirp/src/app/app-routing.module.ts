@@ -5,9 +5,12 @@ import { HomePageComponent } from './features/chirrup/pages/home-page/home-page.
 import { LikedPageComponent } from './features/chirrup/pages/liked-page/liked-page.component';
 import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
 import { LoginWindowComponent } from './features/user/pages/login-window/login-window.component';
-import { RegisterWindowComponent } from './features/user/pages/register-window/register-window.component';
+import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginWindowComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
   { path: 'home', component: HomePageComponent},
   { path: 'liked', component: LikedPageComponent},
   { path: 'profile', component:  ProfilePageComponent},
