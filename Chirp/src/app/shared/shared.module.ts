@@ -4,6 +4,7 @@ import { ChirrupListComponent } from './components/chirrup-list/chirrup-list.com
 import { ChirrupCardComponent } from './components/chirrup-card/chirrup-card.component';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { GetChirrupsService } from '../shared/services/get-chirrups.service'
 
 
 @NgModule({
@@ -11,13 +12,18 @@ import { CardModule } from 'primeng/card';
     ChirrupListComponent,
     ChirrupCardComponent
   ],
+
   imports: [
     CommonModule,
     ButtonModule,
-    CardModule
+    CardModule,
   ],
+
   exports: [
     ChirrupCardComponent,
+    ChirrupListComponent,
   ]
+
+
 })
 export class SharedModule { }

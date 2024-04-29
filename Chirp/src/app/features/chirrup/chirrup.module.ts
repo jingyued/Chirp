@@ -15,7 +15,7 @@ import { SharedModule } from '../../shared/shared.module';
   declarations: [
     NewChirrupComponent,
     HomePageComponent,
-    LikedPageComponent,
+    LikedPageComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +31,6 @@ import { SharedModule } from '../../shared/shared.module';
     HomePageComponent,
     LikedPageComponent,
   ],
-
 
 })
 export class ChirrupModule { }

@@ -1,1 +1,29 @@
-<p>chirrup-list works!</p>
+<!-- chirrup-list.component.html -->
+<div *ngFor="let chirrup of news" class="chirrup-card">
+    <div class="header">
+        <div class="user-info">
+            <div class="avatar">{{ chirrup.publisherName }}</div>
+            <div class="user-name">{{ chirrup.publisherName }}</div>
+            <div class="splitter">&nbsp;·&nbsp;</div>
+            <div class="post-time">{{ chirrup.publishedTime | date: 'short' }}</div>
+        </div>
+        <div class="location">Irvine, CA</div>
+    </div>
+
+    <div class="chirrup-content">
+        {{ chirrup.content.text }}
+    </div>
+    <div class="chirrup-content">
+        <img *ngIf="chirrup.content.image" alt="chirrup-image" class="square-image" src="{{ chirrup.content.image }}" />
+        <video *ngIf="chirrup.content.video" controls>
+            <!-- <source src="{{ chirrup.content.video }}" type="video/mp4"> -->
+            <source src="https://www.runoob.com/try/demo_source/mov_bbb.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="footer">
+        <p-button (click)="toggleHeartIcon(chirrup)" [icon]="chirrup.islike ? 'pi pi-heart-fill' : 'pi pi-heart'"
+            class="text-button" label="likes"></p-button>
+        <p-button icon="pi pi-comment" class="text-button" label="comments"></p-button>
+    </div>
+</div>
