@@ -37,7 +37,6 @@ export class AdminUserListComponent implements OnInit {
 
   // TODO: try not display user when click delete
   onSelectUser(index: number){
-    console.log(this.usersList[index]);
     this.selectedIndex = index;
     this.selectedUser = this.usersList[index];
   }
