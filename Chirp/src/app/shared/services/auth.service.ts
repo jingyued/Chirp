@@ -18,7 +18,7 @@ export class AuthService {
     this.http.post(url, { userEmail: email, password: password })
       .subscribe({
         next: (_resp: any) => this.token = _resp.bearerToken,
-        error: _err => console.log(_err.error)
+        error: _err => console.log("error status "+_err.status+" - "+_err.error)
       });
   }
 
@@ -28,15 +28,15 @@ export class AuthService {
     let res = this.http.post(url, user, { observe: 'response' });
     res.subscribe({
       next: _resp => {},
-      error: _err => console.log("status "+_err.status+" - "+_err.error)
+      error: _err => console.log("error status "+_err.status+" - "+_err.error)
     })
   }
 
-  // checkExistById() {
+  // checkExistById(id: string) {
 
   // }
 
-  // checkExistByEmail() {
+  // checkExistByEmail(email: string) {
 
   // }
 
