@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogCommunicationService } from '../register-window/dialog-communication.service';
 
 @Component({
   selector: 'app-change-password-window',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangePasswordWindowComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogCommunicationService: DialogCommunicationService) { }
 
   ngOnInit(): void {
   }
 
+  onClosePopupDialog() {
+    this.dialogCommunicationService.emitRegistrationSuccess();
+  }
 }

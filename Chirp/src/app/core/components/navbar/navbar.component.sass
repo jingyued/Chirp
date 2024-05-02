@@ -1,12 +1,17 @@
 .menubar
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
     display: flex
     justify-content: space-around
+    align-items: center
     border: 0.5px 0 0 0 solid grey
     border-radius: 6px
     padding: 5px
     background-color: #F5F5F5
-    box-shadow: 0 10px 20px rgb(0 0 0 / 0.2)
-
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)
+    z-index: 1000 // Ensure the navbar is above other content
 
 
 .left
@@ -17,23 +22,34 @@
     flex: 2
     display: flex
     justify-content: space-around
+    align-content: center
 
 .right
     flex: 1
 
-.navButton
-    background-color: #F5F5F5
-    color: black
-    border: 0px
+.pi-user
+   color: #C84821
 
-.navButton:hover
-    background-color: #F5F5F5
-    color: #C84821
-    border: 0px 
-
-
-.selected 
+i.selected 
     color: #C84821
     box-shadow: none
 
+.avatar
+    width: 2em
+    height: 2em
+    border-radius: 50%
 
+img.selected
+    border: 2px solid #C84821
+
+
+
+.logo
+    width: 3em
+    height: 3em
+    border-radius: 50%
+
+
+i
+    align-self: center
+    font-size: 1.5em
