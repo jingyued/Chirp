@@ -12,15 +12,17 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  loginAuth() {
-
+  loginAuth(email: string, password: string) {
+    const url = this.apiUrl + 'login';
+    this.http.post(url, { userEmail: email, password: password })
+      .subscribe((_resp: any) => this.token = _resp.bearerToken);
   }
 
   registerUser(user: User) {
     // TODO: find a way to retrieve token
-    const url = this.apiUrl+'register/createNewAccount';
-    let res = this.http.post(url, user, {observe: 'response'});
-    res.subscribe((_resp: any)=> {})
+    const url = this.apiUrl + 'register/createNewAccount';
+    let res = this.http.post(url, user, { observe: 'response' });
+    res.subscribe((_resp: any) => { })
   }
 
   // checkExistById() {
@@ -31,7 +33,7 @@ export class AuthService {
 
   // }
 
-  get loginToken(): string | undefined{
+  get loginToken(): string | undefined {
     return this.token;
   }
 }
