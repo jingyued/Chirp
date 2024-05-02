@@ -1,1 +1,31 @@
-<p>profile-edit-window works!</p>
+<div class="login-container">
+    <div class="avatar">
+        <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+    </div>
+    <h1>Edit Profile</h1>
+    <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
+    <input type="text" class="ss" placeholder="Username" [(ngModel)]="user.name"/>
+    <input type="text" class="ss" placeholder="Email" [(ngModel)]="user.email"/>
+    <select class="ss">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <div styles="display: flex; width: 100%">
+        <select class="select-small" [(ngModel)]="selectedMonth">
+            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+        </select>
+        
+        <select class="select-small" [(ngModel)]="selectedDay">
+            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+        </select>
+        
+        <select class="select-small" [(ngModel)]="selectedYear">
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+    </div>
+
+
+
+
+    <button pButton label="Confirm" class="button-confirm" ></button>
+    </div>
