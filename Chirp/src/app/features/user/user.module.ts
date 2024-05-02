@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SharedModule } from '../../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SharedModule } from '../../shared/shared.module';
     StyleClassModule,
     ButtonModule,
     InputSwitchModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [
     DialogService
