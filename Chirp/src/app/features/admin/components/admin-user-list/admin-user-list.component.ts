@@ -34,10 +34,13 @@ export class AdminUserListComponent implements OnInit {
 
   onAddNew(){
     console.log("gonna add new");
-    // manually switch for testing register func
-    // this.auth.registerUser({userName: "axnaxar", userEmail: "axnaxar@gmail.com", password: "aaaaaaaa"})
-    // this.auth.registerUser({userName: "naxar", userEmail: "naxar@ggg.com", password: "aaaaaaaa"})
-    // manually switch for testing login func
+  }
+
+  onRegist() {
+    this.auth.registerUser({userName: "axnaxar", userEmail: "axnaxar@gmail.com", password: "aaaaaaaa"})
+  }
+
+  onLogin() {
     this.auth.loginAuth("axnaxar@gmail.com", "aaaaaaaa");
   }
 
