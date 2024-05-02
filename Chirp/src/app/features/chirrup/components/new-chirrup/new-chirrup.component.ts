@@ -18,28 +18,14 @@ export class NewChirrupComponent {
       video: ['']
     });
   }
+
+
   uploadImage(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      // Assuming you want to convert the image file to a Base64 URL
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.chirrupForm.patchValue({ image: e.target.result });
-      };
-      reader.readAsDataURL(file);
-    }
+
   }
 
   uploadVideo(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      // convert the video file to a Base64 URL
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.chirrupForm.patchValue({ video: e.target.result });
-      };
-      reader.readAsDataURL(file);
-    }
+
   }
 
   postChirrup() {
