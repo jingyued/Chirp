@@ -1,32 +1,32 @@
 
 export interface Chirrup {
-    _id: string;
-    publisherName: string;
+    _id?: string;
+    publisherName?: string;
     content?: Content;
     publishedTime: string;
     comment: Comment[];
     likedIdList: LikedId[];
-    __v: number;
-    islike: boolean;
-    showComments: boolean;
+    __v?: number;
+    islike?: boolean;
+    showComments?: boolean;
 
 }
 
 interface Content {
-    image: string;
-    video: string;
+    image?: string;
+    video?: string;
     text: string;
-    _id: string;
+    _id?: string; // for post service
 }
 
 interface Comment {
-    _id: string;
-    publisherName?: string;  // Optional because not all comments have a publisherName
+    _id?: string;
+    publisherName?: string;
     content?: Content;
     publishedTime: string;
 }
 
 interface LikedId {
     userId: string;
-    _id: string;
+    _id?: string;
 }

@@ -8,7 +8,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LikedPageComponent } from './pages/liked-page/liked-page.component';
 import { ButtonModule } from 'primeng/button';
 import { SharedModule } from '../../shared/shared.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +24,7 @@ import { SharedModule } from '../../shared/shared.module';
     UserRoutingModule,
     ButtonModule,
     SharedModule,
+    ReactiveFormsModule,
 
   ],
   exports: [
