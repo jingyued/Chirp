@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs';
-// import { Comment } from 'path-to-your-comment-model'; // Import your Comment model
+import { Observable, catchError, throwError } from 'rxjs';
+import { Comment } from 'src/app/core/models/chirrup'; // Import your Comment interface
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
-  private apiUrl: string = "http://localhost:4231/api/";
+  private apiUrl: string = "http://localhost:4231/api/"; // Adjust the base URL
 
   constructor(private http: HttpClient) { }
-
-  postComment(comment: Comment) {
-    const url = this.apiUrl + 'comments'; // Adjust the endpoint based on your backend API
-    return this.http.post(url, comment)
+  
+  addComment(chirrupId: string, comment: Comment) {
+    const url = `${this.apiUrl}news/addComment/${chirrupId}`; // Adjust the endpoint based on your backend API
+    return this.http.patch<Comment>(url, comment) // Use PATCH method to add a comment
       .pipe(
         catchError(error => {
-          console.error('Error posting comment:', error);
+          console.error('Error adding comment:', error);
           throw error;
         })
       );

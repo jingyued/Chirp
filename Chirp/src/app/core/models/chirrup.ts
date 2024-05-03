@@ -12,14 +12,14 @@ export interface Chirrup {
 
 }
 
-interface Content {
+export interface Content {
     image: string;
     video: string;
     text: string;
     _id: string;
 }
 
-interface Comment {
+export interface Comment {
     _id: string;
     publisherName?: string;  // Optional because not all comments have a publisherName
     content?: Content;

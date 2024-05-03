@@ -34,13 +34,13 @@
             <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
         </div>
         <div class="input-container">
-            <input type="text" placeholder="Add new comment...">
+            <input type="text" placeholder="Add new comment..." [(ngModel)]="newCommentText">
             <div class="icons">
                 <span class="pi pi-at"></span>
                 <span class="pi pi-image"></span>
             </div>
         </div>
-        <span class="pi pi-send"></span>
+        <span class="pi pi-send" (click)="onSubmit(chirrup)"></span>
     </div>
 
     <div *ngFor="let comment of chirrup.comment" class="comment-box">
