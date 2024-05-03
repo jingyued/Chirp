@@ -1,14 +1,14 @@
 
 export interface Chirrup {
-    _id: string;
-    publisherName: string;
+    _id?: string;
+    publisherName?: string;
     content?: Content;
     publishedTime: string;
     comment: Comment[];
     likedIdList: LikedId[];
-    __v: number;
-    islike: boolean;
-    showComments: boolean;
+    __v?: number;
+    islike?: boolean;
+    showComments?: boolean;
 
 }
 
@@ -16,7 +16,7 @@ export interface Content {
     image: string;
     video: string;
     text: string;
-    _id: string;
+    _id?: string; // for post service
 }
 
 export interface Comment {
@@ -28,5 +28,5 @@ export interface Comment {
 
 interface LikedId {
     userId: string;
-    _id: string;
+    _id?: string;
 }

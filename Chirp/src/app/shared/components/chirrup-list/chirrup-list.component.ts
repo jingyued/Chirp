@@ -49,7 +49,7 @@ export class ChirrupListComponent implements OnInit {
       publishedTime: new Date().toISOString() // Use current timestamp
     };
 
-    this.commentService.addComment(chirrup._id, newComment).subscribe({
+    this.commentService.addComment(chirrup._id || '', newComment).subscribe({
       next: _resp => {
         console.log("Comment post successfully");
         this.newCommentText = '';
