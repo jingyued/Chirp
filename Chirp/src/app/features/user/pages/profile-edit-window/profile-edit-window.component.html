@@ -22,10 +22,12 @@
         <select class="select-small" [(ngModel)]="selectedYear">
             <option *ngFor="let year of years" [value]="year">{{ year }}</option>
         </select>
+
+        <p *ngIf="toggle === true">Test</p>
     </div>
 
 
 
 
-    <button pButton label="Confirm" class="button-confirm" ></button>
+    <button pButton label="Confirm" class="button-confirm" (click)="onClick()" ></button>
     </div>

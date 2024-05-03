@@ -13,6 +13,7 @@ export class ProfileEditWindowComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggle = false;
   user = {
     name: 'Felix',
     gender: 'Male',
@@ -30,6 +31,10 @@ export class ProfileEditWindowComponent implements OnInit {
 
   onClosePopupDialog() {
     this.dialogCommunicationService.emitRegistrationSuccess();
+  }
+
+  onClick() {
+    this.toggle = !this.toggle;
   }
 }
 

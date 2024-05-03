@@ -31,7 +31,7 @@ export class LoginWindowComponent implements OnDestroy {
   initializeForm() {
     this.loginForm = this.fb.group({
       username: ['',Validators.required],
-      password: ['', Validators.minLength(8)],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     },{})
   }
 
@@ -75,5 +75,9 @@ export class LoginWindowComponent implements OnDestroy {
     if (this.ref) {
       this.ref.close();
     }
+  }
+
+  onSubmit() {
+    //post
   }
 }
