@@ -13,14 +13,14 @@ export interface Chirrup {
 }
 
 export interface Content {
-    image: string;
-    video: string;
+    image?: string;
+    video?: string;
     text: string;
     _id?: string; // for post service
 }
 
 export interface Comment {
-    _id: string;
+    _id?: string;
     publisherName?: string;  // Optional because not all comments have a publisherName
     content?: Content;
     publishedTime: string;

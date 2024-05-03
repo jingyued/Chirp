@@ -34,7 +34,6 @@ export class AdminUserListComponent implements OnInit {
   onAddNew(){
     console.log("gonna add new");
   }
-
   // TODO: try not display user when click delete
   onSelectUser(index: number){
     this.selectedIndex = index;

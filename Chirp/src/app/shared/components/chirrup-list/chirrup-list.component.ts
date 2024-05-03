@@ -71,5 +71,4 @@ export class ChirrupListComponent implements OnInit {
       error: _err => console.log("Error posing new comment:", _err)
     });
   }
-
 }
