@@ -11,9 +11,7 @@
         <div class="location">Irvine, CA</div>
     </div>
 
-    <div class="chirrup-content">
-        {{ chirrup.content?.text }}
-    </div>
+    <div class="chirrup-content"> {{ chirrup.content?.text | truncate }} </div>
     <div class="chirrup-content">
         <img *ngIf="chirrup.content?.image" alt="chirrup-image" class="square-image"
             src="{{ chirrup.content?.image }}" />
@@ -30,37 +28,4 @@
     </div>
 
 
-    <div class="new-comment" *ngIf="chirrup.showComments">
-        <div class="avatar">
-            <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
-        </div>
-        <div class="input-container">
-            <input type="text" placeholder="Add new comment...">
-            <div class="icons">
-                <span class="pi pi-at"></span>
-                <span class="pi pi-image"></span>
-            </div>
-        </div>
-        <span class="pi pi-send"></span>
-    </div>
-
-    <div *ngFor="let comment of chirrup.comment" class="comment-box">
-
-        <div class="header">
-            <div class="user-info">
-                <div class="avatar">{{ comment.publisherName || "Anon" }}</div>
-                <div class="user-name">{{ comment.publisherName || "Anon" }}</div>
-                <div class="splitter">&nbsp;·&nbsp;</div>
-                <div class="post-time">{{ comment.publishedTime | date: 'short' }}</div>
-            </div>
-        </div>
-
-        <div class="comment-content">{{ comment.content?.text }}</div>
-        <!-- <div class="chirrup-content">
-            <img *ngIf="comment.content" alt="chirrup-image" class="square-image" src="{{ comment.content?.image }}" />
-            <video *ngIf="comment.content?.video" controls>
-                <source src="{{ comment.content?.video }}" type="video/mp4">
-            </video>
-        </div> -->
-    </div>
 </div>

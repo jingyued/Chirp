@@ -9,13 +9,15 @@ import { LikedPageComponent } from './pages/liked-page/liked-page.component';
 import { ButtonModule } from 'primeng/button';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 @NgModule({
   declarations: [
     NewChirrupComponent,
     HomePageComponent,
-    LikedPageComponent
+    LikedPageComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
