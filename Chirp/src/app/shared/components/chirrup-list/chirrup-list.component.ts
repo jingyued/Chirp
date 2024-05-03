@@ -27,11 +27,18 @@ export class ChirrupListComponent implements OnInit {
     });
   }
 
-  toggleHeartIcon(chirrup: Chirrup) { // It's better to type the parameter as Chirrup if that's what it's expected to be
-    chirrup.islike = !chirrup.islike; // This will toggle the like state of the chirrup
+  toggleHeartIcon(chirrup: Chirrup) {
+    chirrup.islike = !chirrup.islike;
+    // 因为post service更改了model, 导致这里要handle chirrup._id undefined 的情况,
+    // 实际上不会有不存在_id的post
+    if (chirrup._id !== undefined) {
+      localStorage.setItem(chirrup._id, chirrup.islike.toString());
+    } else {
+      console.error('chirrup._id is undefined');
+    }
   };
 
-  toggleCommentIcon(chirrup: Chirrup) { // It's better to type the parameter as Chirrup if that's what it's expected to be
-    chirrup.showComments = !chirrup.showComments; // This will toggle the like state of the chirrup
+  toggleCommentIcon(chirrup: Chirrup) {
+    chirrup.showComments = !chirrup.showComments;
   }
 }
