@@ -28,7 +28,7 @@ export class AdminUserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.users.getAllData().subscribe((res) => {
-      this.usersList = [...res]; 
+      this.usersList = [...res];
     });
   }
 
@@ -37,7 +37,7 @@ export class AdminUserListComponent implements OnInit {
   }
 
   onRegist() {
-    this.auth.registerUser({userName: "axnaxar", userEmail: "axnaxar@gmail.com", password: "aaaaaaaa"})
+    this.auth.registerUser({userName: "axnaxa", userEmail: "axnaxa@gmail.com", password: "aaaaaaaa"})
   }
 
   onLogin() {
