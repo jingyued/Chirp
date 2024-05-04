@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs';
 import { User } from 'src/app/core/models/user';
 import { __exportStar, __read } from 'tslib';
 
@@ -10,7 +9,6 @@ import { __exportStar, __read } from 'tslib';
 export class AuthService {
   private apiUrl: string = "http://localhost:4231/api/";
   private token?: string;
-  private role?: string;
   private name?: string;
 
   constructor(private http: HttpClient) { }
@@ -21,8 +19,8 @@ export class AuthService {
       .subscribe({
         next: (_resp: any) => {
           this.token = _resp.bearerToken;
-          this.role = _resp.userRole;
           this.name = _resp.userName;
+          localStorage.setItem("userRole", _resp.userRole);
         },
         error: _err => console.log("error status " + _err.status + " - " + _err.error)
       });
@@ -48,10 +46,6 @@ export class AuthService {
 
   get loginToken(): string | undefined {
     return this.token;
-  }
-
-  get userRole(): string | undefined {
-    return this.role;
   }
 
   get userName(): string | undefined {
