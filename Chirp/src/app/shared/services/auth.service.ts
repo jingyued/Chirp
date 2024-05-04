@@ -21,6 +21,9 @@ export class AuthService {
           this.token = _resp.bearerToken;
           this.name = _resp.userName;
           localStorage.setItem("userRole", _resp.userRole);
+          console.log(this.token);
+          console.log(this.name);
+          console.log(localStorage.getItem("userRole"))
         },
         error: _err => console.log("error status " + _err.status + " - " + _err.error)
       });
