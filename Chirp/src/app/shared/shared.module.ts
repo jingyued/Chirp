@@ -4,7 +4,8 @@ import { ChirrupListComponent } from './components/chirrup-list/chirrup-list.com
 import { ChirrupCardComponent } from './components/chirrup-card/chirrup-card.component';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { GetChirrupsService } from '../shared/services/get-chirrups.service'
+import { GetChirrupsService } from '../shared/services/get-chirrups.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { GetChirrupsService } from '../shared/services/get-chirrups.service'
     CommonModule,
     ButtonModule,
     CardModule,
+    FormsModule
   ],
 
   exports: [

@@ -27,14 +27,13 @@ export class AdminUserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.users.getAllData().subscribe((res) => {
-      this.usersList = [...res]; 
+      this.usersList = [...res];
     });
   }
 
   onAddNew(){
     console.log("gonna add new");
   }
-
   // TODO: try not display user when click delete
   onSelectUser(index: number){
     this.selectedIndex = index;

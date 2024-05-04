@@ -12,16 +12,16 @@ export interface Chirrup {
 
 }
 
-interface Content {
+export interface Content {
     image?: string;
     video?: string;
     text: string;
     _id?: string; // for post service
 }
 
-interface Comment {
+export interface Comment {
     _id?: string;
-    publisherName?: string;
+    publisherName?: string;  // Optional because not all comments have a publisherName
     content?: Content;
     publishedTime: string;
 }
