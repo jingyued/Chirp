@@ -14,10 +14,4 @@ export class UserService {
   getAllData() {
     return this.http.get<User[]>('http://localhost:4231/api/users/getAllUsers');
   }
-
-  checkUsernameExists(username: string): Observable<boolean> {
-    return this.getAllData().pipe(
-      map(users => users.some(user => user.userName === username))
-    );
-  }
 }

@@ -21,7 +21,8 @@
     <p class="warning" *ngIf="passwordConfirmControl.errors?.passwordMismatch && passwordConfirmControl.dirty">Password doesn't match.</p>
 
 
-    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    <button pButton type="submit" label="Register" [disabled]="registerForm.invalid" ></button>
+
 </form>
 
 
