@@ -10,6 +10,8 @@ import { __exportStar, __read } from 'tslib';
 export class AuthService {
   private apiUrl: string = "http://localhost:4231/api/";
   private token?: string;
+  private role?: string;
+  private name?: string;
 
   constructor(private http: HttpClient) { }
 
@@ -17,8 +19,12 @@ export class AuthService {
     const url = this.apiUrl + 'login';
     this.http.post(url, { userEmail: email, password: password })
       .subscribe({
-        next: (_resp: any) => this.token = _resp.bearerToken,
-        error: _err => console.log("error status "+_err.status+" - "+_err.error)
+        next: (_resp: any) => {
+          this.token = _resp.bearerToken;
+          this.role = _resp.userRole;
+          this.name = _resp.userName;
+        },
+        error: _err => console.log("error status " + _err.status + " - " + _err.error)
       });
   }
 
@@ -27,8 +33,8 @@ export class AuthService {
     const url = this.apiUrl + 'register/createNewAccount';
     let res = this.http.post(url, user, { observe: 'response' });
     res.subscribe({
-      next: _resp => {},
-      error: _err => console.log("error status "+_err.status+" - "+_err.error)
+      next: _resp => { },
+      error: _err => console.log("error status " + _err.status + " - " + _err.error)
     })
   }
 
@@ -42,5 +48,13 @@ export class AuthService {
 
   get loginToken(): string | undefined {
     return this.token;
+  }
+
+  get userRole(): string | undefined {
+    return this.role;
+  }
+
+  get userName(): string | undefined {
+    return this.name;
   }
 }
