@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogCommunicationService } from '../register-window/dialog-communication.service';
-import { UserService } from 'src/app/shared/services/user.service';
-import { User } from 'src/app/core/models/user';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-edit-window',
@@ -11,40 +8,28 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ProfileEditWindowComponent implements OnInit {
 
-  userForm: FormGroup = new FormGroup({});
-
-  constructor(
-    private dialogCommunicationService: DialogCommunicationService,
-    private userService: UserService,
-    private fb: FormBuilder
-  ) { }
+  constructor(private dialogCommunicationService: DialogCommunicationService) { }
 
   ngOnInit(): void {
-    this.initForm();
   }
 
-  initForm() {
-    const currentUser = this.userService.getCurrentUser();
-    this.userForm = this.fb.group({
-      userName: [currentUser.userName, Validators.required],
-      userEmail: [currentUser.userEmail, [Validators.required, Validators.email]],
-      gender: [currentUser.gender],
-      age: [currentUser.age],
-      phone: [currentUser.phone],
-    });
+  user = {
+    name: 'Felix',
+    gender: 'Male',
+    birth: new Date("1997-11-06"),
+    email: "zixinzhang0519@gmail.com"
   }
+
+  months: number[] = Array.from(Array(12).keys()).map(month => month + 1);
+  days: number[] = Array.from(Array(31).keys()).map(day => day + 1);
+  years: number[] = Array.from(Array(100).keys()).map(year => new Date().getFullYear() - year);
+
+  selectedMonth: number = this.user.birth.getMonth() + 1; // Default to January
+  selectedDay: number = this.user.birth.getDate() + 1; // Default to the 1st
+  selectedYear: number = this.user.birth.getFullYear(); // Default to the current year
 
   onClosePopupDialog() {
     this.dialogCommunicationService.emitRegistrationSuccess();
   }
-
-  onSubmit() {
-    if (this.userForm.valid) {
-      const updatedUserData: User = this.userForm.value;
-      this.userService.updateCurrentUser(updatedUserData);
-      this.onClosePopupDialog(); // Close the dialog after updating user data
-    } else {
-      // Handle form validation errors
-    }
-  }
 }
+

@@ -1,20 +1,31 @@
 <div class="login-container">
     <div class="avatar">
-      <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+        <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
     </div>
     <h1>Edit Profile</h1>
     <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
-
-    <form class="formGroup" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <input type="text" class="ss" placeholder="Username" formControlName="userName"/>
-      <input type="text" class="ss" placeholder="Email" formControlName="userEmail"/>
-      <select class="ss" formControlName="gender">
+    <input type="text" class="ss" placeholder="Username" [(ngModel)]="user.name"/>
+    <input type="text" class="ss" placeholder="Email" [(ngModel)]="user.email"/>
+    <select class="ss">
         <option value="Male">Male</option>
         <option value="Female">Female</option>
-        <option value="Non-Binary">Non-Binary</option>
-      </select>
-      <input type="text" class="ss" placeholder="Age" formControlName="age"/>
-      <input type="text" class="ss" placeholder="Phone" formControlName="phone"/>
-      <button type="submit" pButton label="Confirm" class="button-confirm" [disabled]="userForm.invalid"></button>
-    </form>
-  </div>
+    </select>
+    <div styles="display: flex; width: 100%">
+        <select class="select-small" [(ngModel)]="selectedMonth">
+            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+        </select>
+        
+        <select class="select-small" [(ngModel)]="selectedDay">
+            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+        </select>
+        
+        <select class="select-small" [(ngModel)]="selectedYear">
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+    </div>
+
+
+
+
+    <button pButton label="Confirm" class="button-confirm" ></button>
+    </div>
