@@ -7,13 +7,13 @@
 
   <form class="formGroup" [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="ss" [class.errorDisplayed]="userForm.get('userName')?.invalid">
-      <label for="userName">Username:</label><br>
+      <label for="userName">Username*:</label><br>
       <input type="text" id="userName" placeholder="Username" formControlName="userName"/>
       <p class="errorInfo" *ngIf="userForm.get('userName')?.invalid">Username is required.</p>
     </div>
 
     <div class="ss" [class.errorDisplayed]="userForm.get('userEmail')?.invalid">
-      <label for="userEmail">Email:</label><br>
+      <label for="userEmail">Email*:</label><br>
       <input type="text" id="userEmail" placeholder="Email" formControlName="userEmail"/>
       <p class="errorInfo" *ngIf="userForm.get('userEmail')?.invalid">Invalid Email Format.</p>
     </div>
