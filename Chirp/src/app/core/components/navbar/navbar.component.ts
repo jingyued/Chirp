@@ -1,5 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { ThemeService } from 'src/app/shared/services/theme.service';
 
 
 @Component({
@@ -9,9 +10,15 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  theme = 'lara-light-indigo';
+
+  constructor(
+    private router: Router,
+    private themeService: ThemeService
+  ) { }
 
   ngOnInit(): void {
+    this.theme = this.themeService.getCurrentTheme();
   }
 
   private _isLogin = false;

@@ -28,6 +28,16 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "src/themes/lara-light-indigo.sass",
+                "bundleName": "lara-light-indigo",
+                "inject": false
+              },
+              {
+                "input": "src/themes/lara-dark-indigo.sass",
+                "bundleName": "lara-dark-indigo",
+                "inject": false
+              },
               "src/styles.sass"
             ],
             "scripts": []

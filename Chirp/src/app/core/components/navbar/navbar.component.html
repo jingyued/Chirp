@@ -1,5 +1,7 @@
 
-<div class="menubar">
+<div class="menubar menubar-theme"
+    [ngClass]="{'light': theme === 'lara-light-indigo'}">
+    
     <div class="left">
         <img class="logo" src="assets/logo.png"/>
     </div>
@@ -21,9 +23,9 @@
         <img *ngIf="isLogin" 
                 class="avatar"
                 src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
-        <button *ngIf="!isLogin"
-                class=""
-                (click)="onButtonClick('login')">Login</button>
+        <p-button *ngIf="!isLogin"
+                label="Log In"
+                (click)="onButtonClick('login')"></p-button>
 
     </div>
     <div class="right"></div>
