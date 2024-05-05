@@ -4,6 +4,7 @@ import { RegisterWindowComponent } from '../register-window/register-window.comp
 import { DialogCommunicationService } from '../register-window/dialog-communication.service';
 import { Subject } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login-window',
@@ -20,7 +21,8 @@ export class LoginWindowComponent implements OnDestroy {
   constructor(
     private dialogService: DialogService,
     private dialogCommunicationService: DialogCommunicationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private auth: AuthService
   ) { }
 
 
@@ -79,5 +81,6 @@ export class LoginWindowComponent implements OnDestroy {
 
   onSubmit() {
     //post
+    this.auth.loginAuth(this.usernameControl.value, this.passwordControl.value);
   }
 }
