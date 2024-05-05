@@ -32,12 +32,12 @@ export class LoginWindowComponent implements OnDestroy {
 
   initializeForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required, this.emailExists()],
+      email: ['', Validators.required, this.emailExistsValidator()],
       password: ['', [Validators.required, Validators.minLength(8)]],
     }, {})
   }
 
-  emailExists(): AsyncValidatorFn {
+  emailExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.auth.checkExistByEmail(control.value).pipe(
         map((emailExist) => {
