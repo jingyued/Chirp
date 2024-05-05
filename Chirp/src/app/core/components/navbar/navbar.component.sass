@@ -27,17 +27,16 @@
 .right
     flex: 1
 
-.pi-user
-   color: #C84821
-
 i.selected 
     color: #C84821
     box-shadow: none
 
 .avatar
-    width: 2em
-    height: 2em
+    width: 40px
+    height: 40px
     border-radius: 50%
+    margin-left: 40px
+    margin-right: 40px
 
 img.selected
     border: 2px solid #C84821
@@ -53,3 +52,18 @@ img.selected
 i
     align-self: center
     font-size: 1.5em
+
+button
+    width: 120px
+    padding: 12px
+    font-size: 16px
+    font-weight: bold
+    background-color: #C84821
+    color: #fff
+    border: none
+    border-radius: 4px
+    cursor: pointer
+
+// Hover effect
+button:hover
+    background-color: #685DF6 // Use variable for hover color

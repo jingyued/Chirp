@@ -6,16 +6,16 @@
   <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
 
   <form class="formGroup" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div class="ss" [class.errorDisplayed]="userForm.get('userName')?.invalid && userForm.get('userName')?.touched">
+    <div class="ss" [class.errorDisplayed]="userForm.get('userName')?.invalid">
       <label for="userName">Username:</label><br>
       <input type="text" id="userName" placeholder="Username" formControlName="userName"/>
-      <p class="errorInfo" *ngIf="userForm.get('userName')?.invalid && userForm.get('userName')?.touched">Username is required.</p>
+      <p class="errorInfo" *ngIf="userForm.get('userName')?.invalid">Username is required.</p>
     </div>
 
-    <div class="ss" [class.errorDisplayed]="userForm.get('userEmail')?.invalid && userForm.get('userEmail')?.touched">
+    <div class="ss" [class.errorDisplayed]="userForm.get('userEmail')?.invalid">
       <label for="userEmail">Email:</label><br>
       <input type="text" id="userEmail" placeholder="Email" formControlName="userEmail"/>
-      <p class="errorInfo" *ngIf="userForm.get('userEmail')?.invalid && userForm.get('userEmail')?.touched">Invalid Email Format.</p>
+      <p class="errorInfo" *ngIf="userForm.get('userEmail')?.invalid">Invalid Email Format.</p>
     </div>
 
     <div class="ss">
@@ -27,16 +27,16 @@
       </select>
     </div>
 
-    <div class="ss" [class.errorDisplayed]="userForm.get('age')?.invalid && userForm.get('age')?.touched">
+    <div class="ss" [class.errorDisplayed]="userForm.get('age')?.invalid">
       <label for="age">Age:</label><br>
       <input type="text" id="age" placeholder="Age" formControlName="age"/>
-      <p class="errorInfo" *ngIf="userForm.get('age')?.invalid && userForm.get('age')?.touched">Age must be a valid number.</p>
+      <p class="errorInfo" *ngIf="userForm.get('age')?.invalid">Age must be a valid number.</p>
     </div>
 
-    <div class="ss" [class.errorDisplayed]="userForm.get('phone')?.invalid && userForm.get('phone')?.touched">
+    <div class="ss" [class.errorDisplayed]="userForm.get('phone')?.invalid">
       <label for="phone">Phone:</label><br>
       <input type="text" id="phone" placeholder="Phone" formControlName="phone"/>
-      <p class="errorInfo" *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched">Phone number must be a 10-digit number.</p>
+      <p class="errorInfo" *ngIf="userForm.get('phone')?.invalid">Phone number must be a 10-digit number.</p>
     </div>
 
     <button type="submit" pButton label="Confirm" class="button-confirm" [disabled]="userForm.invalid"></button>
