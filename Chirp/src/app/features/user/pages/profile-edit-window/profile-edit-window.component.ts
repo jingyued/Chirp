@@ -32,4 +32,3 @@ export class ProfileEditWindowComponent implements OnInit {
     this.dialogCommunicationService.emitRegistrationSuccess();
   }
 }
-

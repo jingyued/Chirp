@@ -55,4 +55,8 @@ export class AuthService {
   get loginToken(): string | undefined {
     return this.token;
   }
+
+  get userName(): string | undefined {
+    return this.name;
+  }
 }

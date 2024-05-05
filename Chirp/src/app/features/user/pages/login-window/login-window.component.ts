@@ -3,6 +3,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RegisterWindowComponent } from '../register-window/register-window.component';
 import { DialogCommunicationService } from '../register-window/dialog-communication.service';
 import { Subject } from 'rxjs';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login-window',
@@ -14,10 +16,35 @@ export class LoginWindowComponent implements OnDestroy {
   ref: DynamicDialogRef | undefined;
   private unsubscribe$ = new Subject<void>();
 
+  loginForm: any;
+
   constructor(
     private dialogService: DialogService,
-    private dialogCommunicationService: DialogCommunicationService
+    private dialogCommunicationService: DialogCommunicationService,
+    private fb: FormBuilder,
+    private auth: AuthService
   ) { }
+
+
+  ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm() {
+    this.loginForm = this.fb.group({
+      username: ['',Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    },{})
+  }
+
+  get usernameControl() {
+    return this.loginForm.get('username');
+  }
+
+  get passwordControl() {
+    return this.loginForm.get('password');
+  }
+
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -50,5 +77,10 @@ export class LoginWindowComponent implements OnDestroy {
     if (this.ref) {
       this.ref.close();
     }
+  }
+
+  onSubmit() {
+    //post
+    this.auth.loginAuth(this.usernameControl.value, this.passwordControl.value);
   }
 }
