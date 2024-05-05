@@ -3,6 +3,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DialogCommunicationService } from '../register-window/dialog-communication.service';
 import { Subject } from 'rxjs';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-register-window',
@@ -15,7 +16,8 @@ export class RegisterWindowComponent {
 
   constructor(
     private dialogCommunicationService: DialogCommunicationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +84,7 @@ export class RegisterWindowComponent {
 
   onSubmit() {
     // post
+    this.auth.registerUser({userName: this.usernameControl.value, userEmail: this.emailControl.value, password: this.passwordControl.value});
     this.onClosePopupDialog();
   }
 
