@@ -5,12 +5,18 @@
     <div class="profile">
         <div class="">
             <p class="user-name">
-                {{user?.userName}}
+                {{user.userName}}
+            </p>
+            <p>Email: {{ user.userEmail }}</p>
+            <p>
+                Gender: {{user.gender}}
             </p>
             <p>
-                {{user?.gender}}
+                Age: {{user.age}}
             </p>
-            <p>{{ user?.userEmail }}</p>
+            <p>
+                Phone: {{ user.phone }}
+            </p>
         </div>
         <div class="edit-button">
             <button pButton label="Edit Profile" class="" (click)="openProfileEditPopup($event)"></button>
