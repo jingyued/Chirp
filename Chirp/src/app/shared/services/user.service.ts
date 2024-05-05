@@ -24,6 +24,6 @@ export class UserService {
   }
   updateCurrentUser(updateUser: User) {
     this.currentUser = updateUser;
-    this.getCurrentUser();
+    // return this.getCurrentUser();
   }
 }

@@ -23,14 +23,15 @@ export class ProfileEditWindowComponent implements OnInit {
     this.initForm();
   }
 
+  currentUser = this.userService.getCurrentUser()
   initForm() {
-    const currentUser = this.userService.getCurrentUser();
+    // const currentUser = this.userService.getCurrentUser();
     this.userForm = this.fb.group({
-      userName: [currentUser.userName, Validators.required],
-      userEmail: [currentUser.userEmail, [Validators.required, Validators.email]],
-      gender: [currentUser.gender],
-      age: [currentUser.age, [this.isIntegerValidator()]],
-      phone: [currentUser.phone, [this.isPhoneNumberValidator()]],
+      userName: [this.currentUser.userName, Validators.required],
+      userEmail: [this.currentUser.userEmail, [Validators.required, Validators.email]],
+      gender: [this.currentUser.gender],
+      age: [this.currentUser.age, [this.isIntegerValidator()]],
+      phone: [this.currentUser.phone, [this.isPhoneNumberValidator()]],
     });
   }
 
