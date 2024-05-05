@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/features/chirrup/services/shared.service'
   styleUrls: ['./chirrup-list.component.sass', '../chirrup-card/chirrup-card.component.sass']
 })
 export class ChirrupListComponent implements OnInit, OnDestroy {
-  news: Chirrup[] = []; // This will hold an array of Chirrup objects
+  news: Chirrup[] = [];
   newCommentText: string = '';
   private refreshSubscription: Subscription;
 
@@ -29,8 +29,8 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
     });
 
     this.getChirrupsService.getNews().subscribe({
-      next: (data: Chirrup[]) => { // Ensure this is typed as an array of Chirrup
-        this.news = data.map((item: Chirrup) => ({ // Use parentheses for the syntax
+      next: (data: Chirrup[]) => {
+        this.news = data.map((item: Chirrup) => ({
           ...item,
           islike: false,
           showComments: false,
@@ -50,6 +50,9 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   loadChirrups() {
     this.getChirrupsService.getNews().subscribe({
       next: (data: Chirrup[]) => {
+        // 先按照时间顺序从近到远排列
+        // data.sort((a, b) => new Date(b.publishedTime).getTime() - new Date(a.publishedTime).getTime());
+        // 更新 news 数组
         this.news = data.map((item: Chirrup) => ({
           ...item,
           islike: false,
@@ -62,12 +65,12 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggleHeartIcon(chirrup: Chirrup) { // It's better to type the parameter as Chirrup if that's what it's expected to be
-    chirrup.islike = !chirrup.islike; // This will toggle the like state of the chirrup
+  toggleHeartIcon(chirrup: Chirrup) {
+    chirrup.islike = !chirrup.islike;
   };
 
-  toggleCommentIcon(chirrup: Chirrup) { // It's better to type the parameter as Chirrup if that's what it's expected to be
-    chirrup.showComments = !chirrup.showComments; // This will toggle the like state of the chirrup
+  toggleCommentIcon(chirrup: Chirrup) {
+    chirrup.showComments = !chirrup.showComments;
   }
   onSubmit(chirrup: Chirrup) {
     const newComment: Comment = {

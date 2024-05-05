@@ -26,27 +26,17 @@ export class NewChirrupComponent {
 
   postChirrup() {
     const formData = this.chirrupForm.value;
-    // const newChirrup = {
-    //   publisherName: 'Felix',
-    //   content: {
-    //     image: formData.image,
-    //     video: formData.video,
-    //     text: formData.text,
-    //   },
-    //   publishedTime: new Date().toISOString(),
-    //   comment: [],
-    //   likedIdList: [],
-    // }
+
     const newChirrup = {
-      "publisherName": "Felix",
-      "content": {
-        "image": "formData.image",
-        "video": "formData.video",
-        "text": formData.text
+      publisherName: "Felix",
+      content: {
+        // image: "image not available",
+        // video: "video not available",
+        text: formData.text
       },
-      "publishedTime": "2024-05-03T12:34:56.789Z",
-      "comment": [],
-      "likedIdList": []
+      publishedTime: new Date().toISOString(),
+      comment: [],
+      likedIdList: []
     }
 
 
