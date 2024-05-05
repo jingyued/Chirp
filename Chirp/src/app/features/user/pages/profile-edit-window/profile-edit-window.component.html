@@ -1,31 +1,44 @@
 <div class="login-container">
-    <div class="avatar">
-        <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+  <div class="avatar">
+    <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+  </div>
+  <h1>Edit Profile</h1>
+  <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
+
+  <form class="formGroup" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="ss" [class.errorDisplayed]="userForm.get('userName')?.invalid">
+      <label for="userName">Username*:</label><br>
+      <input type="text" id="userName" placeholder="Username" formControlName="userName"/>
+      <p class="errorInfo" *ngIf="userForm.get('userName')?.invalid">Username is required.</p>
     </div>
-    <h1>Edit Profile</h1>
-    <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
-    <input type="text" class="ss" placeholder="Username" [(ngModel)]="user.name"/>
-    <input type="text" class="ss" placeholder="Email" [(ngModel)]="user.email"/>
-    <select class="ss">
+
+    <div class="ss" [class.errorDisplayed]="userForm.get('userEmail')?.invalid">
+      <label for="userEmail">Email*:</label><br>
+      <input type="text" id="userEmail" placeholder="Email" formControlName="userEmail"/>
+      <p class="errorInfo" *ngIf="userForm.get('userEmail')?.invalid">Invalid Email Format.</p>
+    </div>
+
+    <div class="ss">
+      <label for="gender">Gender:</label><br>
+      <select id="gender" formControlName="gender">
         <option value="Male">Male</option>
         <option value="Female">Female</option>
-    </select>
-    <div styles="display: flex; width: 100%">
-        <select class="select-small" [(ngModel)]="selectedMonth">
-            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-        </select>
-        
-        <select class="select-small" [(ngModel)]="selectedDay">
-            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
-        </select>
-        
-        <select class="select-small" [(ngModel)]="selectedYear">
-            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-        </select>
+        <option value="Non-Binary">Non-Binary</option>
+      </select>
     </div>
 
-
-
-
-    <button pButton label="Confirm" class="button-confirm" ></button>
+    <div class="ss" [class.errorDisplayed]="userForm.get('age')?.invalid">
+      <label for="age">Age:</label><br>
+      <input type="text" id="age" placeholder="Age" formControlName="age"/>
+      <p class="errorInfo" *ngIf="userForm.get('age')?.invalid">Age must be a valid number.</p>
     </div>
+
+    <div class="ss" [class.errorDisplayed]="userForm.get('phone')?.invalid">
+      <label for="phone">Phone:</label><br>
+      <input type="text" id="phone" placeholder="Phone" formControlName="phone"/>
+      <p class="errorInfo" *ngIf="userForm.get('phone')?.invalid">Phone number must be a 10-digit number.</p>
+    </div>
+
+    <button type="submit" pButton label="Confirm" class="button-confirm" [disabled]="userForm.invalid"></button>
+  </form>
+</div>

@@ -35,8 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     InputSwitchModule,
     SharedModule,
-    ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DialogService

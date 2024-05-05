@@ -3,6 +3,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
 import { DialogCommunicationService } from '../../pages/register-window/dialog-communication.service';
 import { Subject } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
+import { User } from 'src/app/core/models/user';
 
 @Component({
   selector: 'app-user-info',
@@ -16,7 +18,8 @@ export class UserInfoComponent implements OnDestroy {
 
   constructor(
     private dialogService: DialogService,
-    private dialogCommunicationService: DialogCommunicationService
+    private dialogCommunicationService: DialogCommunicationService,
+    private userService: UserService
   ) { }
 
   ngOnDestroy(): void {
@@ -24,6 +27,10 @@ export class UserInfoComponent implements OnDestroy {
     this.unsubscribe$.complete();
   }
 
+  user = this.userService.getCurrentUser();
+  getUserInfo(): void {
+    this.user = this.userService.getCurrentUser();
+  }
   openProfileEditPopup(event: Event) {
     event.preventDefault();
 
@@ -32,7 +39,7 @@ export class UserInfoComponent implements OnDestroy {
         width: '25rem',
         showHeader: false,
         contentStyle: {
-          "max-height": "600px",
+          "max-height": "650px",
           "overflow": "auto",
           "border-radius": "25px" // Optional: Add border-radius for rounded corners
         }
@@ -48,6 +55,7 @@ export class UserInfoComponent implements OnDestroy {
 
   closeDialog() {
     if (this.ref) {
+      this.getUserInfo();
       this.ref.close();
     }
   }
@@ -57,26 +65,6 @@ export class UserInfoComponent implements OnDestroy {
     black: 'black',
     grey: '#D3D3D3'
   };
-
-  user = {
-    name: 'Felix',
-    gender: 'Male',
-    birth: new Date("1997-11-06"),
-    email: "zixinzhang0519@gmail.com"
-  }
-
-
-  getAge(birth: Date): number {
-    const today = new Date();
-    const birthDate = new Date(birth);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  }
 
   selectButton(button: string): void {
     this.selectedButton = button;
