@@ -22,9 +22,9 @@ export class AuthService {
           this.token = _resp.bearerToken;
           this.name = _resp.userName;
           localStorage.setItem("userRole", _resp.userRole);
-          // console.log(this.token);
-          // console.log(this.name);
-          // console.log(localStorage.getItem("userRole"));
+          console.log(this.token);
+          console.log(this.name);
+          console.log(localStorage.getItem("userRole"));
         },
         error: _err => console.error(`status ${_err.status}: ${_err.error}`)
       });
@@ -40,15 +40,11 @@ export class AuthService {
   }
 
   checkExistByName(username: string) {
-    const url = `${this.apiUrl}/register/checkExistByUsername/${username}`;
-    this.http.get(url).subscribe({
-      next: _resp => {return <boolean>_resp},
-      error: _err => console.error(`status ${_err.status}: ${_err.error}`)
-    });
+    return this.http.get(`${this.apiUrl}/register/checkExistByUsername/${username}`);
   }
 
   checkExistByEmail(email: string) {
-
+    return this.http.get(`${this.apiUrl}/register/checkExistByEmail/${email}`);
   }
 
   get loginToken(): string | undefined {
