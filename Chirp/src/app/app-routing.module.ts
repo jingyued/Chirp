@@ -7,13 +7,14 @@ import { SettingsPageComponent } from './features/user/pages/settings-page/setti
 import { LoginWindowComponent } from './features/user/pages/login-window/login-window.component';
 import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
 
+import { AdminGuard } from './core/guards/admin.guard';
 const routes: Routes = [
   { path: 'login', component: LoginWindowComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'liked', component: LikedPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'settings', component: SettingsPageComponent },
-  { path: 'admin', component: AdminPageComponent },
+  { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({
