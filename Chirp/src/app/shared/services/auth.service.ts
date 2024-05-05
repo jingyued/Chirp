@@ -25,7 +25,6 @@ export class AuthService {
           // console.log(this.token);
           // console.log(this.name);
           // console.log(localStorage.getItem("userRole"));
-          // this.userService.getUserByName(_resp.userName).subscribe(res => console.log(res));
         },
         error: _err => console.error(`status ${_err.status}: ${_err.error}`)
       });
