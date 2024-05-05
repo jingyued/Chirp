@@ -1,9 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Component } from '@angular/core';
 import { DialogCommunicationService } from '../register-window/dialog-communication.service';
-import { Subject } from 'rxjs';
-import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-register-window',
@@ -26,8 +25,8 @@ export class RegisterWindowComponent {
 
   initializeForm() {
     this.registerForm = this.fb.group({
-      username: ['',Validators.required],
-      email: ['',[Validators.required, Validators.email]],
+      username: ['',Validators.required, this.userNameNotExists()],
+      email: ['',[Validators.required, Validators.email], this.emailNotExistsValidator()],
       password: ['',[Validators.required, Validators.minLength(8), this.passwordValidator()]],
       passwordConfirm: ['', [Validators.required, this.passwordMatchValidator('password')]]
 
@@ -76,6 +75,30 @@ export class RegisterWindowComponent {
   
       return password === confirmPassword ? null : { 'passwordMismatch': true };
     };
+  }
+
+  emailNotExistsValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.auth.checkExistByEmail(control.value).pipe(
+        map((emailExist) => {
+          return emailExist ? { emailAlreadyExist: 'Email address already exist' } : null
+        }, catchError(() => {
+          return of({ StatusError: 'Service not avaliable' });
+        }))
+      )
+    }
+  }
+
+  userNameNotExists(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.auth.checkExistByName(control.value).pipe(
+        map((nameExist) => {
+          return nameExist ? { userAlreadyExist: 'userName already exist' } : null
+        }, catchError(() => {
+          return of({ StatusError: 'Service not avaliable' });
+        }))
+      )
+    }
   }
 
   onClosePopupDialog() {
