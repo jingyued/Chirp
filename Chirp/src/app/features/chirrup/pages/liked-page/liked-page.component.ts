@@ -14,12 +14,13 @@ export class LikedPageComponent implements OnInit, OnDestroy {
 
   news: Chirrup[] = [];
   likedNews: Chirrup[] = [];
-  shouldClearLocalStorage = false;
+  shouldClearSessionStorage = false;
+
 
   constructor(private getChirrupsService: GetChirrupsService) { }
 
   ngOnInit() {
-    this.shouldClearLocalStorage = true;
+    this.shouldClearSessionStorage = true;
     this.getChirrupsService.getNews().subscribe({
       next: (data: Chirrup[]) => {
         this.news = data.map((item: Chirrup) => ({
@@ -36,24 +37,23 @@ export class LikedPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.shouldClearLocalStorage) {
-      this.clearLocalStorage();
+    if (this.shouldClearSessionStorage) {
+      // this.clearSessionStorage();
     }
   }
 
-  clearLocalStorage() {
-    // 清除 localStorage 中的数据
-    localStorage.clear();
+  clearSessionStorage() {
+    // sessionStorage.clear();
   }
 
 
   filterLikedNews() {
     let likeStatus: { [key: string]: boolean } = {};
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
+    if (sessionStorage.length > 0) {
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
         if (key !== null) {
-          const value = localStorage.getItem(key);
+          const value = sessionStorage.getItem(key);
           if (value !== null) {
             likeStatus[key] = value === 'true';
           }
@@ -78,7 +78,9 @@ export class LikedPageComponent implements OnInit, OnDestroy {
     // 因为post service更改了model, 导致这里要handle chirrup._id undefined 的情况,
     // 实际上不会有不存在_id的post
     if (chirrup._id !== undefined) {
-      localStorage.setItem(chirrup._id, chirrup.islike.toString());
+      sessionStorage.setItem(chirrup._id, chirrup.islike.toString());
+      console.log(chirrup._id);
+      console.log('add chirruo id to session');
     } else {
       console.error('chirrup._id is undefined');
     }

@@ -32,7 +32,7 @@ export class ChirrupListComponent implements OnInit {
     // 因为post service更改了model, 导致这里要handle chirrup._id undefined 的情况,
     // 实际上不会有不存在_id的post
     if (chirrup._id !== undefined) {
-      localStorage.setItem(chirrup._id, chirrup.islike.toString());
+      sessionStorage.setItem(chirrup._id, chirrup.islike.toString());
     } else {
       console.error('chirrup._id is undefined');
     }
