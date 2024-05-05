@@ -5,10 +5,11 @@
 
     <input [ngClass]="{'warning': usernameControl.errors && usernameControl.dirty}" type="text" formControlName="username" placeholder="Username:">
     <p class="warning" *ngIf="usernameControl.errors?.required && usernameControl.dirty">Username shouldn't be empty.</p>
+    <p class="warning" *ngIf="usernameControl.errors?.userAlreadyExist && usernameControl.dirty">Username already exist.</p>
 
     <input [ngClass]="{'warning': emailControl.errors && emailControl.dirty}" type="email" formControlName="email" placeholder="User Email:">
     <p class="warning" *ngIf="emailControl.errors?.required && emailControl.dirty">Email Address shouldn't be empty.</p>
-    <p class="warning" *ngIf="emailControl.errors?.email && emailControl.dirty">Email Address is invalid.</p>
+    <p class="warning" *ngIf="(emailControl.errors?.email || emailControl.errors?.emailAlreadyExist) && emailControl.dirty">Email Address is invalid or already exist.</p>
 
     <input [ngClass]="{'warning': passwordControl.errors && passwordControl.dirty}" type="password" formControlName="password" placeholder="Password:">
     <p class="warning" *ngIf="passwordControl.errors?.required && passwordControl.dirty">Password shouldn't be empty.</p>
