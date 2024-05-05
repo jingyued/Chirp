@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
-
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-new-chirrup',
@@ -11,21 +11,17 @@ import { PostService } from '../../services/post.service';
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private PostService: PostService) {
+  constructor(
+    private fb: FormBuilder,
+    private PostService: PostService,
+    private sharedService: SharedService
+
+  ) {
     this.chirrupForm = this.fb.group({
       text: ['', Validators.required],
       image: [''],
       video: ['']
     });
-  }
-
-
-  uploadImage(event: any): void {
-
-  }
-
-  uploadVideo(event: any): void {
-
   }
 
   postChirrup() {
@@ -54,16 +50,14 @@ export class NewChirrupComponent {
     }
 
 
-    // const chirrup1 = {
-    //   "content": { "image": "http://via.placeholder.com/640x360", "video": " ", "text": "I have posted a new chirrup", },
-    // }
-
-
-
-
     this.PostService.postChirrup(newChirrup).subscribe({
-      next: response => console.log('Chirrup posted successfully!', response),
-      error: error => console.error('Failed to post chirrup:', error)
+      next: () => {
+        // 发送成功后通知 chirrup-list 组件刷新
+        this.sharedService.notifyChirrupListRefresh();
+        // 清空表单
+        this.chirrupForm.reset();
+      },
+      error: (error: any) => console.error('Failed to post chirrup:', error)
     });
   }
 }
