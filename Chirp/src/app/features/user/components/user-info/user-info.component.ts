@@ -32,7 +32,7 @@ export class UserInfoComponent implements OnDestroy {
         width: '25rem',
         showHeader: false,
         contentStyle: {
-          "max-height": "600px",
+          "max-height": "650px",
           "overflow": "auto",
           "border-radius": "25px" // Optional: Add border-radius for rounded corners
         }
@@ -71,7 +71,7 @@ export class UserInfoComponent implements OnDestroy {
     const birthDate = new Date(birth);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
-    
+
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }

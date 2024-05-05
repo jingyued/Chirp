@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogCommunicationService } from '../register-window/dialog-communication.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/core/models/user';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-edit-window',
@@ -29,8 +29,8 @@ export class ProfileEditWindowComponent implements OnInit {
       userName: [currentUser.userName, Validators.required],
       userEmail: [currentUser.userEmail, [Validators.required, Validators.email]],
       gender: [currentUser.gender],
-      age: [currentUser.age],
-      phone: [currentUser.phone],
+      age: [currentUser.age, [this.isIntegerValidator()]],
+      phone: [currentUser.phone, [this.isPhoneNumberValidator()]],
     });
   }
 
@@ -47,4 +47,25 @@ export class ProfileEditWindowComponent implements OnInit {
       // Handle form validation errors
     }
   }
+  isIntegerValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (value && !Number.isInteger(Number(value))) {
+        return { notInteger: true }; // Return an error object if the value is not an integer
+      }
+      return null; // Return null if the value is an integer or empty
+    };
+  }
+
+  isPhoneNumberValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      const phoneNumberRegex = /^\d{10}$/; // Regex pattern for 10-digit number
+      if (value && !phoneNumberRegex.test(value)) {
+        return { invalidPhoneNumber: true }; // Return an error object if the phone number is invalid
+      }
+      return null; // Return null if the phone number is valid or empty
+    };
+  }
+
 }

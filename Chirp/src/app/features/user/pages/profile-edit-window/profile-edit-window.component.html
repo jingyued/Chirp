@@ -1,20 +1,44 @@
 <div class="login-container">
-    <div class="avatar">
-      <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
-    </div>
-    <h1>Edit Profile</h1>
-    <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
+  <div class="avatar">
+    <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+  </div>
+  <h1>Edit Profile</h1>
+  <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
 
-    <form class="formGroup" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <input type="text" class="ss" placeholder="Username" formControlName="userName"/>
-      <input type="text" class="ss" placeholder="Email" formControlName="userEmail"/>
-      <select class="ss" formControlName="gender">
+  <form class="formGroup" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="ss" [class.errorDisplayed]="userForm.get('userName')?.invalid && userForm.get('userName')?.touched">
+      <label for="userName">Username:</label><br>
+      <input type="text" id="userName" placeholder="Username" formControlName="userName"/>
+      <p class="errorInfo" *ngIf="userForm.get('userName')?.invalid && userForm.get('userName')?.touched">Username is required.</p>
+    </div>
+
+    <div class="ss" [class.errorDisplayed]="userForm.get('userEmail')?.invalid && userForm.get('userEmail')?.touched">
+      <label for="userEmail">Email:</label><br>
+      <input type="text" id="userEmail" placeholder="Email" formControlName="userEmail"/>
+      <p class="errorInfo" *ngIf="userForm.get('userEmail')?.invalid && userForm.get('userEmail')?.touched">Invalid Email Format.</p>
+    </div>
+
+    <div class="ss">
+      <label for="gender">Gender:</label><br>
+      <select id="gender" formControlName="gender">
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Non-Binary">Non-Binary</option>
       </select>
-      <input type="text" class="ss" placeholder="Age" formControlName="age"/>
-      <input type="text" class="ss" placeholder="Phone" formControlName="phone"/>
-      <button type="submit" pButton label="Confirm" class="button-confirm" [disabled]="userForm.invalid"></button>
-    </form>
-  </div>
+    </div>
+
+    <div class="ss" [class.errorDisplayed]="userForm.get('age')?.invalid && userForm.get('age')?.touched">
+      <label for="age">Age:</label><br>
+      <input type="text" id="age" placeholder="Age" formControlName="age"/>
+      <p class="errorInfo" *ngIf="userForm.get('age')?.invalid && userForm.get('age')?.touched">Age must be a valid number.</p>
+    </div>
+
+    <div class="ss" [class.errorDisplayed]="userForm.get('phone')?.invalid && userForm.get('phone')?.touched">
+      <label for="phone">Phone:</label><br>
+      <input type="text" id="phone" placeholder="Phone" formControlName="phone"/>
+      <p class="errorInfo" *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched">Phone number must be a 10-digit number.</p>
+    </div>
+
+    <button type="submit" pButton label="Confirm" class="button-confirm" [disabled]="userForm.invalid"></button>
+  </form>
+</div>
