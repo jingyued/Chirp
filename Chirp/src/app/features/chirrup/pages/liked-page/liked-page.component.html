@@ -3,7 +3,7 @@
 <div *ngFor="let chirrup of likedNews" class="chirrup-card">
     <div class="header">
         <div class="user-info">
-            <div class="avatar">{{ chirrup.publisherName|| "Anon" }}</div>
+            <div class="avatar">{{ chirrup.publisherName|| "Anon" |truncate1 }}</div>
             <div class="user-name">{{ chirrup.publisherName|| "Anon" }}</div>
             <div class="splitter">&nbsp;·&nbsp;</div>
             <div class="post-time">{{ chirrup.publishedTime | date: 'short' }}</div>
