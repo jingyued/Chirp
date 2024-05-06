@@ -5,18 +5,18 @@
     <div class="profile">
         <div class="">
             <p class="user-name">
-               {{user.userName}}
+               {{ user?.userName }}
             </p>
-            <p>Email: {{ user.userEmail }}</p>
-            <p>Name: {{ user.name }}</p>
+            <p>Email: {{ user?.userEmail }}</p>
+            <p>Name: {{ user?.name }}</p>
             <p>
-                Gender: {{user.gender}}
-            </p>
-            <p>
-                Age: {{user.age}}
+                Gender: {{ user?.gender }}
             </p>
             <p>
-                Phone: {{ user.phone }}
+                Age: {{ user?.age }}
+            </p>
+            <p>
+                Phone: {{ user?.phone }}
             </p>
         </div>
         <div class="edit-button">

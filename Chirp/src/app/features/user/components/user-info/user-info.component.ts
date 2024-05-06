@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
-import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { Subject } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/core/models/user';
@@ -12,27 +11,23 @@ import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.sass']
 })
-export class UserInfoComponent implements OnDestroy {
+export class UserInfoComponent implements OnInit {
 
-  ref: DynamicDialogRef | undefined;
-  private unsubscribe$ = new Subject<void>();
+  user: User | undefined;
 
   constructor(
-    private dialogService: DialogService,
-    private dialogCommunicationService: DialogCommunicationService,
     private userService: UserService,
     private popup: OpenPopUpService
   ) { }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-  user = this.userService.getCurrentUser();
-
-  getUserInfo(): void {
-    this.user = this.userService.getCurrentUser();
+  ngOnInit(): void {
+    const currName = localStorage.getItem('userName');
+    if (currName !== null) {
+      this.userService.getUserInfo(currName);
+    }
+    this.userService.currentUser.subscribe(update => {
+      this.user = update;
+    })
   }
 
   openProfileEditPopup(event: Event) {

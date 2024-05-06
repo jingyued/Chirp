@@ -12,6 +12,7 @@ import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, Valid
 export class ProfileEditWindowComponent implements OnInit {
 
   userForm: FormGroup = new FormGroup({});
+  targetUser: User | undefined;
 
   constructor(
     private dialogCommunicationService: DialogCommunicationService,
@@ -20,19 +21,21 @@ export class ProfileEditWindowComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userService.currentUser.subscribe(update => {
+      this.targetUser = update;
+    })
     this.initForm();
   }
 
-  currentUser = this.userService.getCurrentUser()
   initForm() {
     // const currentUser = this.userService.getCurrentUser();
     this.userForm = this.fb.group({
-      userName: [this.currentUser.userName, Validators.required],
-      userEmail: [this.currentUser.userEmail, [Validators.required, Validators.email]],
-      name: [this.currentUser.name, [this.isNameValid()]],
-      gender: [this.currentUser.gender],
-      age: [this.currentUser.age, [this.isIntegerValidator()]],
-      phone: [this.currentUser.phone, [this.isPhoneNumberValidator()]],
+      userName: [this.targetUser?.userName, Validators.required],
+      userEmail: [this.targetUser?.userEmail, [Validators.required, Validators.email]],
+      name: [this.targetUser?.name, [this.isNameValid()]],
+      gender: [this.targetUser?.gender],
+      age: [this.targetUser?.age, [this.isIntegerValidator()]],
+      phone: [this.targetUser?.phone, [this.isPhoneNumberValidator()]],
     });
   }
 
@@ -49,6 +52,7 @@ export class ProfileEditWindowComponent implements OnInit {
       // Handle form validation errors
     }
   }
+
   isIntegerValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
@@ -69,13 +73,14 @@ export class ProfileEditWindowComponent implements OnInit {
       return null; // Return null if the phone number is valid or empty
     };
   }
+
   isNameValid(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
       const pattern = /^[A-Za-z ]+$/;
       const isValid = pattern.test(value);
       if (!isValid) {
-        return { invalidName: true};
+        return { invalidName: true };
       }
       return null;
     };
