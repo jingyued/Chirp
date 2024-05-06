@@ -27,10 +27,12 @@ export class UserInfoComponent implements OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  user = this.userService.getCurrentUser();
+  user = this.userService.currentUser;
+
   getUserInfo(): void {
-    this.user = this.userService.getCurrentUser();
+    this.user = this.userService.currentUser;
   }
+  
   openProfileEditPopup(event: Event) {
     event.preventDefault();
 

@@ -23,7 +23,7 @@ export class ProfileEditWindowComponent implements OnInit {
     this.initForm();
   }
 
-  currentUser = this.userService.getCurrentUser()
+  currentUser = this.userService.currentUser
   initForm() {
     // const currentUser = this.userService.getCurrentUser();
     this.userForm = this.fb.group({
@@ -43,7 +43,7 @@ export class ProfileEditWindowComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid) {
       const updatedUserData: User = this.userForm.value;
-      this.userService.updateCurrentUser(updatedUserData);
+      this.userService.currentUser = updatedUserData;
       this.onClosePopupDialog(); // Close the dialog after updating user data
     } else {
       // Handle form validation errors

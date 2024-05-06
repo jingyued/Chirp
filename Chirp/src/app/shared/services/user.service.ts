@@ -8,10 +8,10 @@ import { User } from 'src/app/core/models/user';
 export class UserService {
   userList: User[] = [];
 
-  currentUser: User = {
-    userName: "Felix",
-    password: "aabbccdd",
-    userEmail: "felix@gmail.com"
+  private _currentUser: User = {
+    userName: "",
+    password: "",
+    userEmail: ""
   }
 
   constructor(private http: HttpClient) { }
@@ -19,11 +19,16 @@ export class UserService {
   getAllData() {
     return this.http.get<User[]>('http://localhost:4231/api/users/getAllUsers');
   }
-  getCurrentUser() {
-    return this.currentUser;
+
+  getUserInfo(userName: string) {
+    return this.http.get(`http://localhost:4231/api/users/getProfile/${userName}`);
   }
-  updateCurrentUser(updateUser: User) {
-    this.currentUser = updateUser;
-    // return this.getCurrentUser();
+
+  get currentUser() {
+    return this._currentUser;
+  }
+
+  set currentUser(updateUser: User) {
+    this._currentUser = updateUser;
   }
 }
