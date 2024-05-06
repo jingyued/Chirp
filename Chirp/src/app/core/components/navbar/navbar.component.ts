@@ -1,7 +1,9 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoginWindowComponent } from 'src/app/features/user/pages/login-window/login-window.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 import { ThemeService } from 'src/app/shared/services/theme.service';
 
 
@@ -20,7 +22,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private themeService: ThemeService,
-    private auth: AuthService
+    private auth: AuthService,
+    private popup: OpenPopUpService,
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +57,8 @@ export class NavbarComponent implements OnInit {
       }
     } else {
       if (button === 'login') {
-        this.router.navigate(['login']);
+        // this.router.navigate(['login']);
+        this.popup.openPopUp(LoginWindowComponent);
       }
     }
 

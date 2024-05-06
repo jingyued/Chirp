@@ -92,8 +92,12 @@ export class LoginWindowComponent implements OnDestroy {
     }
   }
 
+  onClosePopupDialog() {
+    this.dialogCommunicationService.emitRegistrationSuccess();
+  }
+
   onSubmit() {
-    //post
     this.auth.loginAuth(this.emailControl.value, this.passwordControl.value);
+    this.onClosePopupDialog();
   }
 }

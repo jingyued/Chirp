@@ -39,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    DialogService
+    DialogService,
+    LoginWindowComponent
   ]
 })
 export class UserModule { }
