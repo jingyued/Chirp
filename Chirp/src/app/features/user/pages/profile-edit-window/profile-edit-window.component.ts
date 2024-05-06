@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogCommunicationService } from '../register-window/dialog-communication.service';
+import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/core/models/user';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';

@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
-import { DialogCommunicationService } from '../../pages/register-window/dialog-communication.service';
 import { Subject } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/core/models/user';
+import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 
 @Component({
   selector: 'app-user-info',
@@ -18,9 +18,8 @@ export class UserInfoComponent implements OnDestroy, OnInit {
   user: User | undefined;
 
   constructor(
-    private dialogService: DialogService,
-    private dialogCommunicationService: DialogCommunicationService,
-    private userService: UserService
+    private userService: UserService,
+    private popup: OpenPopUpService
   ) { }
 
   ngOnInit(): void {
@@ -44,31 +43,7 @@ export class UserInfoComponent implements OnDestroy, OnInit {
   
   openProfileEditPopup(event: Event) {
     event.preventDefault();
-
-    try {
-      this.ref = this.dialogService.open(ProfileEditWindowComponent, {
-        width: '25rem',
-        showHeader: false,
-        contentStyle: {
-          "max-height": "1050px",
-          "overflow": "auto",
-          "border-radius": "25px" // Optional: Add border-radius for rounded corners
-        }
-      });
-
-      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
-        this.closeDialog();
-      })
-    } catch (error) {
-      console.error('Error opening dialog:', error);
-    }
-  }
-
-  closeDialog() {
-    if (this.ref) {
-      this.getUserInfo();
-      this.ref.close();
-    }
+    this.popup.openPopUp(ProfileEditWindowComponent);
   }
 
   selectedButton = 'Posts';
