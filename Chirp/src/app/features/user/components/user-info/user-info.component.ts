@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
-import { DialogCommunicationService } from '../../pages/register-window/dialog-communication.service';
+import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { Subject } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/core/models/user';

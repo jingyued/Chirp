@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DialogCommunicationService } from '../register-window/dialog-communication.service';
+import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { ChangePasswordWindowComponent } from '../change-password-window/change-password-window.component';
 import { Subject } from 'rxjs';
 import { ThemeService } from 'src/app/shared/services/theme.service';

@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RegisterWindowComponent } from '../register-window/register-window.component';
-import { DialogCommunicationService } from '../register-window/dialog-communication.service';
+import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { Observable, Subject, catchError, map, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';

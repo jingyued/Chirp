@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogCommunicationService } from '../register-window/dialog-communication.service';
+import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 
 @Component({
   selector: 'app-change-password-window',
