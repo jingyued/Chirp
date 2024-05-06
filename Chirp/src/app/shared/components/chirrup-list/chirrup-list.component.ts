@@ -92,24 +92,10 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
     this.commentService.addComment(chirrup._id || '', newComment).subscribe({
       next: _resp => {
-        alert("you have successfully added a new comment!");
         this.newCommentText = '';
-
         // After posting the comment, fetch the updated chirrups to display the new comment
         this.loadChirrups();
-        // this.getChirrupsService.getNews().subscribe({
-        //   next: (data: Chirrup[]) => {
-        //     this.news = data.map((item: Chirrup) => ({
-        //       ...item,
-        //       islike: false,
-        //       showComments: false,
-        //     }));
-        //   },
-        //   error: (error) => {
-        //     console.error('There was an error fetching chirrups!', error);
-        //   }
-        // });
-
+        alert("you have successfully added a new comment!");
       },
       error: _err => console.log("Error posing new comment:", _err)
     });
