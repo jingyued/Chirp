@@ -5,6 +5,7 @@ import { ChangePasswordWindowComponent } from '../change-password-window/change-
 import { Subject } from 'rxjs';
 import { ThemeService } from 'src/app/shared/services/theme.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -22,7 +23,8 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private dialogCommunicationService: DialogCommunicationService,
     private themeService: ThemeService,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +68,13 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
 
   onClickAdmin() {
     this.router.navigate(['admin']);
+  }
+
+  onLogOut() {
+    localStorage.setItem("userName", '');
+    localStorage.setItem("userRole", '');
+    this.auth.changeLoginStatus(false);
+    alert('See you later');
   }
 
   closeDialog() {

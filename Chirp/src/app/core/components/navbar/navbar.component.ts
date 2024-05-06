@@ -1,5 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { ThemeService } from 'src/app/shared/services/theme.service';
 
 
@@ -12,26 +14,24 @@ export class NavbarComponent implements OnInit {
 
   theme = 'lara-light-indigo';
 
+  private loginSubscription: any;
+  private _isLogin: boolean = false;
+
   constructor(
     private router: Router,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
     this.theme = this.themeService.getCurrentTheme();
+    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+      this._isLogin = update;
+    })
   }
 
-  private _isLogin = false;
-
-  get isLogin(): boolean {
+  get isLogin() {
     return this._isLogin;
-  }
-
-  set isLogin(value: boolean) {
-    this._isLogin = value;
-    if (value) {
-      //this.router.navigate(['home']);
-    }
   }
 
 
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
   // Method to handle button click events
   onButtonClick(button: string) {
     this.selectedButton = button;
-    if (this.isLogin) {
+    if (this._isLogin) {
       if (button === 'home') {
         this.router.navigate(['home']);
       }
