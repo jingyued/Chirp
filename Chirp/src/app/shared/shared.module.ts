@@ -7,13 +7,15 @@ import { CardModule } from 'primeng/card';
 import { GetChirrupsService } from '../shared/services/get-chirrups.service';
 import { FormsModule } from '@angular/forms';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { Truncate1Pipe } from './pipes/truncate1.pipe';
 
 
 @NgModule({
   declarations: [
     ChirrupListComponent,
     ChirrupCardComponent,
-    ReversePipe
+    ReversePipe,
+    Truncate1Pipe
   ],
 
   imports: [
@@ -26,6 +28,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
   exports: [
     ChirrupCardComponent,
     ChirrupListComponent,
+    Truncate1Pipe
   ]
 
 
