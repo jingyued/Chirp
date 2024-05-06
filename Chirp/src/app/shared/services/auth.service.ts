@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/core/models/user';
 import { __exportStar, __read } from 'tslib';
-import { UserService } from './user.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({

@@ -41,10 +41,10 @@ export class NavbarComponent implements OnInit {
   // Method to handle button click events
   onButtonClick(button: string) {
     this.selectedButton = button;
+    if (button === 'home') {
+      this.router.navigate(['home']);
+    }
     if (this._isLogin) {
-      if (button === 'home') {
-        this.router.navigate(['home']);
-      }
       if (button === 'liked') {
         this.router.navigate(['liked']);
       }
