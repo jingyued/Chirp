@@ -1,4 +1,31 @@
-<app-chirrup-card></app-chirrup-card>
-<app-chirrup-card></app-chirrup-card>
-<app-chirrup-card></app-chirrup-card>
-<app-chirrup-card></app-chirrup-card>
+<div (window:beforeunload)="clearSessionStorage()"></div>
+
+<div *ngFor="let chirrup of likedNews" class="chirrup-card">
+    <div class="header">
+        <div class="user-info">
+            <div class="avatar">{{ chirrup.publisherName|| "Anon" }}</div>
+            <div class="user-name">{{ chirrup.publisherName|| "Anon" }}</div>
+            <div class="splitter">&nbsp;·&nbsp;</div>
+            <div class="post-time">{{ chirrup.publishedTime | date: 'short' }}</div>
+        </div>
+        <div class="location">Irvine, CA</div>
+    </div>
+
+    <div class="chirrup-content"> {{ chirrup.content?.text | truncate }} </div>
+    <div class="chirrup-content">
+        <img *ngIf="chirrup.content?.image" alt="chirrup-image" class="square-image"
+            src="{{ chirrup.content?.image }}" />
+        <!-- <video *ngIf="chirrup.content?.video" controls>
+            <source src="{{ chirrup.content?.video }}" type="video/mp4">
+        </video> -->
+    </div>
+
+    <div class="footer">
+        <p-button (click)="toggleHeartIcon(chirrup)" [icon]="chirrup.islike ? 'pi pi-heart-fill' : 'pi pi-heart'"
+            class="text-button" label="likes"></p-button>
+        <p-button (click)="toggleCommentIcon(chirrup)" icon="pi pi-comment" class="text-button"
+            label="comments"></p-button>
+    </div>
+
+
+</div>
