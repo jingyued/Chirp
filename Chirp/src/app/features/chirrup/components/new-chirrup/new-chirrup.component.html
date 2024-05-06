@@ -21,7 +21,7 @@
         </div>
 
         <div class="post-button">
-            <p-button label="post"  (onClick)="postChirrup()"></p-button>
+            <p-button label="post"  (onClick)="postChirrup()" [disabled]="!isLogin"></p-button>
         </div>
 
     </footer>

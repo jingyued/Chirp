@@ -15,7 +15,7 @@
                 <span class="pi pi-chevron-right pi-lg"></span>
             </div>
         </div>
-        <div class="setting">
+        <div class="setting" (click)="onClickAdmin()">
             <p>Admin Page</p>
             <div class="action">
                 <p>Go</p>
@@ -24,6 +24,6 @@
         </div>
     </div>
     <div class="btn">
-        <p-button label="Log Out"></p-button>
+        <p-button label="Log Out" (click)="onLogOut()"></p-button>
     </div>
 </div>

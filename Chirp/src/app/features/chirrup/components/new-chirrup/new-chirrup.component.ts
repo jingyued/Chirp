@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { SharedService } from '../../services/shared.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-new-chirrup',
@@ -10,25 +11,32 @@ import { SharedService } from '../../services/shared.service';
 })
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
+  private loginSubscription: any;
+  isLogin: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private PostService: PostService,
-    private sharedService: SharedService
-
+    private sharedService: SharedService,
+    private auth: AuthService
   ) {
     this.chirrupForm = this.fb.group({
       text: ['', Validators.required],
       image: [''],
       video: ['']
     });
+
+    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+      this.isLogin = update;
+    })
   }
 
   postChirrup() {
     const formData = this.chirrupForm.value;
+    const currName = localStorage.getItem('userName');
 
     const newChirrup = {
-      publisherName: "Felix",
+      publisherName: (currName === null) ? '' : currName,
       content: {
         // image: "image not available",
         // video: "video not available",
