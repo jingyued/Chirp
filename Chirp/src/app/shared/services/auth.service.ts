@@ -12,10 +12,13 @@ export class AuthService {
   private apiUrl: string = "http://localhost:4231/api";
   private token?: string;
   private name?: string;
-  private source = new BehaviorSubject<boolean>(false);
-  private _loginStatus = this.source.asObservable();
+  private source: BehaviorSubject<boolean>;
+  private _loginStatus: Observable<boolean>;
 
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.source = new BehaviorSubject<boolean>(localStorage.getItem("userName") === '' ? true : false)
+    this._loginStatus = this.source.asObservable();
+  }
 
   loginAuth(email: string, password: string) {
     const url = `${this.apiUrl}/login`;
