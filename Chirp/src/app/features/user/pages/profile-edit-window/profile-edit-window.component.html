@@ -18,6 +18,12 @@
       <p class="errorInfo" *ngIf="userForm.get('userEmail')?.invalid">Invalid Email Format.</p>
     </div>
 
+    <div class="ss" [class.errorDisplayed]="userForm.get('name')?.invalid">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" placeholder="Name" formControlName="name"/>
+      <p class="errorInfo" *ngIf="userForm.get('name')?.invalid">Invalid Name.</p>
+    </div>
+
     <div class="ss">
       <label for="gender">Gender:</label><br>
       <select id="gender" formControlName="gender">

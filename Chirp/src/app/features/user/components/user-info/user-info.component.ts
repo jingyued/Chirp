@@ -39,7 +39,7 @@ export class UserInfoComponent implements OnDestroy {
         width: '25rem',
         showHeader: false,
         contentStyle: {
-          "max-height": "650px",
+          "max-height": "1050px",
           "overflow": "auto",
           "border-radius": "25px" // Optional: Add border-radius for rounded corners
         }

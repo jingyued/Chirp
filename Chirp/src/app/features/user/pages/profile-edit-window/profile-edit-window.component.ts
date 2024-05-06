@@ -29,6 +29,7 @@ export class ProfileEditWindowComponent implements OnInit {
     this.userForm = this.fb.group({
       userName: [this.currentUser.userName, Validators.required],
       userEmail: [this.currentUser.userEmail, [Validators.required, Validators.email]],
+      name: [this.currentUser.name, [this.isNameValid()]],
       gender: [this.currentUser.gender],
       age: [this.currentUser.age, [this.isIntegerValidator()]],
       phone: [this.currentUser.phone, [this.isPhoneNumberValidator()]],
@@ -66,6 +67,17 @@ export class ProfileEditWindowComponent implements OnInit {
         return { invalidPhoneNumber: true }; // Return an error object if the phone number is invalid
       }
       return null; // Return null if the phone number is valid or empty
+    };
+  }
+  isNameValid(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      const pattern = /^[A-Za-z ]+$/;
+      const isValid = pattern.test(value);
+      if (!isValid) {
+        return { invalidName: true};
+      }
+      return null;
     };
   }
 
