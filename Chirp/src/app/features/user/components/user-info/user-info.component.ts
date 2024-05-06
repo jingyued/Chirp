@@ -5,6 +5,7 @@ import { DialogCommunicationService } from '../../pages/register-window/dialog-c
 import { Subject } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/core/models/user';
+import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 
 @Component({
   selector: 'app-user-info',
@@ -19,7 +20,8 @@ export class UserInfoComponent implements OnDestroy {
   constructor(
     private dialogService: DialogService,
     private dialogCommunicationService: DialogCommunicationService,
-    private userService: UserService
+    private userService: UserService,
+    private popup: OpenPopUpService
   ) { }
 
   ngOnDestroy(): void {
@@ -28,36 +30,14 @@ export class UserInfoComponent implements OnDestroy {
   }
 
   user = this.userService.getCurrentUser();
+
   getUserInfo(): void {
     this.user = this.userService.getCurrentUser();
   }
+
   openProfileEditPopup(event: Event) {
     event.preventDefault();
-
-    try {
-      this.ref = this.dialogService.open(ProfileEditWindowComponent, {
-        width: '25rem',
-        showHeader: false,
-        contentStyle: {
-          "max-height": "1050px",
-          "overflow": "auto",
-          "border-radius": "25px" // Optional: Add border-radius for rounded corners
-        }
-      });
-
-      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
-        this.closeDialog();
-      })
-    } catch (error) {
-      console.error('Error opening dialog:', error);
-    }
-  }
-
-  closeDialog() {
-    if (this.ref) {
-      this.getUserInfo();
-      this.ref.close();
-    }
+    this.popup.openPopUp(ProfileEditWindowComponent);
   }
 
   selectedButton = 'Posts';

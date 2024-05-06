@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { ThemeService } from 'src/app/shared/services/theme.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -18,17 +19,24 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
   isDark = false;
+  
+  private loginSubscription: any;
+  private _isLogin: boolean = false;
 
   constructor(    
     private dialogService: DialogService,
     private dialogCommunicationService: DialogCommunicationService,
     private themeService: ThemeService,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private popup: OpenPopUpService
   ) { }
 
   ngOnInit(): void {
     this.isDark = this.themeService.getCurrentTheme() === 'lara-dark-indigo';
+    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+      this._isLogin = update;
+    })
   }
 
   ngOnDestroy(): void {
@@ -45,24 +53,8 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
   }
 
   onClickPassword() {
-
-    try {
-      this.ref = this.dialogService.open(ChangePasswordWindowComponent, {
-        width: '25rem',
-        showHeader: false,
-        contentStyle: {
-          "max-height": "600px",
-          "overflow": "auto",
-          "border": "1px solid #ccc",
-          "border-radius": "25px" // Optional: Add border-radius for rounded corners
-        }
-      });
-
-      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
-        this.closeDialog();
-      })
-    } catch (error) {
-      console.error('Error opening dialog:', error);
+    if (this._isLogin) {
+      this.popup.openPopUp(ChangePasswordWindowComponent);
     }
   }
 
@@ -75,11 +67,5 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
     localStorage.setItem("userRole", '');
     this.auth.changeLoginStatus(false);
     alert('See you later');
-  }
-
-  closeDialog() {
-    if (this.ref) {
-      this.ref.close();
-    }
   }
 }
