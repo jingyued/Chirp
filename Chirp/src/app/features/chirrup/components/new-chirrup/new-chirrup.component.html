@@ -5,7 +5,7 @@
         </div>
         <div class="input-container">
             <i class="pi pi-pencil"></i>
-            <input type="text" formControlName="text" placeholder="Share something......">
+            <textarea type="text" formControlName="text" placeholder="Share something......"></textarea>
         </div>
     </header>
 
@@ -21,7 +21,7 @@
         </div>
 
         <div class="post-button">
-            <p-button label="post"  (onClick)="postChirrup()" [disabled]="!isLogin"></p-button>
+            <p-button label="post" (onClick)="postChirrup()" [disabled]="!isLogin"></p-button>
         </div>
 
     </footer>
