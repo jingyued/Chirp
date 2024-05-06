@@ -27,19 +27,6 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
     this.refreshSubscription = this.sharedService.getChirrupListRefreshNotifier().subscribe(() => {
       this.loadChirrups(); // 收到通知后刷新数据
     });
-
-    this.getChirrupsService.getNews().subscribe({
-      next: (data: Chirrup[]) => {
-        this.news = data.map((item: Chirrup) => ({
-          ...item,
-          islike: false,
-          showComments: false,
-        }));
-      },
-      error: (error) => {
-        console.error('There was an error!', error);
-      }
-    });
   }
 
   ngOnDestroy() {
@@ -50,14 +37,22 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   loadChirrups() {
     this.getChirrupsService.getNews().subscribe({
       next: (data: Chirrup[]) => {
-        // 先按照时间顺序从近到远排列
-        // data.sort((a, b) => new Date(b.publishedTime).getTime() - new Date(a.publishedTime).getTime());
-        // 更新 news 数组
-        this.news = data.map((item: Chirrup) => ({
-          ...item,
-          islike: false,
-          showComments: false,
-        }));
+        this.news = data.map((item: Chirrup) => {
+          let isLiked = false; // 默认isLiked为false
+          if (item._id !== undefined) {
+            const storedIsLiked = localStorage.getItem(item._id);
+            isLiked = storedIsLiked === 'true'; // 如果storedIsLiked为'true'，则isLiked为true
+            if (storedIsLiked != null) {
+              console.log(isLiked)
+            }
+          }
+          console.log(isLiked)
+          return {
+            ...item,
+            islike: isLiked,
+            showComments: false,
+          };
+        });
       },
       error: (error) => {
         console.error('There was an error!', error);
@@ -65,8 +60,15 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
     });
   }
 
+
   toggleHeartIcon(chirrup: Chirrup) {
     chirrup.islike = !chirrup.islike;
+    // 因为post service更改了model, 导致这里要handle chirrup._id undefined 的情况,实际上不会有不存在_id的post
+    if (chirrup._id !== undefined) {
+      localStorage.setItem(chirrup._id, chirrup.islike.toString());
+    } else {
+      console.error('chirrup._id is undefined');
+    }
   };
 
   toggleCommentIcon(chirrup: Chirrup) {
@@ -93,18 +95,20 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
         this.newCommentText = '';
 
         // After posting the comment, fetch the updated chirrups to display the new comment
-        this.getChirrupsService.getNews().subscribe({
-          next: (data: Chirrup[]) => {
-            this.news = data.map((item: Chirrup) => ({
-              ...item,
-              islike: false,
-              showComments: false,
-            }));
-          },
-          error: (error) => {
-            console.error('There was an error fetching chirrups!', error);
-          }
-        });
+        this.loadChirrups();
+        // this.getChirrupsService.getNews().subscribe({
+        //   next: (data: Chirrup[]) => {
+        //     this.news = data.map((item: Chirrup) => ({
+        //       ...item,
+        //       islike: false,
+        //       showComments: false,
+        //     }));
+        //   },
+        //   error: (error) => {
+        //     console.error('There was an error fetching chirrups!', error);
+        //   }
+        // });
+
       },
       error: _err => console.log("Error posing new comment:", _err)
     });
