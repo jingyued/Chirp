@@ -54,6 +54,7 @@ export class NewChirrupComponent {
         this.sharedService.notifyChirrupListRefresh();
         // 清空表单
         this.chirrupForm.reset();
+        alert("you have successfully posted a new chirrup!");
       },
       error: (error: any) => console.error('Failed to post chirrup:', error)
     });

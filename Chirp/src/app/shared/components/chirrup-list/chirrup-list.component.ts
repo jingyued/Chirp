@@ -37,6 +37,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   loadChirrups() {
     this.getChirrupsService.getNews().subscribe({
       next: (data: Chirrup[]) => {
+        alert("you have successfully added a new comment!");
         this.news = data.map((item: Chirrup) => {
           let isLiked = false; // 默认isLiked为false
           if (item._id !== undefined) {
