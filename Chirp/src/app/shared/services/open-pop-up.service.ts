@@ -35,7 +35,7 @@ export class OpenPopUpService {
     }
   }
 
-  closeDialog() {
+  private closeDialog() {
     if (this.ref) {
       this.ref.close();
     }

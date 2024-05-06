@@ -5,6 +5,7 @@ import { DialogCommunicationService } from '../register-window/dialog-communicat
 import { Observable, Subject, catchError, map, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 
 @Component({
   selector: 'app-login-window',
@@ -22,7 +23,8 @@ export class LoginWindowComponent implements OnDestroy {
     private dialogService: DialogService,
     private dialogCommunicationService: DialogCommunicationService,
     private fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private popup: OpenPopUpService
   ) { }
 
 
@@ -65,31 +67,8 @@ export class LoginWindowComponent implements OnDestroy {
 
   openRegisterPopup(event: Event) {
     event.preventDefault();
-
-    try {
-      this.ref = this.dialogService.open(RegisterWindowComponent, {
-        width: '25rem',
-        showHeader: false,
-        contentStyle: {
-          "max-height": "600px",
-          "overflow": "auto",
-          "border": "1px solid #ccc",
-          "border-radius": "25px" // Optional: Add border-radius for rounded corners
-        }
-      });
-
-      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
-        this.closeDialog();
-      })
-    } catch (error) {
-      console.error('Error opening dialog:', error);
-    }
-  }
-
-  closeDialog() {
-    if (this.ref) {
-      this.ref.close();
-    }
+    this.onClosePopupDialog();
+    this.popup.openPopUp(RegisterWindowComponent);
   }
 
   onClosePopupDialog() {
