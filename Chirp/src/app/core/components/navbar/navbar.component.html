@@ -1,29 +1,34 @@
 
-<div class="menubar">
-        <div class="left">
-            <img class="logo" src="assets/logo.png"/>
-        </div>
-        <div class="buttons">
-            <img *ngIf="isLogin" 
-                    class="avatar"
-                    src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png"
-                    [ngClass]="{'selected': selectedButton === 'profile'}"
-                    (click)="onButtonClick('profile')">
-            <i *ngIf="!isLogin"
-                    class="pi pi-user" 
-                    [ngClass]="{'selected': selectedButton === 'login'}"
-                    (click)="onButtonClick('login')"></i>
-            <i class="pi pi-home" 
-                    [ngClass]="{'selected': selectedButton === 'home' && isLogin}"
-                    (click)="onButtonClick('home')"></i>
-            <i class="pi pi-heart" 
-                    [ngClass]="{'selected': selectedButton === 'liked' && isLogin}"
-                    (click)="onButtonClick('liked')"></i>
-            <i class="pi pi-bars" 
-                    [ngClass]="{'selected': selectedButton === 'settings' && isLogin}"
-                    (click)="onButtonClick('settings')"></i>
-        </div>
-        <div class="right"></div>
+<div class="menubar menubar-theme"
+    [ngClass]="{'light': theme === 'lara-light-indigo'}">
+    
+    <div class="left">
+        <img class="logo" src="assets/logo.png"/>
     </div>
+    <div class="buttons">
+
+
+        <i class="pi pi-home" 
+                [ngClass]="{'selected': selectedButton === 'home' && isLogin}"
+                (click)="onButtonClick('home')"></i>
+        <i class="pi pi-user" 
+                [ngClass]="{'selected': selectedButton === 'profile' && isLogin}"
+                (click)="onButtonClick('profile')"></i>
+        <i class="pi pi-heart" 
+                [ngClass]="{'selected': selectedButton === 'liked' && isLogin}"
+                (click)="onButtonClick('liked')"></i>
+        <i class="pi pi-bars" 
+                [ngClass]="{'selected': selectedButton === 'settings' && isLogin}"
+                (click)="onButtonClick('settings')"></i>
+        <img *ngIf="isLogin" 
+                class="avatar"
+                src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+        <p-button *ngIf="!isLogin"
+                label="Log In"
+                (click)="onButtonClick('login')"></p-button>
+
+    </div>
+    <div class="right"></div>
+</div>
     
     

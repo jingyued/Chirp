@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -23,18 +24,18 @@ export class AdminUserListComponent implements OnInit {
     "phone": 1234567890,
   };
 
-  constructor(private users: UserService) { }
+  constructor(private users: UserService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.users.getAllData().subscribe((res) => {
-      this.usersList = [...res]; 
+      this.usersList = [...res];
     });
   }
 
   onAddNew(){
     console.log("gonna add new");
+    this.auth.loginAuth("redpanda@gmail.com", "chirp");
   }
-
   // TODO: try not display user when click delete
   onSelectUser(index: number){
     this.selectedIndex = index;

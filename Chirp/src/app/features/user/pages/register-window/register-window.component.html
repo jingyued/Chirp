@@ -1,10 +1,29 @@
-<div class="register-form">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()"  class="register-form">
     <img src="../../../../../assets/logo.png" width="100" height="100">
     <h1>Create New Account</h1>
     <span (click)="onClosePopupDialog()" class="close-window">&times;</span>
-    <input type="text" placeholder="Username:">
-    <input type="email" placeholder="User Email:">
-    <input type="password" placeholder="Password:">
-    <input type="password" placeholder="Password Confirm:">
-    <button (click)="onClosePopupDialog()">Register</button>
-</div>
+
+    <input [ngClass]="{'warning': usernameControl.errors && usernameControl.dirty}" type="text" formControlName="username" placeholder="Username:">
+    <p class="warning" *ngIf="usernameControl.errors?.required && usernameControl.dirty">Username shouldn't be empty.</p>
+    <p class="warning" *ngIf="usernameControl.errors?.userAlreadyExist && usernameControl.dirty">Username already exist.</p>
+
+    <input [ngClass]="{'warning': emailControl.errors && emailControl.dirty}" type="email" formControlName="email" placeholder="User Email:">
+    <p class="warning" *ngIf="emailControl.errors?.required && emailControl.dirty">Email Address shouldn't be empty.</p>
+    <p class="warning" *ngIf="(emailControl.errors?.email || emailControl.errors?.emailAlreadyExist) && emailControl.dirty">Email Address is invalid or already exist.</p>
+
+    <input [ngClass]="{'warning': passwordControl.errors && passwordControl.dirty}" type="password" formControlName="password" placeholder="Password:">
+    <p class="warning" *ngIf="passwordControl.errors?.required && passwordControl.dirty">Password shouldn't be empty.</p>
+    <p class="warning" *ngIf="passwordControl.errors?.minlength && passwordControl.dirty">Password should be longer than 8 digits.</p>
+    <p class="warning" *ngIf="passwordControl.errors?.invalidPassword && passwordControl.dirty">At least 1 uppercase, 1 lowercase, 1 special character.</p>
+
+
+    <input [ngClass]="{'warning': passwordConfirmControl.errors && passwordConfirmControl.dirty}" type="password" formControlName="passwordConfirm" placeholder="Password Confirm:">
+    <p class="warning" *ngIf="passwordConfirmControl.errors?.required && passwordConfirmControl.dirty">Password confirm shouldn't be empty.</p>
+    <p class="warning" *ngIf="passwordConfirmControl.errors?.passwordMismatch && passwordConfirmControl.dirty">Password doesn't match.</p>
+
+    <div class="button-area">
+        <p-button label="Register"  type="submit" [disabled]="registerForm.invalid"></p-button>
+    </div>
+</form>
+
+

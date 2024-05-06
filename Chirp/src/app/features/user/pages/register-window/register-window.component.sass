@@ -2,55 +2,62 @@
   max-width: 400px
   margin: auto
   padding: 20px
-  background-color: #fff
   display: flex
   flex-direction: column
   align-items: center
   position: relative
 
 
-  // Close Window
-  .close-window
-    position: absolute
-    top: 20px
-    right: 20px
-    font-size: 24px
-    cursor: pointer
 
-  // Title style
-  h1
-    font-size: 24px
-    text-align: center
-    margin-bottom: 30px
+// Close Window
+.close-window
+  position: absolute
+  top: 20px
+  right: 20px
+  font-size: 24px
+  cursor: pointer
+
+// Title style
+h1
+  font-size: 24px
+  text-align: center
+  margin-bottom: 30px
 
 
-  // Input style
-  input[type="text"],
-  input[type="password"],
-  input[type="email"]
-    width: 100%
-    padding: 10px
-    margin-bottom: 15px
-    border: 1px solid #ddd
-    border-radius: 4px
-    box-sizing: border-box
+input
+  width: 100%
+  padding: 10px
+  margin-bottom: 5px
+  margin-top: 10px
+  border: 1px solid #ddd
+  border-radius: 4px
+  box-sizing: border-box
 
-  // Paragraph style
-  p
-    margin-top: 15px
-    text-align: center
+input:focus
+  outline: none
+  border: 1px solid #ddd
+  box-shadow: 0 0 3px 1px #ddd
+  transition: 0.2s
 
-  button
-    padding: 12px
-    margin-top: 20px
-    font-size: 16px
-    font-weight: bold
-    background-color: #C84821
-    color: #fff
-    border: none
-    border-radius: 4px
-    cursor: pointer
+// Paragraph style
+p
+  margin-top: 15px
+  text-align: center
 
-    // Hover effect
-    &:hover
-      background-color: #685DF6 // Use variable for hover color
+p.warning
+  font-size: 12px
+  color: red
+  align-self: flex-start
+  margin: 0px
+
+input.warning
+  border-color: red
+
+input.warning:focus
+  outline: none
+  border: 1px solid red
+  box-shadow: 0 0 3px 1px red
+  transition: 0.2s
+
+.button-area
+  margin-top: 15px

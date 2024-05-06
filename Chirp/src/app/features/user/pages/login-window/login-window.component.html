@@ -1,9 +1,13 @@
-<div class="login-container">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-container">
     <img src="../../../../../assets/logo.png" width="100" height="100">
     <h1>Log In</h1>
     <span class="close-window">&times;</span>
-    <input type="text" placeholder="Username:">
-    <input type="password" placeholder="Password:">
+    <input [ngClass]="{'warning': emailControl.errors && emailControl.dirty}" formControlName="email" type="text" placeholder="Email:">
+    <p class="warning" *ngIf="emailControl.errors?.required && emailControl.dirty">Email address shouldn't be empty.</p>
+    <p class="warning" *ngIf="emailControl.errors?.userNotFound && emailControl.dirty">Email address not found.</p>
+    <input [ngClass]="{'warning': passwordControl.errors && passwordControl.dirty}" formControlName="password" type="password" placeholder="Password:">
+    <p class="warning" *ngIf="passwordControl.errors?.required && passwordControl.dirty">Password shouldn't be empty.</p>
+    <p class="warning" *ngIf="passwordControl.errors?.minlength && passwordControl.dirty">Password should be longer than 8 digits.</p>
     <p>Don't have an account yet? <a href="#" (click)="openRegisterPopup($event)" label="Show">Register here!</a></p>
-    <button>Log In</button>
-  </div>
+    <p-button type="submit" label="Log In" [disabled]="loginForm.invalid" ></p-button>
+</form>

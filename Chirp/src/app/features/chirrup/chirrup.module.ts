@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TruncatePipe } from './pipes/truncate.pipe';
 
 
+
 @NgModule({
   declarations: [
     NewChirrupComponent,

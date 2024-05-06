@@ -11,17 +11,17 @@
 
     <footer>
         <div class="add-on">
-            <input type="file" (change)="uploadImage($event)" hidden #imageInput>
+            <input hidden #imageInput>
             <p-button icon="pi pi-image" (onClick)="imageInput.click()"></p-button>
 
-            <input type="file" (change)="uploadVideo($event)" hidden #videoInput>
+            <input hidden #videoInput>
             <p-button icon="pi pi-video" (onClick)="videoInput.click()"></p-button>
 
             <p-button icon="pi pi-map-marker"></p-button>
         </div>
 
         <div class="post-button">
-            <p-button (onClick)="postChirrup()">post </p-button>
+            <p-button label="post"  (onClick)="postChirrup()"></p-button>
         </div>
 
     </footer>
