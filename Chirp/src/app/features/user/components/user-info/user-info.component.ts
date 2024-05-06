@@ -11,10 +11,11 @@ import { User } from 'src/app/core/models/user';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.sass']
 })
-export class UserInfoComponent implements OnDestroy {
+export class UserInfoComponent implements OnDestroy, OnInit {
 
   ref: DynamicDialogRef | undefined;
   private unsubscribe$ = new Subject<void>();
+  user: User | undefined;
 
   constructor(
     private dialogService: DialogService,
@@ -22,12 +23,20 @@ export class UserInfoComponent implements OnDestroy {
     private userService: UserService
   ) { }
 
+  ngOnInit(): void {
+      const currName = localStorage.getItem('userName');
+      if (currName !== null) {
+        this.userService.getUserInfo(currName).subscribe(res => {
+          this.userService.currentUser = <User>res;
+          this.user = this.userService.currentUser;
+        })
+      }
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
-
-  user = this.userService.currentUser;
 
   getUserInfo(): void {
     this.user = this.userService.currentUser;
