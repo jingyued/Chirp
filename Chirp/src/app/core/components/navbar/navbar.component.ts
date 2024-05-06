@@ -34,8 +34,6 @@ export class NavbarComponent implements OnInit {
     return this._isLogin;
   }
 
-
-
   selectedButton: string = ''; // Variable to keep track of the selected button
 
   // Method to handle button click events
