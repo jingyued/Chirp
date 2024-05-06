@@ -37,7 +37,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   loadChirrups() {
     this.getChirrupsService.getNews().subscribe({
       next: (data: Chirrup[]) => {
-        alert("you have successfully added a new comment!");
+
         this.news = data.map((item: Chirrup) => {
           let isLiked = false; // 默认isLiked为false
           if (item._id !== undefined) {
@@ -92,7 +92,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
     this.commentService.addComment(chirrup._id || '', newComment).subscribe({
       next: _resp => {
-        console.log("Comment post successfully");
+        alert("you have successfully added a new comment!");
         this.newCommentText = '';
 
         // After posting the comment, fetch the updated chirrups to display the new comment
