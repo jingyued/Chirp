@@ -14,18 +14,18 @@ export class LikedPageComponent implements OnInit, OnDestroy {
 
   news: Chirrup[] = [];
   likedNews: Chirrup[] = [];
-  shouldClearSessionStorage = false;
+  shouldClearLocalStorage = false;
 
 
   constructor(private getChirrupsService: GetChirrupsService) { }
 
   ngOnInit() {
-    this.shouldClearSessionStorage = true;
+    this.shouldClearLocalStorage = true;
     this.getChirrupsService.getNews().subscribe({
       next: (data: Chirrup[]) => {
         this.news = data.map((item: Chirrup) => ({
           ...item,
-          islike: false,
+          islike: this.getLikeStatusFromLocalStorage(item._id),
           showComments: false,
         }));
         this.filterLikedNews();
@@ -37,23 +37,23 @@ export class LikedPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.shouldClearSessionStorage) {
-      // this.clearSessionStorage();
+    if (this.shouldClearLocalStorage) {
+      // this.clearLocalStorage();
     }
   }
 
-  clearSessionStorage() {
-    // sessionStorage.clear();
+  clearLocalStorage() {
+    // localStorage.clear();
   }
 
 
   filterLikedNews() {
     let likeStatus: { [key: string]: boolean } = {};
-    if (sessionStorage.length > 0) {
-      for (let i = 0; i < sessionStorage.length; i++) {
-        const key = sessionStorage.key(i);
+    if (localStorage.length > 0) {
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
         if (key !== null) {
-          const value = sessionStorage.getItem(key);
+          const value = localStorage.getItem(key);
           if (value !== null) {
             likeStatus[key] = value === 'true';
           }
@@ -69,18 +69,13 @@ export class LikedPageComponent implements OnInit, OnDestroy {
         return false;
       }
     });
-    console.log(this.likedNews)
   }
 
 
   toggleHeartIcon(chirrup: Chirrup) {
     chirrup.islike = !chirrup.islike;
-    // 因为post service更改了model, 导致这里要handle chirrup._id undefined 的情况,
-    // 实际上不会有不存在_id的post
     if (chirrup._id !== undefined) {
-      sessionStorage.setItem(chirrup._id, chirrup.islike.toString());
-      console.log(chirrup._id);
-      console.log('add chirruo id to session');
+      localStorage.setItem(chirrup._id, chirrup.islike.toString()); //覆盖
     } else {
       console.error('chirrup._id is undefined');
     }
@@ -89,5 +84,11 @@ export class LikedPageComponent implements OnInit, OnDestroy {
   toggleCommentIcon(chirrup: Chirrup) {
     chirrup.showComments = !chirrup.showComments;
   }
-
+  private getLikeStatusFromLocalStorage(id: string | undefined): boolean {
+    if (id !== undefined) {
+      const value = localStorage.getItem(id);
+      return value === 'true';
+    }
+    return false;
+  }
 }
