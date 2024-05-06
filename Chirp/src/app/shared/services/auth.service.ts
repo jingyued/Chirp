@@ -15,8 +15,8 @@ export class AuthService {
   private source: BehaviorSubject<boolean>;
   private _loginStatus: Observable<boolean>;
 
-  constructor(private http: HttpClient, private userService: UserService) {
-    this.source = new BehaviorSubject<boolean>(localStorage.getItem("userName") === '' ? true : false)
+  constructor(private http: HttpClient) {
+    this.source = new BehaviorSubject<boolean>(localStorage.getItem("userName") === '' ? false : true)
     this._loginStatus = this.source.asObservable();
   }
 
