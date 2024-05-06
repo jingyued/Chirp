@@ -11,10 +11,8 @@ import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.sass']
 })
-export class UserInfoComponent implements OnDestroy, OnInit {
+export class UserInfoComponent implements OnInit {
 
-  ref: DynamicDialogRef | undefined;
-  private unsubscribe$ = new Subject<void>();
   user: User | undefined;
 
   constructor(
@@ -23,24 +21,15 @@ export class UserInfoComponent implements OnDestroy, OnInit {
   ) { }
 
   ngOnInit(): void {
-      const currName = localStorage.getItem('userName');
-      if (currName !== null) {
-        this.userService.getUserInfo(currName).subscribe(res => {
-          this.userService.currentUser = <User>res;
-          this.user = this.userService.currentUser;
-        })
-      }
+    const currName = localStorage.getItem('userName');
+    if (currName !== null) {
+      this.userService.getUserInfo(currName);
+    }
+    this.userService.currentUser.subscribe(update => {
+      this.user = update;
+    })
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-  getUserInfo(): void {
-    this.user = this.userService.currentUser;
-  }
-  
   openProfileEditPopup(event: Event) {
     event.preventDefault();
     this.popup.openPopUp(ProfileEditWindowComponent);
