@@ -11,7 +11,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,8 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    DialogService,
-    LoginWindowComponent
+    DialogService
   ]
 })
 export class UserModule { }

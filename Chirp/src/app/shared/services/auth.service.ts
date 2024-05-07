@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/app/core/models/user';
 import { __exportStar, __read } from 'tslib';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl: string = "http://localhost:4231/api";
+  private apiUrl: string = environment.apiUrl;
   private token?: string;
   private name?: string;
   private source: BehaviorSubject<boolean>;
@@ -42,12 +43,12 @@ export class AuthService {
     })
   }
 
-  checkExistByName(username: string) {
-    return this.http.get(`${this.apiUrl}/register/checkExistByUsername/${username}`);
+  checkExistByName(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/register/checkExistByUsername/${username}`);
   }
 
-  checkExistByEmail(email: string) {
-    return this.http.get(`${this.apiUrl}/register/checkExistByEmail/${email}`);
+  checkExistByEmail(email: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/register/checkExistByEmail/${email}`);
   }
 
   changeLoginStatus(status: boolean) {

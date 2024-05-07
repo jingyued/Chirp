@@ -25,7 +25,7 @@ export class ThemeService {
     }
   }
 
-  getCurrentTheme() {
+  getCurrentTheme(): string {
     return this.currentTheme;
   }
 }

@@ -1,3 +1,6 @@
+/**
+ * The interface that matched all the data we have on backend for a single user
+ */
 export interface User {
     _id?: string;
     name?: string;

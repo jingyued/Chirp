@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { UserService } from 'src/app/shared/services/user.service';
-import { User } from 'src/app/core/models/user';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Profile } from 'src/app/core/models/profile';
 
 @Component({
   selector: 'app-profile-edit-window',
@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, Valid
 export class ProfileEditWindowComponent implements OnInit {
 
   userForm: FormGroup = new FormGroup({});
-  targetUser: User | undefined;
+  targetUser: Profile | undefined;
 
   constructor(
     private dialogCommunicationService: DialogCommunicationService,
@@ -45,8 +45,8 @@ export class ProfileEditWindowComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.valid) {
-      const updatedUserData: User = this.userForm.value;
-      this.userService.updateCurrentUser(updatedUserData);
+      const updatedProfileData: Profile = this.userForm.value;
+      this.userService.updateCurrentUser(updatedProfileData);
       this.onClosePopupDialog(); // Close the dialog after updating user data
     } else {
       // Handle form validation errors

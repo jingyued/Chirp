@@ -5,6 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * @classdesc This guard will check current user's role. if is 'admin', will return true, vice versa.
+ * getting user's role from localStorage for now as requested
+ */
 export class AdminGuard implements CanActivate {
   constructor(private router: Router) { }
 

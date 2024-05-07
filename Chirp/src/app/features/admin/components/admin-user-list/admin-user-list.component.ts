@@ -10,19 +10,9 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class AdminUserListComponent implements OnInit {
 
-  selectedIndex: number | null = null;
+  selectedIndex: number | undefined;
   usersList: User[] = [];
-  selectedUser: User | undefined = {
-    "_id": "6205e49f223876263058315a",
-    "name": "CallbackCats",
-    "userName": "CallbackCats",
-    "userEmail": "group.callbackcats@gmail.com",
-    "password": "$2a$10$d8QWXUh",
-    "userRole": "admin",
-    "age": 33,
-    "gender": "Male",
-    "phone": 1234567890,
-  };
+  selectedUser: User | undefined;
 
   constructor(private users: UserService, private auth: AuthService) { }
 
@@ -33,17 +23,17 @@ export class AdminUserListComponent implements OnInit {
   }
 
   onAddNew(){
-    console.log("gonna add new");
-    this.auth.loginAuth("redpanda@gmail.com", "chirp");
+    console.log('gonna add new');
   }
-  // TODO: try not display user when click delete
+
   onSelectUser(index: number){
     this.selectedIndex = index;
     this.selectedUser = this.usersList[index];
   }
 
   onDeleteUser(index: number){
+    // TODO: find a way to change this deprecated line
     event?.stopPropagation();
-    console.log("gonna delete #"+this.usersList[index]._id);
+    console.log(`gonna delete #${this.usersList[index]._id}`);
   }
 }

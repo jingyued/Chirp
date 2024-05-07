@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfilePageComponent },
   { path: 'settings', component: SettingsPageComponent },
   { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
+  { path: '', component: HomePageComponent },
 ];
 
 @NgModule({

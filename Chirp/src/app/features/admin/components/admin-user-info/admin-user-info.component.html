@@ -1,6 +1,6 @@
-<div class="container_adminUserDetail">
+<div *ngIf="currUser !== undefined" class="container_adminUserDetail">
     <div class="header">Detailed User Info</div>
-    <ul *ngIf="currUser._id !== undefined" class="detailed_list">
+    <ul class="detailed_list">
         <li>
             <span>User #: </span>
             {{currUser._id}}

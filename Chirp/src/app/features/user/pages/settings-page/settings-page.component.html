@@ -6,7 +6,7 @@
     <div class="settings-format">
         <div class="setting">
             <p>Dark Mode</p>
-            <p-inputSwitch class="toggle" [(ngModel)]="isDark" (onChange)="toggleTheme($event)"></p-inputSwitch>
+            <p-inputSwitch class="toggle" [(ngModel)]="isDark" (onChange)="onToggleTheme()"></p-inputSwitch>
         </div>
         <div class="setting" (click)="onClickPassword()">
             <p>Password</p>

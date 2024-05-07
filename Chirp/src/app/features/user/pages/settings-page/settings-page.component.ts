@@ -44,7 +44,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  toggleTheme(event: any) {
+  onToggleTheme() {
     if (this.isDark) {
       this.themeService.setTheme("lara-dark-indigo");
     } else {

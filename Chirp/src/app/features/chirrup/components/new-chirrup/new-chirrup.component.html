@@ -21,7 +21,8 @@
         </div>
 
         <div class="post-button">
-            <p-button label="post" (onClick)="postChirrup()" [disabled]="!isLogin"></p-button>
+            <!-- post will be blocked either user not logged in or give an empty content -->
+            <p-button label="post" (onClick)="postChirrup()" [disabled]="!isLogin || chirrupForm.invalid"></p-button>
         </div>
 
     </footer>

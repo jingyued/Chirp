@@ -1,8 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Component } from '@angular/core';
 import { RegisterWindowComponent } from '../register-window/register-window.component';
 import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
-import { Observable, Subject, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
@@ -12,15 +11,11 @@ import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
   templateUrl: './login-window.component.html',
   styleUrls: ['./login-window.component.sass']
 })
-export class LoginWindowComponent implements OnDestroy {
-
-  ref: DynamicDialogRef | undefined;
-  private unsubscribe$ = new Subject<void>();
+export class LoginWindowComponent {
 
   loginForm: any;
 
   constructor(
-    private dialogService: DialogService,
     private dialogCommunicationService: DialogCommunicationService,
     private fb: FormBuilder,
     private auth: AuthService,
@@ -39,6 +34,20 @@ export class LoginWindowComponent implements OnDestroy {
     }, {})
   }
 
+  onSubmit() {
+    this.auth.loginAuth(this.emailControl.value, this.passwordControl.value);
+    this.onClosePopupDialog();
+  }
+
+  get emailControl() {
+    return this.loginForm.get('email');
+  }
+
+  get passwordControl() {
+    return this.loginForm.get('password');
+  }
+
+
   emailExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.auth.checkExistByEmail(control.value).pipe(
@@ -51,22 +60,7 @@ export class LoginWindowComponent implements OnDestroy {
     }
   }
 
-  get emailControl() {
-    return this.loginForm.get('email');
-  }
-
-  get passwordControl() {
-    return this.loginForm.get('password');
-  }
-
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-  openRegisterPopup(event: Event) {
-    event.preventDefault();
+  openRegisterPopup() {
     this.onClosePopupDialog();
     this.popup.openPopUp(RegisterWindowComponent);
   }
@@ -75,8 +69,5 @@ export class LoginWindowComponent implements OnDestroy {
     this.dialogCommunicationService.emitRegistrationSuccess();
   }
 
-  onSubmit() {
-    this.auth.loginAuth(this.emailControl.value, this.passwordControl.value);
-    this.onClosePopupDialog();
-  }
+
 }

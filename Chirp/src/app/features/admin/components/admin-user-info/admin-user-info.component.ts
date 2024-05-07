@@ -8,7 +8,7 @@ import { User } from 'src/app/core/models/user';
 })
 export class AdminUserInfoComponent implements OnInit {
 
-  @Input() currUser: User | any;
+  @Input() currUser: User | undefined;
 
   constructor() { }
 

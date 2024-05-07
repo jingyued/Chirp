@@ -1,6 +1,5 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { LoginWindowComponent } from 'src/app/features/user/pages/login-window/login-window.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
@@ -14,10 +13,9 @@ import { ThemeService } from 'src/app/shared/services/theme.service';
 })
 export class NavbarComponent implements OnInit {
 
-  theme = 'lara-light-indigo';
+  theme: string = 'lara-light-indigo';
 
-  private loginSubscription: any;
-  private _isLogin: boolean = false;
+  private _isLogin: boolean | undefined;
 
   constructor(
     private router: Router,
@@ -28,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.theme = this.themeService.getCurrentTheme();
-    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+    this.auth.loginStatus.subscribe(update => {
       this._isLogin = update;
     })
   }
@@ -45,6 +43,7 @@ export class NavbarComponent implements OnInit {
     if (button === 'home') {
       this.router.navigate(['home']);
     }
+    
     if (this._isLogin) {
       if (button === 'liked') {
         this.router.navigate(['liked']);
@@ -57,11 +56,9 @@ export class NavbarComponent implements OnInit {
       }
     } else {
       if (button === 'login') {
-        // this.router.navigate(['login']);
         this.popup.openPopUp(LoginWindowComponent);
       }
     }
-
 
   }
 

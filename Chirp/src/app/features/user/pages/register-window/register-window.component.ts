@@ -25,7 +25,7 @@ export class RegisterWindowComponent {
 
   initializeForm() {
     this.registerForm = this.fb.group({
-      username: ['',Validators.required, this.userNameNotExists()],
+      username: ['',Validators.required, this.nameNotExistsValidator()],
       email: ['',[Validators.required, Validators.email], this.emailNotExistsValidator()],
       password: ['',[Validators.required, Validators.minLength(8), this.passwordValidator()]],
       passwordConfirm: ['', [Validators.required, this.passwordMatchValidator('password')]]
@@ -89,7 +89,7 @@ export class RegisterWindowComponent {
     }
   }
 
-  userNameNotExists(): AsyncValidatorFn {
+  nameNotExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.auth.checkExistByName(control.value).pipe(
         map((nameExist) => {

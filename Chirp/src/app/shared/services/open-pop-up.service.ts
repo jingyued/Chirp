@@ -20,7 +20,7 @@ export class OpenPopUpService {
         width: '25rem',
         showHeader: false,
         contentStyle: {
-          "max-height": "600px",
+          "max-height": "750px",
           "overflow": "auto",
           "border": "1px solid #ccc",
           "border-radius": "25px" // Optional: Add border-radius for rounded corners

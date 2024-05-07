@@ -31,7 +31,6 @@ import { AdminModule } from './features/admin/admin.module';
     AdminModule
   ],
   providers: [
-    DialogService
   ],
   bootstrap: [AppComponent]
 })

@@ -18,6 +18,8 @@ import { AdminGuard } from './guards/admin.guard';
   exports: [
     NavbarComponent
   ],
-  providers: [AdminGuard]
+  providers: [
+    AdminGuard
+  ]
 })
 export class CoreModule { }

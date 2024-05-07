@@ -8,6 +8,6 @@
     <input [ngClass]="{'warning': passwordControl.errors && passwordControl.dirty}" formControlName="password" type="password" placeholder="Password:">
     <p class="warning" *ngIf="passwordControl.errors?.required && passwordControl.dirty">Password shouldn't be empty.</p>
     <p class="warning" *ngIf="passwordControl.errors?.minlength && passwordControl.dirty">Password should be longer than 8 digits.</p>
-    <p>Don't have an account yet? <a href="#" (click)="openRegisterPopup($event)" label="Show">Register here!</a></p>
+    <p>Don't have an account yet? <a href="#" (click)="openRegisterPopup()" label="Show">Register here!</a></p>
     <p-button type="submit" label="Log In" [disabled]="loginForm.invalid" ></p-button>
 </form>
