@@ -9,16 +9,16 @@
 
 
         <i class="pi pi-home" 
-                [ngClass]="{'selected': selectedButton === 'home' && isLogin}"
+                [ngClass]="{'selected': currentUrl === '/home' && isLogin}"
                 (click)="onButtonClick('home')"></i>
         <i class="pi pi-user" 
-                [ngClass]="{'selected': selectedButton === 'profile' && isLogin}"
+                [ngClass]="{'selected': currentUrl === '/profile' && isLogin}"
                 (click)="onButtonClick('profile')"></i>
         <i class="pi pi-heart" 
-                [ngClass]="{'selected': selectedButton === 'liked' && isLogin}"
+                [ngClass]="{'selected': currentUrl === '/liked' && isLogin}"
                 (click)="onButtonClick('liked')"></i>
         <i class="pi pi-bars" 
-                [ngClass]="{'selected': selectedButton === 'settings' && isLogin}"
+                [ngClass]="{'selected': currentUrl === '/settings' && isLogin}"
                 (click)="onButtonClick('settings')"></i>
         <img *ngIf="isLogin" 
                 class="avatar"
