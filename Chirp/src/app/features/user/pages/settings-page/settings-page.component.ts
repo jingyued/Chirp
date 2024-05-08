@@ -1,47 +1,33 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
-import { ChangePasswordWindowComponent } from '../change-password-window/change-password-window.component';
-import { Subject } from 'rxjs';
-import { ThemeService } from 'src/app/shared/services/theme.service';
+import { Component, OnInit } from '@angular/core';
+import { ChangePasswordWindowComponent } from '../../components/change-password-window/change-password-window.component';
+import { ThemeService } from 'src/app/core/services/theme.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { DialogControlService } from 'src/app/core/services/dialog-control.service';
 
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.sass']
 })
-export class SettingsPageComponent implements OnInit, OnDestroy {
-
-  ref: DynamicDialogRef | undefined;
-  private unsubscribe$ = new Subject<void>();
+export class SettingsPageComponent implements OnInit {
 
   isDark = false;
   
-  private loginSubscription: any;
   private _isLogin: boolean = false;
 
   constructor(    
-    private dialogService: DialogService,
-    private dialogCommunicationService: DialogCommunicationService,
     private themeService: ThemeService,
     private router: Router,
-    private auth: AuthService,
-    private popup: OpenPopUpService
+    private authService: AuthService,
+    private dialogService: DialogControlService,
   ) { }
 
   ngOnInit(): void {
     this.isDark = this.themeService.getCurrentTheme() === 'lara-dark-indigo';
-    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+    this.authService.loginStatus.subscribe(update => {
       this._isLogin = update;
     })
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   onToggleTheme() {
@@ -54,7 +40,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
 
   onClickPassword() {
     if (this._isLogin) {
-      this.popup.openPopUp(ChangePasswordWindowComponent);
+      this.dialogService.openPopUp(ChangePasswordWindowComponent);
     }
   }
 
@@ -65,7 +51,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
   onLogOut() {
     localStorage.setItem("userName", '');
     localStorage.setItem("userRole", '');
-    this.auth.changeLoginStatus(false);
+    this.authService.changeLoginStatus(false);
     alert('See you later');
   }
 }

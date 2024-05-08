@@ -18,6 +18,7 @@ import { AdminModule } from './features/admin/admin.module';
   declarations: [
     AppComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,8 +31,10 @@ import { AdminModule } from './features/admin/admin.module';
     HttpClientModule,
     AdminModule
   ],
+
   providers: [
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

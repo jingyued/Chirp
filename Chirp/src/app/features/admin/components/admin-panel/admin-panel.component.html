@@ -1,0 +1,15 @@
+<div class="container_adminPanel">
+    <div class="big_round_button add_new_button" (click)="onAddNew()">
+        <p>Add New User</p>
+    </div>
+    <hr>
+    <div class="users_list">
+        <div *ngFor="let user of usersList; let i = index;" class="big_round_button user_list_button"
+            (click)="onSelectUser(i)" [class.selected]="i === selectedIndex">
+            <span class="pi pi-trash" (click)="onDeleteUser(i)"></span>
+            <span class="user_tag">User# {{user._id}}</span>
+        </div>
+    </div>
+</div>
+
+<app-admin-user-info [currUser]="selectedUser"></app-admin-user-info>
