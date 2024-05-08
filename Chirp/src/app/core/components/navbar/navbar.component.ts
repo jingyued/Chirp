@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { LoginWindowComponent } from 'src/app/features/user/components/login-window/login-window.component';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { DialogControlService } from 'src/app/core/services/dialog-control.service';
+import { filter, map } from 'rxjs';
 
 
 @Component({
@@ -17,6 +18,9 @@ export class NavbarComponent implements OnInit {
 
   private _isLogin: boolean | undefined;
 
+  currentUrl: string | undefined;
+  events: any;
+
   constructor(
     private router: Router,
     private themeService: ThemeService,
@@ -28,6 +32,13 @@ export class NavbarComponent implements OnInit {
     this.theme = this.themeService.getCurrentTheme();
     this.authService.loginStatus.subscribe(update => {
       this._isLogin = update;
+    })
+    this.events = this.router.events.pipe(
+      filter(event=>event instanceof NavigationEnd));
+
+    this.events.subscribe((e:NavigationEnd)=>{
+      //alert(e.urlAfterRedirects)
+      this.currentUrl = e.urlAfterRedirects;
     })
   }
 
