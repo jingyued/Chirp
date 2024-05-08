@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { SharedService } from '../../services/shared.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-new-chirrup',
@@ -18,7 +18,7 @@ export class NewChirrupComponent {
     private fb: FormBuilder,
     private PostService: PostService,
     private sharedService: SharedService,
-    private auth: AuthService
+    private authService: AuthService
   ) {
     this.chirrupForm = this.fb.group({
       text: ['', Validators.required],
@@ -26,7 +26,7 @@ export class NewChirrupComponent {
       video: ['']
     });
 
-    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+    this.loginSubscription = this.authService.loginStatus.subscribe(update => {
       this.isLogin = update;
     })
   }

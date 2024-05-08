@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GetChirrupsService } from '../../../../shared/services/get-chirrups.service';
+import { GetChirrupsService } from '../../services/get-chirrups.service';
 import { Chirrup } from '../../../../core/models/chirrup';
 
 @Component({
   selector: 'app-liked-page',
   templateUrl: './liked-page.component.html',
   styleUrls: ['./liked-page.component.sass',
-    '../../../../shared/components/chirrup-list/chirrup-list.component.sass',
+    '../../components/chirrup-list/chirrup-list.component.sass',
     '../../../../shared/components/chirrup-card/chirrup-card.component.sass'
   ]
 })

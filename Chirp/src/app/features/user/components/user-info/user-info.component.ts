@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
-import { UserService } from 'src/app/shared/services/user.service';
-import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
+import { ProfileEditWindowComponent } from '../profile-edit-window/profile-edit-window.component';
+import { UserService } from 'src/app/core/services/user.service';
 import { Profile } from 'src/app/core/models/profile';
+import { DialogControlService } from 'src/app/core/services/dialog-control.service';
 
 @Component({
   selector: 'app-user-info',
@@ -15,7 +15,7 @@ export class UserInfoComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private popup: OpenPopUpService
+    private dialogService: DialogControlService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   openProfileEditPopup() {
-    this.popup.openPopUp(ProfileEditWindowComponent);
+    this.dialogService.openPopUp(ProfileEditWindowComponent);
   }
 
   selectedButton = 'Posts';

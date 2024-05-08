@@ -10,14 +10,17 @@ import { AdminGuard } from './guards/admin.guard';
   declarations: [
     NavbarComponent
   ],
+  
   imports: [
     CommonModule,
     ButtonModule,
     MenubarModule
   ],
+
   exports: [
     NavbarComponent
   ],
+
   providers: [
     AdminGuard
   ]

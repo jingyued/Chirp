@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
-import { ProfileEditWindowComponent } from './pages/profile-edit-window/profile-edit-window.component';
-import { ChangePasswordWindowComponent } from './pages/change-password-window/change-password-window.component';
-import { LoginWindowComponent } from './pages/login-window/login-window.component';
-import { RegisterWindowComponent } from './pages/register-window/register-window.component';
+import { ProfileEditWindowComponent } from './components/profile-edit-window/profile-edit-window.component';
+import { ChangePasswordWindowComponent } from './components/change-password-window/change-password-window.component';
+import { LoginWindowComponent } from './components/login-window/login-window.component';
+import { RegisterWindowComponent } from './components/register-window/register-window.component';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { StyleClassModule } from 'primeng/styleclass';
@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginWindowComponent,
     RegisterWindowComponent
   ],
+
   imports: [
     CommonModule,
     AvatarModule,
@@ -38,8 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
+
   providers: [
-    DialogService
   ]
 })
 export class UserModule { }

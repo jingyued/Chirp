@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
 import { AdminUserInfoComponent } from './components/admin-user-info/admin-user-info.component';
-import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { AdminService } from './services/admin.service';
 
 
 
 @NgModule({
   declarations: [
-    AdminUserListComponent,
     AdminUserInfoComponent,
-    AdminPageComponent
+    AdminPanelComponent,
   ],
+  
   imports: [
     CommonModule
   ],
+
   exports: [
-    AdminPageComponent
+  ],
+
+  providers: [
+    AdminService
   ]
 })
 export class AdminModule { }
