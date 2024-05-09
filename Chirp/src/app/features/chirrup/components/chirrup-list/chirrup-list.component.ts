@@ -4,6 +4,9 @@ import { GetChirrupsService } from '../../services/get-chirrups.service';
 import { Chirrup, Comment } from '../../../../core/models/chirrup';
 import { CommentService } from '../../services/comment.service';
 import { SharedService } from '../../services/shared.service';
+import { User } from 'src/app/core/models/user';
+import { Profile } from 'src/app/core/models/profile';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-chirrup-list',
@@ -13,20 +16,31 @@ import { SharedService } from '../../services/shared.service';
 export class ChirrupListComponent implements OnInit, OnDestroy {
   news: Chirrup[] = [];
   newCommentText: string = '';
+  user: Profile | undefined;
   private refreshSubscription: Subscription;
 
   constructor(
     private getChirrupsService: GetChirrupsService,
     private commentService: CommentService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private userService: UserService,
   ) { this.refreshSubscription = new Subscription(); }
 
   ngOnInit() {
     this.loadChirrups();
+
     // 订阅共享服务的刷新通知
     this.refreshSubscription = this.sharedService.getChirrupListRefreshNotifier().subscribe(() => {
       this.loadChirrups(); // 收到通知后刷新数据
     });
+    const currName = localStorage.getItem('userName');
+    // TODO: logic refactor
+    if (currName !== null) {
+      this.userService.getUserInfo(currName);
+    }
+    this.userService.currentUser.subscribe(update => {
+      this.user = update;
+    })
   }
 
   ngOnDestroy() {
@@ -39,15 +53,26 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
       next: (data: Chirrup[]) => {
 
         this.news = data.map((item: Chirrup) => {
+          // console.log(item.likedIdList.length, item.content);
+          // console.log(item.comment.length);
+
           let isLiked = false; // 默认isLiked为false
-          if (item._id !== undefined) {
-            const storedIsLiked = localStorage.getItem(item._id);
-            isLiked = storedIsLiked === 'true'; // 如果storedIsLiked为'true'，则isLiked为true
-            if (storedIsLiked != null) {
-              console.log(isLiked)
-            }
+
+          if (item.likedIdList && this.user) {
+            // Check if the current user's id exists in the likedIdList
+            isLiked = item.likedIdList.some(likedId => likedId.userName === this.user?.userName);
           }
-          console.log(isLiked)
+          console.log(isLiked);
+
+          // if (item._id !== undefined) {
+          //   const storedIsLiked = localStorage.getItem(item._id);
+          //   isLiked = storedIsLiked === 'true'; // 如果storedIsLiked为'true'，则isLiked为true
+          //   if (storedIsLiked != null) {
+          //     console.log(isLiked)
+          //   }
+          // }
+          // console.log(item.islike);
+
           return {
             ...item,
             islike: isLiked,
@@ -65,6 +90,22 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   toggleHeartIcon(chirrup: Chirrup) {
     chirrup.islike = !chirrup.islike;
     // 因为post service更改了model, 导致这里要handle chirrup._id undefined 的情况,实际上不会有不存在_id的post
+    if (chirrup && chirrup.islike) {
+      const likedId = {
+          userName: this.user?.userName || "", // Ensure it's a string or provide a default value
+          _id: chirrup._id || "" // Ensure it's a string or provide a default value
+      };
+      chirrup.likedIdList.push(likedId);
+    }
+    else if (chirrup && !chirrup.islike && chirrup.likedIdList){
+      const likedId = {
+        userId: this.user?.gender || "", // Ensure it's a string or provide a default value
+        _id: chirrup._id || "" // Ensure it's a string or provide a default value
+      };
+      chirrup.likedIdList = chirrup.likedIdList.filter(likedId => likedId.userName !== (this.user?.userName))
+    }
+    console.log(chirrup.likedIdList.length);
+
     if (chirrup._id !== undefined) {
       localStorage.setItem(chirrup._id, chirrup.islike.toString());
     } else {
