@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-// import { ChirrupCardComponent } from './chirrup-card.component';
-import { ChirrupCardComponent } from 'src/app/shared/components/chirrup-card/chirrup-card.component';
+import { ChirrupCardComponent } from './chirrup-card.component';
+// import
 describe('ChirrupCardComponent', () => {
   let component: ChirrupCardComponent;
   let fixture: ComponentFixture<ChirrupCardComponent>;
