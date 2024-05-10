@@ -44,7 +44,6 @@ export class ChirrupService {
     });
   }
 
-
   // post new chirrup, update the newsSubject with transformed returned chirrup and originial newsSubject value
   postChirrup(chirrup: ChirrupPost): Observable<Chirrup> {
     const url = `${this.apiUrl}/news`;

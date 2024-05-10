@@ -1,12 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Chirrup, Comment } from '../../../../core/models/chirrup';
-// import { CommentService } from '../../services/comment.service';
-// import { SharedService } from '../../services/shared.service';
-import { User } from 'src/app/core/models/user';
-import { Profile } from 'src/app/core/models/profile';
-import { UserService } from 'src/app/core/services/user.service';
 import { ChirrupService } from '../../services/chirrup.service';
+import { Profile } from 'src/app/core/models/profile';
 
 @Component({
   selector: 'app-chirrup-list',
@@ -21,7 +17,6 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
   constructor(
     private chirrupService: ChirrupService,
-    private userService: UserService
   ) { this.refreshSubscription = new Subscription(); }
 
   ngOnInit() {
