@@ -1,94 +1,48 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GetChirrupsService } from '../../services/get-chirrups.service';
+import { Subscription } from 'rxjs';
 import { Chirrup } from '../../../../core/models/chirrup';
+import { ChirrupService } from '../../services/chirrup.service';
 
 @Component({
   selector: 'app-liked-page',
   templateUrl: './liked-page.component.html',
-  styleUrls: ['./liked-page.component.sass',
-    '../../components/chirrup-list/chirrup-list.component.sass',
-    '../../../../shared/components/chirrup-card/chirrup-card.component.sass'
-  ]
+  styleUrls: ['./liked-page.component.sass',]
 })
 export class LikedPageComponent implements OnInit, OnDestroy {
-
   news: Chirrup[] = [];
   likedNews: Chirrup[] = [];
-  shouldClearLocalStorage: boolean = false;
+  private refreshSubscription = new Subscription();
 
-
-  constructor(private getChirrupsService: GetChirrupsService) { }
+  constructor(private chirrupService: ChirrupService) { }
 
   ngOnInit() {
-    this.shouldClearLocalStorage = true;
-    // Fetch the whole news list from backend, filtered to only contain liked chirrups
-    this.getChirrupsService.getNews().subscribe({
-      next: (data: Chirrup[]) => {
-        this.news = data.map((item: Chirrup) => ({
-          ...item,
-          islike: this.getLikeStatusFromLocalStorage(item._id),
-          showComments: false,
-        }));
-        this.filterLikedNews();
-      },
-      error: (error) => {
-        console.error('There was an error!', error);
-      }
+    this.refreshSubscription = this.chirrupService.news.subscribe(news => {
+      this.news = news.map(chirrup => ({
+        ...chirrup,
+        // Update each chirrup with like status from localStorage
+        islike: this.getLikeStatusFromLocalStorage(chirrup._id),
+      }));
+      this.filterLikedNews();
     });
   }
 
   ngOnDestroy() {
-    if (this.shouldClearLocalStorage) {
-      // this.clearLocalStorage();
-    }
-  }
-
-  clearLocalStorage() {
+    this.refreshSubscription.unsubscribe();
     // localStorage.clear();
   }
 
   filterLikedNews() {
-    // Create a liked chirrup id list from localStorage for later comparation
-    let likeStatus: { [key: string]: boolean } = {};
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key !== null) {
-          const value = localStorage.getItem(key);
-          if (value !== null) {
-            likeStatus[key] = value === 'true';
-          }
-        }
-      }
-    }
-
-    this.likedNews = this.news.filter(item => {
-      if (item._id !== undefined) {
-        const itemId = item._id;
-        return likeStatus[itemId] === true;
-      } else {
-        return false;
-      }
-    });
+    this.likedNews = this.news.filter(item => item.islike);
   }
 
   toggleHeartIcon(chirrup: Chirrup) {
-    chirrup.islike = !chirrup.islike;
-    if (chirrup._id !== undefined) {
-      // load or offload selected chirrup to liked id list in localStorage
-      localStorage.setItem(chirrup._id, chirrup.islike.toString());
-    } else {
-      console.error('chirrup._id is undefined');
-    }
-  };
+    const newLikeStatus = !chirrup.islike;
+    chirrup.islike = newLikeStatus;
+    localStorage.setItem(chirrup._id, newLikeStatus.toString());
+  }
 
-  /**
-   * Check on localStorage to find this chirrup is liked or not
-   * @param id chrip id, generated from backend
-   * @returns boolean
-   */
   private getLikeStatusFromLocalStorage(id: string | undefined): boolean {
-    if (id !== undefined) {
+    if (id) {
       const value = localStorage.getItem(id);
       return value === 'true';
     }
