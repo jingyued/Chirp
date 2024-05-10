@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'liked', component: LikedPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'settings', component: SettingsPageComponent },
-  { path: 'admin', component: AdminPanelComponent, canActivate: [] },
+  { path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard] },
   { path: '', component: HomePageComponent },
 ];
 
