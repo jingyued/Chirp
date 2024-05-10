@@ -14,6 +14,8 @@ export class DialogControlService {
     private dialogCommunicationService: DialogCommunicationService,
   ) { }
 
+  // Providing detailed designs for the popup window
+  // offering function to open up and close the popup window when needed
   openPopUp(component: any) {
     try {
       this.ref = this.dialogService.open(component, {

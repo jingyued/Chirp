@@ -33,6 +33,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
     this.refreshSubscription = this.sharedService.getChirrupListRefreshNotifier().subscribe(() => {
       this.loadChirrups(); // 收到通知后刷新数据
     });
+    // Get user info according to userName
     const currName = localStorage.getItem('userName');
     // TODO: logic refactor
     if (currName !== null) {
@@ -59,8 +60,8 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
           let isLiked = false; // 默认isLiked为false
 
           if (item.likedIdList && this.user) {
-            // Check if the current user's id exists in the likedIdList
-            isLiked = item.likedIdList.some(likedId => likedId.userName === this.user?.userName);
+            // Check if the current user's id exists in the likedIdList, if so, set isLiked to true
+            isLiked = item.likedIdList.some(likedId => likedId.userId === this.user?._id);
           }
           console.log(isLiked);
 
@@ -90,21 +91,24 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   toggleHeartIcon(chirrup: Chirrup) {
     chirrup.islike = !chirrup.islike;
     // 因为post service更改了model, 导致这里要handle chirrup._id undefined 的情况,实际上不会有不存在_id的post
+    // if current user likes the post, the username is added to the likedIdList
     if (chirrup && chirrup.islike) {
       const likedId = {
-          userName: this.user?.userName || "", // Ensure it's a string or provide a default value
+          userId: this.user?._id || "", // Ensure it's a string or provide a default value
           _id: chirrup._id || "" // Ensure it's a string or provide a default value
       };
       chirrup.likedIdList.push(likedId);
     }
+    // if current user cancel the like, the username is removed from the likedIdList
     else if (chirrup && !chirrup.islike && chirrup.likedIdList){
       const likedId = {
-        userId: this.user?.gender || "", // Ensure it's a string or provide a default value
+        userId: this.user?._id || "", // Ensure it's a string or provide a default value
         _id: chirrup._id || "" // Ensure it's a string or provide a default value
       };
-      chirrup.likedIdList = chirrup.likedIdList.filter(likedId => likedId.userName !== (this.user?.userName))
+
+
+      chirrup.likedIdList = chirrup.likedIdList.filter(likedId => likedId.userId !== (this.user?._id || ""))
     }
-    console.log(chirrup.likedIdList.length);
 
     if (chirrup._id !== undefined) {
       localStorage.setItem(chirrup._id, chirrup.islike.toString());

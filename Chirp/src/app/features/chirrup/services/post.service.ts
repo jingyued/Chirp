@@ -13,7 +13,7 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-
+  // Post chirrup to the backend
   postChirrup(chirrup: Chirrup): Observable<any> {
     const url = `${this.apiUrl}/news`;
     return this.http.post(url, chirrup).pipe(

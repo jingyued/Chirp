@@ -27,6 +27,6 @@ export interface Comment {
 }
 
 interface LikedId {
-    userName: string;
+    userId: string;
     _id?: string;
 }

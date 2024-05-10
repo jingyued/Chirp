@@ -11,10 +11,9 @@ export class GetChirrupsService {
   private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
-
+  // fetch posts from backend
   getNews(): Observable<any> {
     const url = `${this.apiUrl}/news`;
     return this.http.get(url);
   }
 }
-

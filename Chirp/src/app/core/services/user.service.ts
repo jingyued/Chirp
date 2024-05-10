@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  
+
   private apiUrl: string = environment.apiUrl;
 
   private userTmp: Profile = {
@@ -25,6 +25,8 @@ export class UserService {
     this._currentUser = this.source.asObservable();
   }
 
+  // Fetch the corresponding profile for the current user
+  // Usernames are guaranteed to be unique and required, therefor the profile could be fetched by username from backend
   getUserInfo(userName: string) {
     const url: string = `${this.apiUrl}/users/getProfile/${userName}`;
     this.http.get(url)
@@ -38,6 +40,9 @@ export class UserService {
   get currentUser(): Observable<Profile> {
     return this._currentUser;
   }
+
+  /** Update user's profile as requested by user
+  @param updateUser: Profile, Updated user's profile **/
 
   updateCurrentUser(updateUser: Profile) {
     this.source.next(updateUser);
