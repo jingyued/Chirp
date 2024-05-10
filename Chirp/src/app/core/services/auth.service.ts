@@ -16,7 +16,8 @@ export class AuthService {
   private _loginStatus: Observable<boolean>; // used for loginStatus broadcasting
 
   constructor(private http: HttpClient) {
-    this.source = new BehaviorSubject<boolean>(localStorage.getItem("userName") === '' ? false : true)
+    let currentUserName: string = localStorage.getItem("userName") || ''; 
+    this.source = new BehaviorSubject<boolean>(currentUserName === '' ? false : true);
     this._loginStatus = this.source.asObservable();
   }
 
