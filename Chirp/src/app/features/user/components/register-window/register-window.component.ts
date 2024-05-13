@@ -3,11 +3,13 @@ import { DialogCommunicationService } from '../../../../core/services/dialog-com
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable, catchError, map, of } from 'rxjs';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register-window',
   templateUrl: './register-window.component.html',
-  styleUrls: ['./register-window.component.sass']
+  styleUrls: ['./register-window.component.sass'],
+  providers: [MessageService]
 })
 export class RegisterWindowComponent {
 
@@ -16,7 +18,8 @@ export class RegisterWindowComponent {
   constructor(
     private dialogCommunicationService: DialogCommunicationService,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -107,8 +110,17 @@ export class RegisterWindowComponent {
 
   onSubmit() {
     // post
-    this.authService.registerUser({userName: this.usernameControl.value, userEmail: this.emailControl.value, password: this.passwordControl.value});
-    this.onClosePopupDialog();
+    //this.authService.registerUser({userName: this.usernameControl.value, userEmail: this.emailControl.value, password: this.passwordControl.value});
+    //this.onClosePopupDialog();
+    this.authService.registerUser({userName: this.usernameControl.value, userEmail: this.emailControl.value, password: this.passwordControl.value})
+    .subscribe(success => {
+      if (success) {
+        this.messageService.add({ severity: 'success', summary: 'Registered successfully', detail: 'Welcome, ' + this.usernameControl.value + '!', life: 2000 });
+        setTimeout(() => this.onClosePopupDialog(), 2000);
+      } else {
+        this.messageService.add({ severity: 'error', summary: 'Registration failed', detail: 'Please check your Internet connection!', life: 2000 });
+      }
+    });
   }
 
 }

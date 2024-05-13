@@ -100,11 +100,11 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
         // After posting the comment, fetch the updated chirrups to display the new comment
         this.loadChirrups();
         //alert("you have successfully added a new comment!");
-        this.messageService.add({ severity: 'success', summary: 'Comment sent successfully', detail: 'You have added a new comment!', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Comment sent successfully', detail: 'You have added a new comment!', life: 2000 });
       },
       error: _err => {
         console.log("Error posing new comment:", _err);
-        this.messageService.add({ severity: 'error', summary: 'Comment failed', detail: 'Please check your Internet connection!', life: 3000 });
+        this.messageService.add({ severity: 'error', summary: 'Comment failed', detail: 'Please check your Internet connection!', life: 2000 });
       }
     });
   }

@@ -58,12 +58,12 @@ export class NewChirrupComponent {
         // 清空表单
         this.chirrupForm.reset();
         //alert("you have successfully posted a new chirrup!");
-        this.messageService.add({ severity: 'success', summary: 'Post sent successfully', detail: 'You have posted a new chirrup!', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Post sent successfully', detail: 'You have posted a new chirrup!', life: 2000 });
 
       },
       error: (error: any) => {
         console.error('Failed to post chirrup:', error);
-        this.messageService.add({ severity: 'error', summary: 'Post failed', detail: 'Please check your Internet connection!', life: 3000 });
+        this.messageService.add({ severity: 'error', summary: 'Post failed', detail: 'Please check your Internet connection!', life: 2000 });
       } 
     });
   }

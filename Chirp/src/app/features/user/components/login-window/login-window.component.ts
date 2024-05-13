@@ -42,10 +42,10 @@ export class LoginWindowComponent {
     this.authService.loginAuth(this.emailControl.value, this.passwordControl.value)
     .subscribe(response => {
       if (response.success) {
-        this.messageService.add({ severity: 'success', summary: 'Logged in successfully', detail: 'Welcome back, ' + response.userName + '!', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Logged in successfully', detail: 'Welcome back, ' + response.userName + '!', life: 2000 });
         setTimeout(() => this.dialogCommunicationService.emitRegistrationSuccess(), 2000);
       } else {
-        this.messageService.add({ severity: 'error', summary: 'Login failed', detail: 'Please check your Internet connection!', life: 3000 });
+        this.messageService.add({ severity: 'error', summary: 'Login failed', detail: 'Please check your Internet connection!', life: 2000 });
       }
     });
   }

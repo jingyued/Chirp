@@ -49,16 +49,24 @@ export class AuthService {
    * Handle register service, could taken complete User type data to upload an complete user profile.
    * @param user user's information, refer to interface type User
    */
-  registerUser(user: User) {
+  registerUser(user: User): Observable<boolean> {
     // TODO: find a way to retrieve token
     const url = `${this.apiUrl}/register/createNewAccount`;
-    this.http.post(url, user, { observe: 'response' }).subscribe({
-      // next: _resp => {console.log(_resp)},
-      error: _err => {
+    return this.http.post(url, user, { observe: 'response' }).pipe(
+      map((_resp: any) => {
+        return true;
+      }),
+      catchError(_err => {
         console.error(`status ${_err.status}: ${_err.error}`);
-        alert(`Oops, we got an error when registering you in. \nStatus ${_err.status}: ${_err.error}`);
-      }
-    })
+        //alert(`Oops, we got an error when registering you in. \nStatus ${_err.status}: ${_err.error}`);
+        return of(false); 
+      })
+    );
+      // next: _resp => {console.log(_resp)},
+      // error: _err => {
+      //   console.error(`status ${_err.status}: ${_err.error}`);
+      //   alert(`Oops, we got an error when registering you in. \nStatus ${_err.status}: ${_err.error}`);
+      // }
   }
 
   checkExistByName(username: string): Observable<boolean> {
