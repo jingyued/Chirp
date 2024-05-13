@@ -4,11 +4,14 @@ import { ThemeService } from 'src/app/core/services/theme.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DialogControlService } from 'src/app/core/services/dialog-control.service';
+import { Message, MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings-page.component.html',
-  styleUrls: ['./settings-page.component.sass']
+  styleUrls: ['./settings-page.component.sass'],
+  providers: [MessageService]
 })
 export class SettingsPageComponent implements OnInit {
 
@@ -16,11 +19,13 @@ export class SettingsPageComponent implements OnInit {
   
   private _isLogin: boolean = false;
 
+
   constructor(    
     private themeService: ThemeService,
     private router: Router,
     private authService: AuthService,
     private dialogService: DialogControlService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +57,8 @@ export class SettingsPageComponent implements OnInit {
     localStorage.setItem("userName", '');
     localStorage.setItem("userRole", '');
     this.authService.changeLoginStatus(false);
-    alert('See you later');
+
+    this.messageService.add({ severity: 'success', summary: 'Logged out successfully', detail: 'See you later!', key: 'bc', life: 3000 });
   }
 }
+

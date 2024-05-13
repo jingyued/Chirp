@@ -4,6 +4,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { AdminGuard } from './guards/admin.guard';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AdminGuard } from './guards/admin.guard';
   imports: [
     CommonModule,
     ButtonModule,
-    MenubarModule
+    MenubarModule,
+    ToastModule
   ],
 
   exports: [
