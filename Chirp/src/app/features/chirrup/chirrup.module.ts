@@ -16,10 +16,10 @@ import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
-    NewChirrupComponent,
     HomePageComponent,
     LikedPageComponent,
     ChirrupListComponent,
+    NewChirrupComponent,
     ReversePipe,
     TruncatePipe,
     TruncateAvatarPipe
@@ -35,7 +35,6 @@ import { ToastModule } from 'primeng/toast';
   ],
 
   exports: [
-    NewChirrupComponent,
     HomePageComponent,
     LikedPageComponent,
   ],

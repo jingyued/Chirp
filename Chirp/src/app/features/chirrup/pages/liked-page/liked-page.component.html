@@ -1,5 +1,3 @@
-<!-- <div (window:beforeunload)="clearLocalStorage()"></div> -->
-
 <div *ngFor="let chirrup of likedNews" class="chirrup-card">
     <div class="header">
         <div class="user-info">
@@ -11,11 +9,11 @@
         <div class="location">Irvine, CA</div>
     </div>
 
-    <div class="chirrup-content"> {{ chirrup.content?.text | truncate }} </div>
+    <div class="chirrup-content"> {{ chirrup.content.text | truncate }} </div>
     <div class="chirrup-content">
-        <img *ngIf="chirrup.content?.image" alt="chirrup-image" class="square-image"
-            src="{{ chirrup.content?.image }}" />
-        <!-- <video *ngIf="chirrup.content?.video" controls>
+        <img *ngIf="chirrup.content.image!== 'no image'" alt="chirrup-image" class="square-image"
+            src="{{ chirrup.content.image }}" />
+        <!-- <video *ngIf="chirrup.content?.video!== 'no video'" controls>
             <source src="{{ chirrup.content?.video }}" type="video/mp4">
         </video> -->
     </div>

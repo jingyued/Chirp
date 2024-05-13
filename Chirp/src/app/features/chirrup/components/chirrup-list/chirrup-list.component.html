@@ -15,9 +15,9 @@
         {{ chirrup.content?.text }}
     </div>
     <div class="chirrup-content">
-        <img *ngIf="chirrup.content?.image" alt="chirrup-image" class="square-image"
+        <img *ngIf="chirrup.content?.image !== 'no image'" alt="chirrup-image" class="square-image"
             src="{{ chirrup.content?.image }}" />
-        <!-- <video *ngIf="chirrup.content?.video" controls>
+        <!-- <video *ngIf="chirrup.content?.video!== 'no video'" controls>
             <source src="{{ chirrup.content?.video }}" type="video/mp4">
         </video> -->
     </div>
@@ -35,7 +35,8 @@
             <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
         </div>
         <div class="input-container">
-            <input type="text" placeholder="Add new comment..." [(ngModel)]="newCommentText">
+            <input class="comment" placeholder="Add new comment..." [(ngModel)]="newCommentTexts[chirrup._id]">
+
             <div class="icons">
                 <span class="pi pi-at"></span>
                 <span class="pi pi-image"></span>
@@ -58,8 +59,8 @@
 
         <div class="comment-content">{{ comment.content?.text }}</div>
         <!-- <div class="chirrup-content">
-            <img *ngIf="comment.content" alt="chirrup-image" class="square-image" src="{{ comment.content?.image }}" />
-            <video *ngIf="comment.content?.video" controls>
+            <img *ngIf="comment.content?.image !== 'no image' alt="chirrup-image" class="square-image" src="{{ comment.content?.image }}" />
+            <video *ngIf="comment.content?.video!== 'no video'" controls>
                 <source src="{{ comment.content?.video }}" type="video/mp4">
             </video>
         </div> -->

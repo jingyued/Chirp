@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SharedService } from './shared.service';
+import { ChirrupService } from './chirrup.service';
 
-describe('SharedService', () => {
-  let service: SharedService;
+describe('ChirrupService', () => {
+  let service: ChirrupService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SharedService);
+    service = TestBed.inject(ChirrupService);
   });
 
   it('should be created', () => {
