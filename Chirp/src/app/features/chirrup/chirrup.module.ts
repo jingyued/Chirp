@@ -10,15 +10,16 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { ChirrupListComponent } from './components/chirrup-list/chirrup-list.component';
 import { TruncateAvatarPipe } from './pipes/truncate-avatar.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { ToastModule } from 'primeng/toast';
 
 
 
 @NgModule({
   declarations: [
-    NewChirrupComponent,
     HomePageComponent,
     LikedPageComponent,
     ChirrupListComponent,
+    NewChirrupComponent,
     ReversePipe,
     TruncatePipe,
     TruncateAvatarPipe
@@ -29,11 +30,11 @@ import { ReversePipe } from './pipes/reverse.pipe';
     ButtonModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ],
 
   exports: [
-    NewChirrupComponent,
     HomePageComponent,
     LikedPageComponent,
   ],

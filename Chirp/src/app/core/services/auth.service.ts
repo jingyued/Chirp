@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/core/models/user';
 import { __exportStar, __read } from 'tslib';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,37 +28,45 @@ export class AuthService {
    * @param email login user's email
    * @param password login user's password
    */
-  loginAuth(email: string, password: string) {
+
+  loginAuth(email: string, password: string): Observable<{ success: boolean, userName?: string }> {
     const url = `${this.apiUrl}/login`;
-    this.http.post(url, { userEmail: email, password: password })
-      .subscribe({
-        next: (_resp: any) => {
+    return this.http.post(url, { userEmail: email, password: password })
+      .pipe(
+        map((_resp: any) => {
           localStorage.setItem("userName", _resp.userName);
           localStorage.setItem("userRole", _resp.userRole);
-          alert(`Welcome back, ${_resp.userName}`);
           this.changeLoginStatus(true);
-        },
-        error: _err => {
+          return { success: true, userName: _resp.userName }; // Login successful with user name
+        }),
+        catchError(_err => {
           console.error(`status ${_err.status}: ${_err.error}`);
-          alert(`Oops, we got an error when logging you in. \nStatus ${_err.status}: ${_err.error}`);
-        }
-      });
+          return of({ success: false }); // Login failed
+        })
+      );
   }
-
   /**
    * Handle register service, could taken complete User type data to upload an complete user profile.
    * @param user user's information, refer to interface type User
    */
-  registerUser(user: User) {
+  registerUser(user: User): Observable<boolean> {
     // TODO: find a way to retrieve token
     const url = `${this.apiUrl}/register/createNewAccount`;
-    this.http.post(url, user, { observe: 'response' }).subscribe({
-      // next: _resp => {console.log(_resp)},
-      error: _err => {
+    return this.http.post(url, user, { observe: 'response' }).pipe(
+      map((_resp: any) => {
+        return true;
+      }),
+      catchError(_err => {
         console.error(`status ${_err.status}: ${_err.error}`);
-        alert(`Oops, we got an error when registering you in. \nStatus ${_err.status}: ${_err.error}`);
-      }
-    })
+        //alert(`Oops, we got an error when registering you in. \nStatus ${_err.status}: ${_err.error}`);
+        return of(false); 
+      })
+    );
+      // next: _resp => {console.log(_resp)},
+      // error: _err => {
+      //   console.error(`status ${_err.status}: ${_err.error}`);
+      //   alert(`Oops, we got an error when registering you in. \nStatus ${_err.status}: ${_err.error}`);
+      // }
   }
 
   checkExistByName(username: string): Observable<boolean> {

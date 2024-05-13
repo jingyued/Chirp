@@ -3,11 +3,13 @@ import { Subscription } from 'rxjs';
 import { Chirrup, Comment } from '../../../../core/models/chirrup';
 import { ChirrupService } from '../../services/chirrup.service';
 import { Profile } from 'src/app/core/models/profile';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-chirrup-list',
   templateUrl: './chirrup-list.component.html',
-  styleUrls: ['./chirrup-list.component.sass']
+  styleUrls: ['./chirrup-list.component.sass'],
+  providers: [MessageService]
 })
 export class ChirrupListComponent implements OnInit, OnDestroy {
   news: Chirrup[] = [];
@@ -17,6 +19,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
   constructor(
     private chirrupService: ChirrupService,
+    private messageService: MessageService
   ) { this.refreshSubscription = new Subscription(); }
 
   ngOnInit() {
@@ -82,10 +85,15 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
     this.chirrupService.addComment(chirrup._id, newComment).subscribe({
       next: _resp => {
-        this.newCommentTexts[chirrup._id] = '';  // Clear the input field after adding the comment
-        alert("You have successfully added a new comment!");
+        this.newCommentTexts[chirrup._id] = '';  // Clear the input field after adding the comment 
+        //alert("you have successfully added a new comment!");
+        this.messageService.add({ severity: 'success', summary: 'Comment sent successfully', detail: 'You have added a new comment!', life: 2000 });
       },
-      error: (_err: any) => console.log("Error posing new comment:", _err)
+      error: _err => {
+        console.log("Error posing new comment:", _err);
+        this.messageService.add({ severity: 'error', summary: 'Comment failed', detail: 'Please check your Internet connection!', life: 2000 });
+      }
+
     });
   }
 }
