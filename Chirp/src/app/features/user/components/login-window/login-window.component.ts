@@ -5,11 +5,14 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DialogControlService } from 'src/app/core/services/dialog-control.service';
+import { Message, MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-login-window',
   templateUrl: './login-window.component.html',
-  styleUrls: ['./login-window.component.sass']
+  styleUrls: ['./login-window.component.sass'],
+  providers: [MessageService]
 })
 export class LoginWindowComponent {
 
@@ -19,7 +22,8 @@ export class LoginWindowComponent {
     private dialogCommunicationService: DialogCommunicationService,
     private fb: FormBuilder,
     private authService: AuthService,
-    private dialogService: DialogControlService
+    private dialogService: DialogControlService,
+    private messageService: MessageService
   ) { }
 
 
@@ -35,8 +39,15 @@ export class LoginWindowComponent {
   }
 
   onSubmit() {
-    this.authService.loginAuth(this.emailControl.value, this.passwordControl.value);
-    this.onClosePopupDialog();
+    this.authService.loginAuth(this.emailControl.value, this.passwordControl.value)
+    .subscribe(response => {
+      if (response.success) {
+        this.messageService.add({ severity: 'success', summary: 'Logged in successfully', detail: 'Welcome back, ' + response.userName + '!', life: 3000 });
+        setTimeout(() => this.dialogCommunicationService.emitRegistrationSuccess(), 2000);
+      } else {
+        this.messageService.add({ severity: 'error', summary: 'Login failed', detail: 'Please check your Internet connection!', life: 3000 });
+      }
+    });
   }
 
   get emailControl() {

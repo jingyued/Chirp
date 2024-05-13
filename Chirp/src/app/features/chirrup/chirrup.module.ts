@@ -10,6 +10,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { ChirrupListComponent } from './components/chirrup-list/chirrup-list.component';
 import { TruncateAvatarPipe } from './pipes/truncate-avatar.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -29,7 +30,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
     ButtonModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ],
 
   exports: [

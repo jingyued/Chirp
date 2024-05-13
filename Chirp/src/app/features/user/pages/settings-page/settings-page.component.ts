@@ -19,7 +19,6 @@ export class SettingsPageComponent implements OnInit {
   
   private _isLogin: boolean = false;
 
-  messages: Message[] = [];
 
   constructor(    
     private themeService: ThemeService,
@@ -59,7 +58,7 @@ export class SettingsPageComponent implements OnInit {
     localStorage.setItem("userRole", '');
     this.authService.changeLoginStatus(false);
 
-    this.messageService.add({ severity: 'success', summary: 'You have successfully logged out', detail: 'See you later', key: 'bc', life: 3000 });
+    this.messageService.add({ severity: 'success', summary: 'Logged out successfully', detail: 'See you later!', key: 'bc', life: 3000 });
   }
 }
 

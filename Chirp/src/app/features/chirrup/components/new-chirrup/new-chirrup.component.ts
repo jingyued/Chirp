@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { SharedService } from '../../services/shared.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-new-chirrup',
   templateUrl: './new-chirrup.component.html',
-  styleUrls: ['./new-chirrup.component.sass']
+  styleUrls: ['./new-chirrup.component.sass'],
+  providers: [MessageService]
 })
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
@@ -18,7 +20,8 @@ export class NewChirrupComponent {
     private fb: FormBuilder,
     private PostService: PostService,
     private sharedService: SharedService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) {
     this.chirrupForm = this.fb.group({
       text: ['', Validators.required],
@@ -54,9 +57,14 @@ export class NewChirrupComponent {
         this.sharedService.notifyChirrupListRefresh();
         // 清空表单
         this.chirrupForm.reset();
-        alert("you have successfully posted a new chirrup!");
+        //alert("you have successfully posted a new chirrup!");
+        this.messageService.add({ severity: 'success', summary: 'Post sent successfully', detail: 'You have posted a new chirrup!', life: 3000 });
+
       },
-      error: (error: any) => console.error('Failed to post chirrup:', error)
+      error: (error: any) => {
+        console.error('Failed to post chirrup:', error);
+        this.messageService.add({ severity: 'error', summary: 'Post failed', detail: 'Please check your Internet connection!', life: 3000 });
+      } 
     });
   }
 }
