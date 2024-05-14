@@ -23,6 +23,8 @@ export class ProfileEditWindowComponent implements OnInit {
   ngOnInit(): void {
     this.userService.currentUser.subscribe(update => {
       this.targetUser = update;
+      console.log(this.targetUser._id);
+      
     })
     this.initForm();
   }
@@ -30,6 +32,7 @@ export class ProfileEditWindowComponent implements OnInit {
   initForm() {
     // const currentUser = this.userService.getCurrentUser();
     this.userForm = this.fb.group({
+      _id: [this.targetUser?._id],
       userName: [this.targetUser?.userName, Validators.required],
       userEmail: [this.targetUser?.userEmail, [Validators.required, Validators.email]],
       name: [this.targetUser?.name, [this.isNameValid()]],

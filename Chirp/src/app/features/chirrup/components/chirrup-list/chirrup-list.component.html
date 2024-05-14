@@ -23,10 +23,16 @@
     </div>
 
     <div class="footer">
-        <p-button (click)="toggleHeartIcon(chirrup)" [icon]="chirrup.islike ? 'pi pi-heart-fill' : 'pi pi-heart'"
-            class="text-button" label="likes"></p-button>
-        <p-button (click)="toggleCommentIcon(chirrup)" icon="pi pi-comment" class="text-button"
-            label="comments"></p-button>
+        <div class="like-button">
+            <p-button (click)="toggleHeartIcon(chirrup)" [icon]="chirrup.islike ? 'pi pi-heart-fill' : 'pi pi-heart'"
+                class="text-button" label="likes"></p-button>
+            <span class="like-count">{{ chirrup.likedIdList.length }}</span>
+        </div>
+        <div class="comment-button">
+            <p-button (click)="toggleCommentIcon(chirrup)" icon="pi pi-comment" class="text-button"
+                label="comments"></p-button>
+            <span class="comment-count">{{ chirrup.comment.length }}</span>
+        </div>
     </div>
 
 

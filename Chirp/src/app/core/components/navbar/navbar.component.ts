@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // get Current Theme, will be used for switching to dark mode
     this.theme = this.themeService.getCurrentTheme();
     this.authService.loginStatus.subscribe(update => {
       this._isLogin = update;
@@ -54,7 +55,7 @@ export class NavbarComponent implements OnInit {
     if (button === 'home') {
       this.router.navigate(['home']);
     }
-    
+
     if (this._isLogin) {
       if (button === 'liked') {
         this.router.navigate(['liked']);

@@ -58,7 +58,7 @@ export class ChirrupService {
     );
   }
 
-  // add new comment, update the newsSubject by editing originial newsSubject value: add returned comment to that post by id 
+  // add new comment, update the newsSubject by editing originial newsSubject value: add returned comment to that post by id
   addComment(chirrupId: string, comment: Comment): Observable<Comment> {
     const url = `${this.apiUrl}/news/addComment/${chirrupId}`;
     return this.http.patch<Comment>(url, comment).pipe(
