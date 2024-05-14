@@ -18,9 +18,9 @@
     <p class="warning" *ngIf="passwordControl.errors?.invalidPassword && passwordControl.dirty">At least 1 uppercase, 1 lowercase, 1 special character.</p>
 
 
-    <input [ngClass]="{'warning': passwordConfirmControl.errors && passwordConfirmControl.dirty}" type="password" formControlName="passwordConfirm" placeholder="Password Confirm:">
+    <input [ngClass]="{'warning': registerForm.errors && passwordConfirmControl.dirty}" type="password" formControlName="passwordConfirm" placeholder="Password Confirm:">
     <p class="warning" *ngIf="passwordConfirmControl.errors?.required && passwordConfirmControl.dirty">Password confirm shouldn't be empty.</p>
-    <p class="warning" *ngIf="passwordConfirmControl.errors?.passwordMismatch && passwordConfirmControl.dirty">Password doesn't match.</p>
+    <p class="warning" *ngIf="registerForm.errors?.passwordMismatch && passwordConfirmControl.dirty">Password doesn't match.</p>
 
     <div class="button-area">
         <p-button label="Register"  type="submit" [disabled]="registerForm.invalid"></p-button>

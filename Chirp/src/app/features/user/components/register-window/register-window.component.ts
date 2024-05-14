@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogCommunicationService } from '../../../../core/services/dialog-communication.service';
-import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable, catchError, map, of } from 'rxjs';
 import { Message, MessageService } from 'primeng/api';
@@ -31,9 +31,11 @@ export class RegisterWindowComponent {
       username: ['',Validators.required, this.nameNotExistsValidator()],
       email: ['',[Validators.required, Validators.email], this.emailNotExistsValidator()],
       password: ['',[Validators.required, Validators.minLength(8), this.passwordValidator()]],
-      passwordConfirm: ['', [Validators.required, this.passwordMatchValidator('password')]]
+      passwordConfirm: ['', [Validators.required]]
 
-    },{})
+    },{
+      validators: [this.passwordMatchValidator()]
+    })
   }
 
   get usernameControl() {
@@ -59,23 +61,22 @@ export class RegisterWindowComponent {
         return null; 
       }
   
-      const uppercaseRegex = /[A-Z]/;
-      const lowercaseRegex = /[a-z]/;
-      const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+      const uppercaseRegex: RegExp = /[A-Z]/;
+      const lowercaseRegex: RegExp = /[a-z]/;
+      const specialCharRegex: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
   
-      const hasUppercase = uppercaseRegex.test(password);
-      const hasLowercase = lowercaseRegex.test(password);
-      const hasSpecialChar = specialCharRegex.test(password);
+      const hasUppercase: boolean = uppercaseRegex.test(password);
+      const hasLowercase: boolean = lowercaseRegex.test(password);
+      const hasSpecialChar: boolean = specialCharRegex.test(password);
   
       return !hasUppercase || !hasLowercase || !hasSpecialChar ? { 'invalidPassword': true } : null;
     };
   }
 
-  passwordMatchValidator(controlName: string): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const password = control.value;
-      const confirmPassword = control.parent?.get(controlName)?.value;
-  
+  passwordMatchValidator(): ValidatorFn {
+    return (group: AbstractControl): { [key: string]: any } | null => {
+      const password: string = group.get('password')?.value;
+      const confirmPassword: string = group.get('passwordConfirm')?.value;
       return password === confirmPassword ? null : { 'passwordMismatch': true };
     };
   }
