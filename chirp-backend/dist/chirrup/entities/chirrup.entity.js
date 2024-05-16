@@ -9,23 +9,69 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChirrupSchema = exports.Chirrup = void 0;
+exports.ChirrupSchema = exports.Chirrup = exports.CommentSchema = exports.Comment = exports.ContentSchema = exports.Content = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+let Content = class Content {
+};
+exports.Content = Content;
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Content.prototype, "image", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Content.prototype, "video", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Content.prototype, "text", void 0);
+exports.Content = Content = __decorate([
+    (0, mongoose_1.Schema)()
+], Content);
+exports.ContentSchema = mongoose_1.SchemaFactory.createForClass(Content);
+let Comment = class Comment {
+};
+exports.Comment = Comment;
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Comment.prototype, "publisherName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: exports.ContentSchema }),
+    __metadata("design:type", Content)
+], Comment.prototype, "content", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Comment.prototype, "publishedTime", void 0);
+exports.Comment = Comment = __decorate([
+    (0, mongoose_1.Schema)()
+], Comment);
+exports.CommentSchema = mongoose_1.SchemaFactory.createForClass(Comment);
 let Chirrup = class Chirrup {
 };
 exports.Chirrup = Chirrup;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Chirrup.prototype, "name", void 0);
+], Chirrup.prototype, "publisherName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: exports.ContentSchema }),
+    __metadata("design:type", Content)
+], Chirrup.prototype, "content", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Chirrup.prototype, "age", void 0);
+    __metadata("design:type", String)
+], Chirrup.prototype, "publishedTime", void 0);
 __decorate([
-    (0, mongoose_1.Prop)([String]),
+    (0, mongoose_1.Prop)({ type: [exports.CommentSchema], default: [] }),
     __metadata("design:type", Array)
-], Chirrup.prototype, "tags", void 0);
+], Chirrup.prototype, "comment", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String], default: [] }),
+    __metadata("design:type", Array)
+], Chirrup.prototype, "likedIdList", void 0);
 exports.Chirrup = Chirrup = __decorate([
     (0, mongoose_1.Schema)()
 ], Chirrup);

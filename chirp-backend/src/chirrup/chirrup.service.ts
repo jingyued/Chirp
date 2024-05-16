@@ -3,21 +3,20 @@ import { CreateChirrupDto } from './dto/create-chirrup.dto';
 import { UpdateChirrupDto } from './dto/update-chirrup.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Chirrup } from './entities/chirrup.entity';
+import { Chirrup, ChirrupDocument } from './entities/chirrup.entity';
+// import { Chirrup } from './interfaces/chirrup.interface';
 
 
 @Injectable()
 export class ChirrupService {
 
-  @InjectModel(Chirrup.name)
-  private chirrupModel: Model<Chirrup>;
+  constructor(@InjectModel(Chirrup.name) private chirrupModel: Model<ChirrupDocument>) { }
 
-  create(createChirrupDto: CreateChirrupDto) {
-    const chirrup = new this.chirrupModel(createChirrupDto);
-    return chirrup.save();
-    // return 'This action adds a new chirrup';
+
+  async create(createChirrupDto: CreateChirrupDto): Promise<ChirrupDocument> {
+    const createdChirrup = new this.chirrupModel(createChirrupDto);
+    return createdChirrup.save();
   }
-
   findAll() {
     return this.chirrupModel.find();
     // return `This action returns all chirrup`;

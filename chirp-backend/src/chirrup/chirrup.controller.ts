@@ -5,7 +5,7 @@ import { UpdateChirrupDto } from './dto/update-chirrup.dto';
 
 @Controller('chirrup')
 export class ChirrupController {
-  constructor(private readonly chirrupService: ChirrupService) {}
+  constructor(private readonly chirrupService: ChirrupService) { }
 
   @Post()
   create(@Body() createChirrupDto: CreateChirrupDto) {

@@ -1,13 +1,32 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
 import { ChirrupModule } from './chirrup/chirrup.module';
+import { MongooseModule } from '@nestjs/mongoose';
+//for setup env file variables
+//env is in gitignore
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  // The forRoot() method accepts the same configuration object as mongoose.connect() from the Mongoose package
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017/chirrup'), ChirrupModule],
+
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
+
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get("Mongodb_PATH")
+      }),
+      inject: [ConfigService]
+    }),
+
+    ChirrupModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+  ],
 })
 export class AppModule { }

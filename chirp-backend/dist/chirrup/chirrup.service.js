@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChirrupService = void 0;
 const common_1 = require("@nestjs/common");
@@ -15,9 +18,12 @@ const mongoose_1 = require("mongoose");
 const mongoose_2 = require("@nestjs/mongoose");
 const chirrup_entity_1 = require("./entities/chirrup.entity");
 let ChirrupService = class ChirrupService {
-    create(createChirrupDto) {
-        const chirrup = new this.chirrupModel(createChirrupDto);
-        return chirrup.save();
+    constructor(chirrupModel) {
+        this.chirrupModel = chirrupModel;
+    }
+    async create(createChirrupDto) {
+        const createdChirrup = new this.chirrupModel(createChirrupDto);
+        return createdChirrup.save();
     }
     findAll() {
         return this.chirrupModel.find();
@@ -33,11 +39,9 @@ let ChirrupService = class ChirrupService {
     }
 };
 exports.ChirrupService = ChirrupService;
-__decorate([
-    (0, mongoose_2.InjectModel)(chirrup_entity_1.Chirrup.name),
-    __metadata("design:type", mongoose_1.Model)
-], ChirrupService.prototype, "chirrupModel", void 0);
 exports.ChirrupService = ChirrupService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, mongoose_2.InjectModel)(chirrup_entity_1.Chirrup.name)),
+    __metadata("design:paramtypes", [mongoose_1.Model])
 ], ChirrupService);
 //# sourceMappingURL=chirrup.service.js.map

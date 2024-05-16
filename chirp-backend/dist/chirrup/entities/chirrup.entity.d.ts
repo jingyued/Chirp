@@ -23,14 +23,36 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { HydratedDocument } from 'mongoose';
-export declare class Chirrup {
-    name: string;
-    age: number;
-    tags: string[];
+export declare class Content {
+    image: string;
+    video: string;
+    text: string;
 }
-export type ChirrupDocument = HydratedDocument<Chirrup>;
+export declare const ContentSchema: import("mongoose").Schema<Content, import("mongoose").Model<Content, any, any, any, import("mongoose").Document<unknown, any, Content> & Content & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Content, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Content>> & import("mongoose").FlatRecord<Content> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;
+export declare class Comment {
+    publisherName: string;
+    content: Content;
+    publishedTime: string;
+}
+export declare const CommentSchema: import("mongoose").Schema<Comment, import("mongoose").Model<Comment, any, any, any, import("mongoose").Document<unknown, any, Comment> & Comment & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Comment, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Comment>> & import("mongoose").FlatRecord<Comment> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;
+export declare class Chirrup {
+    publisherName: string;
+    content: Content;
+    publishedTime: string;
+    comment: Comment[];
+    likedIdList: string[];
+}
 export declare const ChirrupSchema: import("mongoose").Schema<Chirrup, import("mongoose").Model<Chirrup, any, any, any, import("mongoose").Document<unknown, any, Chirrup> & Chirrup & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Chirrup, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Chirrup>> & import("mongoose").FlatRecord<Chirrup> & {
     _id: import("mongoose").Types.ObjectId;
 }>;
+export type ChirrupDocument = HydratedDocument<Chirrup>;

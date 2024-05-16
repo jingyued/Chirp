@@ -32,24 +32,64 @@ export declare class ChirrupController {
     create(createChirrupDto: CreateChirrupDto): Promise<import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
         _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
         _id: import("mongoose").Types.ObjectId;
-    }, {}, import("./entities/chirrup.entity").Chirrup, "find">;
-    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    } & Required<{
         _id: import("mongoose").Types.ObjectId;
-    }, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    }>)[], import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
         _id: import("mongoose").Types.ObjectId;
-    }, {}, import("./entities/chirrup.entity").Chirrup, "findOne">;
-    update(id: string, updateChirrupDto: UpdateChirrupDto): import("mongoose").Query<import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
         _id: import("mongoose").Types.ObjectId;
-    }, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    } & Required<{
         _id: import("mongoose").Types.ObjectId;
-    }, {}, import("./entities/chirrup.entity").Chirrup, "findOneAndUpdate">;
-    remove(id: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    }>, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
         _id: import("mongoose").Types.ObjectId;
-    }, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+    }, "find">;
+    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
         _id: import("mongoose").Types.ObjectId;
-    }, {}, import("./entities/chirrup.entity").Chirrup, "findOneAndDelete">;
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>, import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }, "findOne">;
+    update(id: string, updateChirrupDto: UpdateChirrupDto): import("mongoose").Query<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>, import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }, "findOneAndUpdate">;
+    remove(id: string): import("mongoose").Query<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>, import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>, {}, import("mongoose").Document<unknown, {}, import("./entities/chirrup.entity").Chirrup> & import("./entities/chirrup.entity").Chirrup & {
+        _id: import("mongoose").Types.ObjectId;
+    }, "findOneAndDelete">;
 }
