@@ -10,11 +10,11 @@ import { Model } from 'mongoose';
 export class UserService {
 
   // useModel already a db instance
-  constructor(@InjectModel(User.name) private userModel: Model<User>) { }
+  constructor(@InjectModel(User.name) private users: Model<User>) { }
 
   // This action adds a new user
   async create(createUserDto: CreateUserDto) {
-    return await this.userModel.create(createUserDto);
+    return await this.users.create(createUserDto);
   }
 
   findAll() {

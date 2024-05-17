@@ -18,11 +18,11 @@ const mongoose_1 = require("@nestjs/mongoose");
 const user_entity_1 = require("./entities/user.entity");
 const mongoose_2 = require("mongoose");
 let UserService = class UserService {
-    constructor(userModel) {
-        this.userModel = userModel;
+    constructor(users) {
+        this.users = users;
     }
     async create(createUserDto) {
-        return await this.userModel.create(createUserDto);
+        return await this.users.create(createUserDto);
     }
     findAll() {
         return `This action returns all user`;
