@@ -12,9 +12,9 @@ export class UserService {
   // useModel already a db instance
   constructor(@InjectModel(User.name) private userModel: Model<User>) { }
 
-  create(createUserDto: CreateUserDto) {
-    this.userModel.create()
-    return 'This action adds a new user';
+  // This action adds a new user
+  async create(createUserDto: CreateUserDto) {
+    return await this.userModel.create(createUserDto);
   }
 
   findAll() {

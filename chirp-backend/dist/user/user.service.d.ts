@@ -29,7 +29,9 @@ import { Model } from 'mongoose';
 export declare class UserService {
     private userModel;
     constructor(userModel: Model<User>);
-    create(createUserDto: CreateUserDto): string;
+    create(createUserDto: CreateUserDto): Promise<import("mongoose").Document<unknown, {}, User> & User & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     findAll(): string;
     findOne(id: number): string;
     update(id: number, updateUserDto: UpdateUserDto): string;

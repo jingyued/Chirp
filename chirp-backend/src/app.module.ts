@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ChirrupModule } from './chirrup/chirrup.module';
 import { MongooseModule, Schema } from '@nestjs/mongoose';
 //for setup env file variables
@@ -34,9 +32,8 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     AuthModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
-    AppService,
     // UserService
   ],
 })

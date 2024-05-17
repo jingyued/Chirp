@@ -21,9 +21,8 @@ let UserService = class UserService {
     constructor(userModel) {
         this.userModel = userModel;
     }
-    create(createUserDto) {
-        this.userModel.create();
-        return 'This action adds a new user';
+    async create(createUserDto) {
+        return await this.userModel.create(createUserDto);
     }
     findAll() {
         return `This action returns all user`;
